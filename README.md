@@ -44,7 +44,7 @@ in Mitchell.
 ## Mitchell Library Documentation
 
 The Mitchell library documentation is available at
-[GitHub](https://github.com/mitchell-lang/docs). If something is missing from
+[GitHub](mitchell_lib_doc.md). If something is missing from
 the documentation, you find an error, or have a suggestion on how to improve the
 documentation, let us know in the SDH Mitchell evaluation [Slack
 channel](slack://channel?team=sdhworld&id=evaluation).
