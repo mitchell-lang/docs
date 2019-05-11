@@ -37,7 +37,7 @@ seeing what you are doing to the data files as well.
 Start with [Getting Started](getting-started.md) to make sure that you can
 connect to the evaluation virtual machines and run a Mitchell program.
 
-After Getting Started, you can follow along with the [tutorial](tutorial-gbdt.md)
+After Getting Started, you can follow along with the [tutorial](tutorials/tutorial-gbdt.md)
 to learn more about the Mitchell language and how to write machine learning algorithms
 in Mitchell.
 
