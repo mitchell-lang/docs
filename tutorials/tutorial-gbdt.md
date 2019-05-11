@@ -376,7 +376,7 @@ fun compareLeaves (avg, left, right) =
     else Ord.LT;
 ```
 
-The return type `Ord.t` can be one of `Ord.GT`, `Ord.Lt`, or `Ord.EQ`, which
+The return type `Ord.t` can be one of `Ord.GT`, `Ord.LT`, or `Ord.EQ`, which
 stand for "greater than", "less than", and "equal to", respectively. Here we
 return `Ord.GT` for the tree that we prefer.
 
@@ -389,18 +389,18 @@ fun findBest trees =
       val avg = MathInt.averageOf D.leafNum trees;
       fun comp (left, right) = compareLeaves (avg, left, right);
     in
-      Util.argmax comp family
+      Ord.argmax comp family
     end;
 ```
 
 Like in earlier code snippets, we define a helper function that uses a value
 that we computed.
 
-The `findBest` function uses the `Util.argmax` function to pick the best item
+The `findBest` function uses the `Ord.argmax` function to pick the best item
 from the list, according to the comparison function that has been defined using
-the average number of leaves in the trees. `Util.argmax` returns a value of type
+the average number of leaves in the trees. `Ord.argmax` returns a value of type
 `DT.t option`, which can be one of two things. If the list given to
-`Util.argmax` is empty, then the result is `NONE`. Otherwise the list will be
+`Ord.argmax` is empty, then the result is `NONE`. Otherwise the list will be
 `SOME t`, where `t` is the chosen tree.
 
 Now we can define the function for computing the next tree to add to the ensemble.
