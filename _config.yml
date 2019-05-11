@@ -1,3 +1,5 @@
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-relative-links
+title: Mitchell Documentation
+description: Documentation and tutorials for the Mitchell machine learning and graph analytics programming language.
