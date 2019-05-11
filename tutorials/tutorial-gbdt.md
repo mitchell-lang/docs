@@ -386,7 +386,7 @@ tree from a list of trees.
 ```sml
 fun findBest trees =
     let
-      val avg = MathInt.averageOf D.leafNum trees;
+      val avg = MathInt.average (List.map D.leafNum trees);
       fun comp (left, right) = compareLeaves (avg, left, right);
     in
       Ord.argmax comp family
@@ -430,7 +430,7 @@ time, until the depth hits zero.
 ```sml
 fun train (data, learningRate, depth) =
     if depth = 0
-    then [D.Lf (MathReal.averageOf (#2) data)]
+    then [D.Lf (MathReal.average (List.map #2 data))]
     else
       let
         val ensemble = train (data, learningRate, depth - 1);
@@ -444,10 +444,10 @@ Here, the square brackets are how you write a list in Mitchell. The list in the
 program contains a single element, which is a leaf node that returns the average
 of the labels on the data.
 
-The `(#2)` is the function that gets the second element of a tuple (e.g., the
-right-hand side of a pair). When applying `#2` to a tuple directly, it does not
-need to be wrapped in parenthesis. It does need to be wrapped in parentheses
-when given as an argument to another function, however.
+The `#2` is the function that gets the second element of a tuple (e.g., the
+right-hand side of a pair). Even though `#2` starts with a symbol, it is a normal function.
+If you want to pass an operator (like `+`) as an argument, you need to prefix it with `op`,
+as in `op+`.
 
 The `::` at the end makes a new list out of the existing ensemble (which is
 represented as a list) and the next tree to add to it. Since the ensemble is
@@ -462,7 +462,7 @@ For the advanced reader, you can try implementing the same function in
 ```sml
 fun train (data, learningRate, depth) =
     let
-      val startEnsemble = [D.Lf (MathReal.averageOf (#2) data)]
+      val startEnsemble = [D.Lf (MathReal.average (List.map #2 data))]
       fun trainAcc (accEnsemble, depth) =
         if depth = 0
         then accEnsemble
@@ -479,7 +479,7 @@ fun train (data, learningRate, depth) =
 
 You can now use your `train` function the same way that we used the library
 `train` function. Defining an `error` function is left as an exercise for the
-reader (you will probably want to use `MathReal.averageOf` to implement it).
+reader (you will probably want to use `MathReal.average` and `List.map` to implement it).
 
 #### Printing the Tree
 
