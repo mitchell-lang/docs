@@ -64,5 +64,5 @@ architecture that Mitchell is intended to target.
 
 So that you can write programs that read input from disk, we have left this
 functionality in place. However, please keep all of your IO in one place in your
-program, so that we can easily modify your programs to run on PUMA for our
+program, so that we can easily modify your programs to run on the custom hardware accelerator for our
 analysis.
