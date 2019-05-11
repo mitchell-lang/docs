@@ -100,4 +100,4 @@ You should see `Hello world!` printed on the screen.
 ## Next steps
 
 See the [walkthrough for implementing Graident Boosted Decision Trees in
-Mitchell](walkthrough-gbdt.md).
+Mitchell](tutorials/tutorial-gbdt.md).
