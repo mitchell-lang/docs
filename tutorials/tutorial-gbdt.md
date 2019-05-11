@@ -1,10 +1,14 @@
 # Mitchell Tutorial: Gradient Boosted Decision Trees
+{:.no_toc}
 
 This tutorial will walk you through the process of implementing an algorithm for
 gradient boosted decision trees in Mitchell. This implementation will make use
 of the Mitchell Classification and Regression Trees (CART) and Decision Trees
 (DT) libraries, as well as the DMatrix file reader from the Mitchell IO
 libraries.
+
+1. Generated Toc
+{:toc}
 
 ## Background
 ### What are Decision Trees?
