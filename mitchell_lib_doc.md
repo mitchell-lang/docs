@@ -1,5 +1,83 @@
 ## Mitchell Libraries
 
+         * [Basic Libraries](#basic-libraries)
+            * [utils](#utils)
+               * [Dependencies](#dependencies)
+               * [Methods](#methods)
+            * [sort](#sort)
+               * [Dependencies](#dependencies-1)
+               * [Methods](#methods-1)
+            * [hashtable](#hashtable)
+               * [Dependencies](#dependencies-2)
+               * [Methods](#methods-2)
+            * [unique](#unique)
+               * [Dependencies](#dependencies-3)
+               * [Methods](#methods-3)
+            * [mlrandom](#mlrandom)
+               * [Dependencies](#dependencies-4)
+               * [Methods](#methods-4)
+            * [mlarray](#mlarray)
+               * [Dependencies](#dependencies-5)
+               * [Methods](#methods-5)
+            * [mltree](#mltree)
+               * [Dependencies](#dependencies-6)
+               * [Methods](#methods-6)
+            * [mlheap](#mlheap)
+               * [Dependencies](#dependencies-7)
+               * [Methods](#methods-7)
+            * [mlvector](#mlvector)
+               * [Dependencies](#dependencies-8)
+               * [Methods](#methods-8)
+            * [mlmatrix](#mlmatrix)
+               * [Dependencies](#dependencies-9)
+               * [Methods](#methods-9)
+            * [mlgraph](#mlgraph)
+               * [Dependencies](#dependencies-10)
+               * [Methods](#methods-10)
+            * [hashset](#hashset)
+               * [Dependencies](#dependencies-11)
+               * [Methods](#methods-11)
+            * [binary](#binary)
+               * [Dependencies](#dependencies-12)
+               * [Methods](#methods-12)
+         * [Advance Libraries](#advance-libraries)
+            * [nonlinear](#nonlinear)
+               * [Dependencies](#dependencies-13)
+               * [Methods](#methods-13)
+            * [dt](#dt)
+               * [Dependencies](#dependencies-14)
+               * [Methods](#methods-14)
+            * [cart](#cart)
+               * [Dependencies](#dependencies-15)
+               * [Methods](#methods-15)
+            * [gbdt](#gbdt)
+               * [Dependencies](#dependencies-16)
+               * [Methods](#methods-16)
+            * [wlKernel](#wlkernel)
+               * [Dependencies](#dependencies-17)
+               * [Methods](#methods-17)
+            * [negsample](#negsample)
+               * [Dependencies](#dependencies-18)
+               * [Methods](#methods-18)
+            * [skipgram](#skipgram)
+               * [Dependencies](#dependencies-19)
+               * [Methods](#methods-19)
+            * [rnn](#rnn)
+               * [Dependencies](#dependencies-20)
+               * [Methods](#methods-20)
+            * [community](#community)
+               * [Dependencies](#dependencies-21)
+               * [Methods](#methods-21)
+            * [louvain](#louvain)
+               * [Dependencies](#dependencies-22)
+               * [Methods](#methods-22)
+            * [shortestpath](#shortestpath)
+               * [Dependencies](#dependencies-23)
+               * [Methods](#methods-23)
+            * [hhl](#hhl)
+               * [Dependencies](#dependencies-24)
+               * [Methods](#methods-24)
+
 ### Basic Libraries
 
 - utils
@@ -94,7 +172,7 @@ None.
   + `((A, B) hash_table) copy(((A, B) hash_table) table)`. Create a copy of a hash table.
   + `(int list) bucketSizes(((A, B) hash_table) table)`. Returns a list of the sizes of the various buckets. This is to allow users to gauge the quality of their hashing function.
   
-#### hashtable
+#### unique
 
 An unique(rename) module, which could map discrete instances to `0, 1, 2, 3...`.
 
@@ -124,6 +202,269 @@ None.
     + `int rand()`. Return a random integer.
     + `int uniformInt(int l, int h)`. Return a integer in range [l, h).
     + `real uniformReal(real l, real h)`. Return a real number in range [l, h).
+
+#### mlarray
+
+An array can grow automatically. If the index exceeds the current size, the length of array will be doubled.
+
+##### Dependencies
+
+None.
+
+##### Methods
+
+- Mlarray. Array has type `A mlarray`, where `A` is the type of the elements.
+    + `(A mlarray) makeInit(int num, A default)`. Make and initialize every element in the array.
+    + `(A mlarray) make(int num, A default)`. Allocate the memory, but do not init.
+    + `(A mlarray) copy((A mlarray) arr)`. Copy an array.
+    + `B foldl(((A, B) -> B) f, B default, (A mlarray) arr)`. Fold a function over the elements of a array.
+    + `B foldli(((int, A, B) -> B) f, B default, (A mlarray) arr)`. Like fold, but the recursion function also takes indices as input.
+    + `(A mlarray) fromList((A list) l)`. Convert a list to mlarray.
+    + `int length((A mlarray) arr)` Return the actual number of elements in the array.
+    + `int maxLen((A mlarray) arr)`. The size(space usage) of the array (including indices not yet bound to values.)
+    + `void modify((A -> A) f, (A mlarray) arr)`. Modify a mlarray in place. 
+    + `void modifyi(((int,  A) -> A) f, (A mlarray) arr)`. Like modify, but the modification function also takes indices as input.
+    + `A sub((A mlarray) arr, int n)`. Return nth element in array(like arr[n] in some languages).
+    + `void update((A mlarray) arr, int idx, A a)`. Update the element in idx position to `a`(like arr[idx] := a in some languages).
+    + `string toString((A -> string) f, (A mlarray) arr)`. Convert a mlarray to string, the first argument describes how to convert the polymorphic element to string.
+    + `string toStringSub((A -> string) f, (A mlarray) arr, (int start, int end))`. Like `toString`, but convert a subarray to string. The third argument is a tuple which describes the position of subarray: [start, end).
+    + `(B mlarray) compre((A -> B) f, (A mlarray) arr)`. Comprehension, like map, but run in parallel.
+    + `(B mlarray) comprei(((int, A) -> B) f, (A mlarray) arr)`. Comprehension, like mapi, but run in parallel.
+    + `void pushback((A mlarray) arr, A a)`. Push a element to the end of array. If it runs out of space, the length of array will be doubled.
+    + `A pop((A mlarray) arr)`. Pop a element from the end of array. Even poped, the memory of array will not be released.
+
+#### mltree
+
+A tree module, supports multi-ary tree.
+
+##### Dependencies
+
+None.
+
+##### Methods
+
+- Mltree. Tree has type `A Mltree.tree`, where `A` is the type of the nodes in tree.
+    + `string toString((A -> string) f,  (A tree) tree)`. Convert a string to String, the first argument describes how to convert the polymorphic element to string.
+    + `(B tree) compre((A -> B) f, (A tree) tree)`. Comprehension. map a tree to another in parallel. The second argument how to compre two polymorphic elements.
+    + `(A tree) makeLf(A a)`. Build a tree with one single leaf.
+    + `(A tree) makeNd(A a, ((A tree) list) l)`. Build a tree from a element and some subtrees.
+    + `A root((A tree) tree)`. Return the root of tree.
+    + `int num((A tree) tree)`. Return how many elements in the tree(the number of nodes pluses the number of leaves).
+
+#### mlheap
+
+A heap module.
+
+##### Dependencies
+
+utils, mlarray.
+
+##### Methods
+
+- Kheap. Heap has type `A Mlheap.t`, where `A` is the type of the elements.
+    + `(A t) make(((A, A) -> bool) comp, int k, int size, A default)`. Make a heap, which implemented by a k-ary tree. The second element indicate how many branches in the explicit tree. Basically, when `k = 4`, it has a good performance. The first argument describes how to compre two polymorphic elements.
+    + `void push((A t) heap, A a)`. Push a element into heap.
+    + `void pop((A t) heap)`. Pop the element in the top of heap. 
+    + `bool empty((A t) heap)`. Return if the heap is empty.
+    + `A top((A t) heap)`. Return the top of the heap.
+    + `(B t) compre((A -> B) f,((B, B) -> bool) comp, (A t) heap)`. Comprehension. map a heap to another in parallel. The second argument how to compre two polymorphic elements.
+    + `string toString((A -> string) f, (A t) heap)`. Convert a heap to String, the first argument describes how to convert the polymorphic element to string.
+    
+#### mlvector
+
+A vector of real numbers, which includes some math functions on vectors.
+
+##### Dependencies
+
+None.
+
+##### Methods
+
+- Mlvector. Mlvector has type `A mlvector`, where `A` is the type of the elements.
+    + `int size(mlvector vec)`. Return the length of vector.
+    + `mlvector make(int len, real default)`. Make a vector, fill every element to default value.
+    + `mlvector makeInit((int -> real) f, int len)`. Make a vector, initialize every element by initialization function `f`. `f` maps a index to a polymorphic element.
+    + `real sub(mlvector vec, int n)`. Return nth element in the vector.
+    + `void set(mlvector vec, int n, real r)`. Update nth element in vector to `r`(like vec[n] := r in some languages).
+    + `void update((real -> real) f, mlvector vec, int n)`. Update nth element with respect its old value(like vec[n] := f(vec[n]) in some languages).
+    + `void modify((real -> real) f, mlvector vec)`. Modify a vector in place.
+    + `void modifyi(((int, real) -> real) f, mlvector vec)`. Like modify, but the modification function also takes indices as input.
+    + `A foldl(((A, real) -> A) f, A default, mlvector vec)`. Fold a function over the elements of a vector.
+    + `A foldli(((A, int, real) -> A) f, A default, mlvector vec)`. Like fold, but the recursion function also takes indices as input.
+    + `mlvector copy(mlvector vec)`. Copy a mlvector.
+    + `real squeeze(mlvector vec)`. Squeeze a 1-dimension vector to a scalar. Return vec[0].
+    + `mlvector map((real -> real) f, mlvector vec)`. Map an array to another with respect to the mapping function `f`.
+    + `mlvector mapi(((int, real) -> real) f, mlvector vec)`. Like map, but the mapping function also takes the indices as input.
+    + `mlvector map2(((real, real) -> real) f, mlvector vec1, mlvector vec2)`. Map over two vectors. The length of result vector is equal to the minimal length of `vec1` and `vec2`.
+    + `mlvector elemwise(mlvector vec1, mlvector vec2)`. Element wisely multiply two vectors.
+    + `mlvector add(mlvector vec1, mlvector vec2)`. Add two vectors.
+    + `void addModify(mlvector vec1, mlvector vec2)`. Add two vectors, modify the first vec to the result in place.
+    + `mlvector mulScalar(mlvector vec, real a)`. Multiply a vector with a scalar.
+    + `real dot(mlvector vec1, mlvector vec2)`. Dot product.
+    + `string toStringF((real -> string) f, mlvector vec)`. Convert a mlvector to String, the first argument describes how to convert the element to string.
+    + `string toString(mlvector vec)`. Convert a mlvector to String using default format.
+    + `mlvector fromList((real list) l)`. Convert a list of real numbers to mlvector.
+
+#### mlmatrix
+
+A matrix of real numbers, which includes some math functions on matrices.
+
+##### Dependencies
+
+mlvector.
+
+##### Methods
+
+- Mlmatrix. Mlmatrix has type `A mlmatrix`, where `A` is the type of the elements.
+	+ `(int, int) size(mlmatrix mat)`. Return the size(the first element in tuple is height, second is width) of a matrix.
+	+ `mlmatrix makeInit((int -> mlvector) f, int height)`. Make and init a matrix, each row of matrix will be set by `f`. `f` takes the index of height as input.
+    + `mlmatrix make(int height, int width, real default)`. Make a matrix, and set every elements in it to default value.
+	+ `real sub(mlmatrix mat, (int idx1, int idx2))`. Return mat[idx1][idx2].
+	+ `mlmatrix row(mlmatrix mat, int idx)`. Return one row of a matrix as a "1 x n" matrix.
+    + `mlmatrix col(mlmatrix mat, int idx)`. Return one column of a matrix as a "m x 1" matrix.
+    + `mlvector onerow(mlmatrix mat, int idx)`. Like `row`, but squeeze the result to vector.
+    + `mlvector onecol(mlmatrix mat, int idx)`. Like `col`, but squeeze the result to vector.
+    + `void set(mlmatrix mat, (int idx1, int idx2), real r)`. Update the element in mat[idx1][idx2] to `r`.
+	+ `void update((real -> real) f, mlmatrix mat, (int idx1, int idx2))`. Update the element in mat[idx1][idx2] to `f(mat[idx1][idx2])`.
+    + `void modify((real -> real) f, mlmatrix mat)`. Modify every element in matrix by `f` in place.
+    + `void modifyi(((int, int, real) -> real) f, mlmatrix mat)`. Like modify, but the modification function takes indices as input too.
+    + `void modifyrowi(((int, mlvector) -> unit) f, mlmatrix mat)`. Modify a matrix by rows in place.
+    + `mlmatrix copy(mlmatrix mat)`. Copy a matrix.
+    + `mlmatrix vec2mat(mlvector vec)`. Convert a vector to "1 x n" matrix.
+    + `mlvector squeeze1(mlmatrix mat)`. Squeeze a "1 x n" matrix to a vector.
+    + `mlvector squeeze2(mlmatrix mat)`. Squeeze a "m x 1" matrix to a vector.
+    + `real squeeze12(mlmatrix mat)`. Squeeze a "1 x 1" matrix to a real number.
+	+ `mlmatrix map((real -> real) f, mlmatrix mat)`. Map an matrix to another with respect to the mapping function `f`.
+	+ `mlmatrix mapi(((int, int, real) -> real) f, mlmatrix mat)`. Like map, but the mapping function also takes the indices as input.
+    + `mlmatrix map2(((real, real) -> real) f, mlmatrix mat1, mlmatrix mat2)`. Map on two matrices, the result will have the minimal size of these two matrices.
+    + `mlmatrix map2i(((int, int, real, real) -> real) f, mlmatrix mat1, mlmatrix mat2)`. Like map2, but the mapping function also takes the indices as input.
+	+ `A foldl(((A, real) -> A) f, A default, mlmatrix mat)`. Fold a function over the elements of a table.
+	+ `A foldli(((A, int, int, real) -> A) f, A default, mlmatrix mat)`. Like fold, but recursion function also takes keys as input.
+    + `A foldRowl((A, mlmatrix) -> A) f, A default, mlmatrix mat)`. Fold a function over the rows of a table.
+    + `A foldRowVecl((A, mlvector) -> A), A default, mlmatrix mat)`. Like foldRowl, but treat a row as a vector instead of a matrix.
+    + `mlmatrix transpose(mlmatrix mat)`. Transpose a matrix.
+    + `mlmatrix mulScalar(mlmatrix mat, real a)`. Multiply a matrix with a real number.
+    + `mlmatrix mul(mlmatrix mat1, mlmatrix mat2)`. Multiply two matrices.
+    + `mlmatrix add(mlmatrix mat1, mlmatrix mat2)`. Add two matrices.
+    + `void addModify(mlmatrix mat1, mlmatrix mat2)`. Like Add, but modify the first matrix instead of return a new matrix.
+	+ `mlmatrix elemwise(mlmatrix mat1, mlmatrix mat2)`. Element wisely multiply two matrices, the result will have the minimal size of these two matrices.
+	+ `void elemwiseInplace(mlmatrix mat1, mlmatrix mat2)`. Like elemwise, but modify the first matrix instead of return a new matrix.
+    + `mlmatrix matMulVec(mlmatrix mat, mlvector vec)`. Multiply a matrix with a vector, treat the vector as a "m x 1" matrix.
+	+ `mlmatrix fromArray2((real array array) arr2)`. Convert an array of array of real to mlmatrix.
+	+ `mlmatrix fromList((real list list) l2)`. Convert an list of list of real to mlmatrix.
+    + `string toStringF((real -> string) f, mlmatrix mat)`. Convert a matrix to a string, the first argument describes how to convert the element to string.
+	+ `string toString(mlmatrix mat)`.  Convert a matrix to a string using default format.
+
+
+#### mlgraph
+
+A graph module similar to `Spark.graphX`. There will be four implementations: `BaseGraph`, `Digraph`, `MultiGraph` and `MultiDiGraph`. Now, `BaseGraph` is available.
+
+##### Dependencies
+
+hashtable, utils.
+
+##### Methods
+
+- Graph. Graph has type `(A, B) t`, where `A` indicates the type of nodes, and `B` indicates the type of edges. For example, `(void, void) GRAPH.t` is actually a adjacency matrix. `(string, real) GRAPH.t` could be a traffic road map: each node has type string which is the name of place, each edge has type int which is the distance between two places. `nodeid = int` is actually integer, `edgeid = (nodeid, nodeid)` is a pair of integer(source and target node index) respectively.
+    + `((void, void) t) fromMetisFile(string fileName)`. Read a graph from file.
+    + `((A, B) t) fromAdj((int array array) adj, ((nodeid, A) HashTable.hash_table) nodeMap, ((edgeid, B) HashTable.hash_table) egdeMap)`. Build a graph by adjacency matrix. The second argument is a hashtable which map nodeid to element it binds, so does the third element. 
+    + `((A, B) t) addNode(((A, B) t) graph, A a)`. Add a single node to a graph, return the new graph.
+    + `((A, B) t) removeNode(((A, B) t) graph, A a)`. Remove a node from a graph, return the new graph. 
+    + `void updateNode((A -> A) f, ((A, B) t) graph, nodeid nid)`. Update a node by its id by `f` in place.
+    + `((A, B) t) addEdge(((A, B) t) graph, edgeid eid, B b)`. Add a edge to a graph, return the new graph.
+    + `((A, B) t) removeEdge(((A, B) t) graph, B b)`. Remove a edge from a graph, return the new graph. 
+    + `void updateEdge((B -> B) f, ((A, B) t) graph, edgeid eid)`. Update a edge by its id by `f` in place.
+    + `(nodeid option) hasNode(((A, B) t) graph, A a)`. Return the nodeid by the value of the node. If the value doesn't exist, return `NONE`.
+    + `(edgeid option) hasEdge(((A, B) t) graph, B b)`. Return the edgeid by the value of the edge. If the value doesn't exist, return `NONE`.
+    + `bool connected(((A, B) t) graph, (nodeid, nodeid) nid)`. Return if there is a edge connects two nodes.
+    + `(A option) getNodeById(((A, B) t) graph, nodeid nid)`. Get node by id, if the node id doesn't exist, return `NONE`.
+    + `(B option) getEdgeById(((A, B) t) graph, edgeid eid)`. Get edge by id, if the edge id doesn't exist, return `NONE`.
+    + `(A list) nodes(((A, B) t) graph)`. Squeeze all nodes to a list.
+    + `((nodeid, A) list) nodesi((A, B) t) graph)`. Like nodes, but return both indices and nodes.
+    + `(nodeid list) nodeids(((A, B) t))`. Like nodesi, but only return indices.
+    + `(B list) egdes(((A, B) t) graph)`. Squeeze all edges to a list.
+    + `((edgeid, B) list) egdesi(((A, B) t) graph)`. Like edges, but return both indices and edges.
+    + `(edgeid list) egdeids(((A, B) t) graph)`. Like edgesi, but only return indices.
+    + `(A list) neighbors(((A, B) t) graph, nodeid nid)`. Return the nodes which is connected with `nid`.
+    + `((nodeid, A) list) neighborsi((A, B) t) graph)`. Like neighbors, but also return indices.
+    + `(A, A) ends(((A, B) t) graph, edgeid eid)`. Return the source node and target node of a edge.
+    + `((nodeid, A), (nodeid, A)) endsi(((A, B) t) graph, edgeid eid)`. Like ends, but also return indices.
+    + `C graphFoldNodes(((C, A) -> C) f, C default, ((A, B) t) graph)`. Fold over all nodes in a graph.
+    + `C graphFoldEdges(((C, B) -> C) f, C default, ((A, B) t) graph)`. Fold over all edges in a graph.
+    + `C graphFoldiNodes(((C, (nodeid, A)) -> C), C default, ((A, B) t) graph)`. Like graphFoldNodes, but the recursion function also takes the indices as input.
+    + `C graphFoldiEdges(((C, (edgeid, B)) -> C), C default, ((A, B) t) graph)`. Like graphFoldEdges, but the recursion function also takes the indices as input.
+    + `C neighborFoldNodes(((C, A) -> C) f, C default, ((A, B) t) graph, nodeid nid)`. Fold over all nodes that is connected with a node.
+    + `C neighborFoldEdges(((C, B) -> C) f, C default, ((A, B) t) graph, nodeid nid)`. old over all edges that is connected with a node.
+    + `void neighborFoldiNodes(((C, (nodeid, A) -> C) f, C default, ((A, B) t) graph, nodeid nid)`. Like neighborFoldNodes, but the recursion function also takes the indices as input.
+    + `void neighborFoldiEdges(((C, (edgeid, B) -> C) f, C default, ((A, B) t) graph, nodeid nid)`. Like neighborFoldEdges, but the recursion function also takes the indices as input.
+    + `((C, B) t) graphMapNodes((A -> C) f, ((A, B) t) graph)`. Map a graph to another graph by a function over nodes.
+    + `((A, D) t) graphMapEdges((B -> D) f, ((A, B) t) graph)`. Map a graph to another graph by a function over edges.
+    + `((C, B) t) graphMapiNodes(((nodeid, A) -> C) f, ((A, B) t) graph)`. Like graphMapNodes, but the mapping function also takes the indices as input.
+    + `((A, D) t) graphMapiEdges(((edgeid, B) -> D) f, ((A, B) t) graph)`. Like graphMapNodes, but the mapping function also takes the indices as input.
+    + `void graphModifyNodes((A -> A) f, ((A, B) t) graph)`. Modify a graph by a function over nodes in place.
+    + `void graphModifyEdges((B -> B) f, ((A, B) t) graph)`. Modify a graph by a function over edges in place.
+    + `void graphModifyiNodes(((nodeid, A) -> A) f, ((A, B) t) graph)`. Like graphModifyNodes, but the modification function also takes the indices as input.
+    + `void graphModifyiEdges(((edgeid, B) -> B) f, ((A, B) t) graph)`. Like graphModifyEdges, but the modification function also takes the indices as input. 
+    + `void neighborModifyNodes((A -> A) f, ((A, B) t) graph, nodeid nid)`. Modify all nodes that is connected with a node in place.
+    + `void neighborModifyEdges((B -> B) f, ((A, B) t) graph, nodeid nid)`. Modify all egdes that is connected with a edge in place.
+    + `void neighborModifyiNodes(((nodeid, A) -> A) f, ((A, B) t) graph, nodeid nid)`. Like neighborModifyNodes, but the modification function also takes the indices as input.
+    + `void neighborModifyiEdges(((edgeid, B) -> B) f, ((A, B) t) graph, nodeid nid)`. Like neighborModifyEdges, but the modification function also takes the indices as input.
+    + `int numberOfNodes(((A, B) t) graph)`. Return the number of nodes in the graph.
+    + `int numberOfEdges(((A, B) t) graph)`. Return the number of edges in the graph.
+    + `(int list) degree(((A, B) t) graph)`. Return the degree of each node.
+    + `((nodeid, int) list) degreei(((A, B) t) graph)`. Return the nodeids and the corresponding degrees.
+    + `((A, B) t) copy(((A, B) t) graph)`. Copy a graph.
+    + `((A, B) t) subgraphNodes(((A, B) t) graph, (nodeid list) l)`. Extract a sub graph by a list of node indices.
+    + `((A, B) t) subgraphEdges(((A, B) t) graph, (edgeid list) l)`. Extract a sub graph by a list of edge indices.
+    + `((A, B) t) subgraphNodeF((A -> bool) f, ((A, B) t) graph)`. Extract a sub graph by a filter function over nodes.
+    + `((A, B) t) subgraphEdgeF((B -> bool) f, ((A, B) t) graph)`. Extract a sub graph by a filter function over edges.
+    + `((A, B) t) subgraphNodeFi(((nodeid, A) -> bool) f, ((A, B) t) graph)`. Like subgraphNodeF, but the filter function also takes the indices as input.
+    + `((A, B) t) subgraphEdgeFi(((edgeid, B) -> bool) f, ((A, B) t) graph)`. Like subgraphEdgeF, but the filter function also takes the indices as input.
+    + `void toFile(((A, B) t) graph, string fileName)`. Save a graph to file.
+
+#### hashset
+
+Hashset.
+
+##### Dependencies
+
+hashtbl.
+
+##### Methods
+
+- Hashset. hashset has type `A Hashset.t`, where `A` is the element of the set.
+    + `(A t) make((A, A) -> bool) comp, int size)`. Make a hashset. The first describes how to compare two elements.
+    + `int numSet((A t) hs)`. Return the number of sets in a hashset.
+    + `int numElement((A t) hs)`. Return the number of elements in a hashset.
+    + `void normalize((A t) hs)`. Rename the set id, from `0`.
+    + `int whichSet((A t) hs, A a)`. Find which set the element `a` is belonged.
+    + `bool sameSet((A t) hs, A a, A a)`. Return if two elements are in the same set.
+    + `void insert((A t) hs, A a)`. Insert a element to a new set.
+    + `bool merge((A t) hs, ((A, A) list) l)`. Merge sets by a list of element pair. If the sets is changed, return true; else return false.
+    + `bool equal((A t) hs1, (A t) hs2)`. Compare two hashsets.
+    + `(A list) getSetMember((A t) hs, A a)`. Return all elements in the same set with input element.
+    + `void add((A t) hs, A a)`. Add a element even if it already inserted.
+    + `void toString((A -> string) f, (A t) hs)`. Convert a hashset to string, the first argument describes how to convert a polymorphic element to string.
+    + `B fold(((B, A) -> B) f, B default, (A t) hs)`. Fold over all elements.
+    + `(B t) compre((A -> B) f, ((B, B) -> bool) comp, (A t) hs)`. Map over all elements. the second argument describes how to compare two elements.
+
+    
+#### binary 
+
+Binary number with fixed length.
+
+##### Dependencies
+
+None.
+
+##### Methods
+
+- Binary. binary has type `binary`.
+    + `int length()`. Return the fixed length.
+    + `binary max()`. Return the max binary number.
+    + `binary zero()`.  Return zero.
+    + `binary fromInt(int n)`. Convert a integer to binary number.
 
 ### Advance Libraries
 
