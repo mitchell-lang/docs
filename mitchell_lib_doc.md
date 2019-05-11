@@ -115,7 +115,7 @@ Random int/real library,
 
 ##### Dependencies
 
-Nonet.
+None.
 
 ##### Methods
 
@@ -174,19 +174,19 @@ None.
 
 ##### Methods
 
-- DecisionTree(for discrete situation, feature and label is interger: `label = int`) and DecisionTreeReal(for continuous situation, feature and label is real: `label = real`). A decision tree has type `DecisionTree.t` or `DecisionTreeReal.t`. `features` is a collection of features which has type `label array`, it is `int array` or `real array` respectively.
+- DecisionTree(for discrete situation, feature and label is integer: `label = int`) and DecisionTreeReal(for continuous situation, feature and label is real: `label = real`). A decision tree has type `DecisionTree.t` or `DecisionTreeReal.t`. `features` is a collection of features which has type `label array`, it is `int array` or `real array` respectively.
     + `bool lessFeature(features ft, (int, label) p))`. Compare that if the input value is less than the nth feature in the features array.
-    + `label forward(t dt, features a)`. Forward of decision tree: given a collection of features as input, return predicted label by dicision tree.
+    + `label forward(t dt, features a)`. Forward of decision tree: given a collection of features as input, return predicted label by decision tree.
     + `t makeLf(label a)`. Make a decision tree from a single label.
     + `t makeNd(t dt1, feature ft, t dt2)`. Make a decision tree from two other subtrees and a feature.
     + `string toString(t dt)`. Convert a decision tree to a string.
-    + `((features, label) list), ((features, label) list) split(((features, label) list) datas, (int * label) p)`. Split a list of input data by one specific feature. The input data is actually a collection of features and its label. 
+    + `((features, label) list), ((features, label) list) split(((features, label) list) data, (int * label) p)`. Split a list of input data by one specific feature. The input data is actually a collection of features and its label. 
     + `t recordsToString(((features, label) list) l)`. Convert a list of data to string.
     + `t leafNum(t dt)`. Return how many leaves in the decision tree.
 
 #### cart
 
-Decision tree trainning algorithm: CART.
+Decision tree training algorithm: CART.
 
 ##### Dependencies
 
@@ -195,10 +195,10 @@ dt.
 ##### Methods
 
 - Cart(for discrete situation, using DecisionTree) and CartReal(for continuous situation, using DecisionTreeReal). Cart can train and prune a decision tree.
-    + `DT.t  train(((DT.features, DT.label) list) datas)`. Train a decistion tree, no pruning.
-    + `((real, DT.t) list)  prune(DT.t dt, ((DT.features, DT.label) list) datas)`. Prune a tree, generate a collection of pruned trees. Each tree has a evaluation value: alpha(See CART papers for details). User can choose one of these tree as pruned result.
-    + `DT.t  crossValidationTrain(((DT.features, DT.label) list) datas)`. Use cross validation training to find the best pruned tree. `70%` data will be used in tranning, the rest of data will be use to test.
-    + `real  error(DT.t dt, ((DT.features * DT.label) list) datas)`. Return the error of a dicision tree on the input data.
+    + `DT.t  train(((DT.features, DT.label) list) data)`. Train a decision tree, no pruning.
+    + `((real, DT.t) list)  prune(DT.t dt, ((DT.features, DT.label) list) data)`. Prune a tree, generate a collection of pruned trees. Each tree has a evaluation value: alpha(See CART papers for details). User can choose one of these tree as pruned result.
+    + `DT.t  crossValidationTrain(((DT.features, DT.label) list) data)`. Use cross validation training to find the best pruned tree. `70%` data will be used in training, the rest of data will be use to test.
+    + `real  error(DT.t dt, ((DT.features * DT.label) list) data)`. Return the error of a decision tree on the input data.
     
 #### gbdt
 
@@ -212,8 +212,8 @@ dt, cart.
 
 - GBDT uses CartReal and DecisionTreeReal. A Gbdt is a collection of decision trees, which has type `Gbdt.t`.
     + `DT.label  forward(t gbdt, DT.features ft)`. Forward of gbdt: given a collection of features as input, return predicted label by gbdt.
-    + `real  error(t gbdt, ((DT.features, DT.label) list) datas)`. Return the error of a gbdt ob the input data.
-    + `t  train(((DT.features, DT.label) list) datas, real learningRate, int num).` Train a gbdt, the third variable is how many epochs to train.
+    + `real  error(t gbdt, ((DT.features, DT.label) list) data)`. Return the error of a gbdt ob the input data.
+    + `t  train(((DT.features, DT.label) list) data, real learningRate, int num).` Train a gbdt, the third variable is how many epochs to train.
     + `string toString(t gbdt)`. Convert a gbdt to a string.
 
 #### wlKernel
@@ -227,11 +227,11 @@ NONE
 ##### Methods
 
 - WlKernel.
-    + `(word list list) wlGraph((((int, int), (int list)) list list) graph, int depth)`. Random walk to embed graphs. The first argument is a collection of graphs, each graph is represented a list, each line in list includes the index of node in the graph, the information binded, and a list of int represents its neighbors' indices. The second argument is the depth of walking. The result is a list of embeding of input graphs. Each graph is embeded as a list of word(See graph2vec papers for details).
+    + `(word list list) wlGraph((((int, int), (int list)) list list) graph, int depth)`. Random walk to embed graphs. The first argument is a collection of graphs, each graph is represented a list, each line in list includes the index of node in the graph, the information bound, and a list of int represents its neighbors' indices. The second argument is the depth of walking. The result is a list of embedding of input graphs. Each graph is embedded as a list of word(See graph2vec papers for details).
 
 #### negsample
 
-negtive sampling.
+negative sampling.
 
 ##### Dependencies
 
@@ -240,7 +240,7 @@ NONE
 ##### Methods
 
 - Negsample.
-    + `t dict((int array array) datas, int vocabSize).` Statistic the frequency of vocabularies. The vocabularies as represented as intergers, from `0` to `vocabSize - 1`. The input data is treated as a list of paragraph, a paragraph is a list of words.
+    + `t dict((int array array) data, int vocabSize).` Statistic the frequency of vocabularies. The vocabularies as represented as integers, from `0` to `vocabSize - 1`. The input data is treated as a list of paragraph, a paragraph is a list of words.
     + `(int, (int list)) sampleContext(t ns, int numContext)`. Sample the context of a word. Randomly choose a word(weighted by its frequency), return its context(the words appear front and ahead of it).
     + `(int list) negSample(t ns, int pid, int numNeg)`. Sample the words not in a specific paragraph(pid).
     + `int vocabSize(t ns)`. Return the number of vocabularies.
@@ -256,13 +256,13 @@ mlvector, mlmatrix, nonlinear.
 ##### Methods
 
 - Skipgram. A Skipgram instance has type `Skipgram.t`
-    + `t make(mlmatrix embed, mlmatrix w)`. Make a Skipgram nerual network by two matrices: embeding matrix and weighted output matrix.
-    + `t init(int paragraphNum, int vocabNum, int embedingLength) -> t`. Make a Skipgram nerual network by the size of embeding matrix and weighted output matrix. Embeding matrix has size: `paragraphNum` x `embedingLength`, which means each paragraph is embeded to a vector with length `embedingLength`. Output matrix has size: `vocabNum` x `embedingLength`, which means for each given word, the skipgram will try to find the probility it appears in a paragraph.
-    + `real train(t sg, (int, (int list), (int list)) data, real learningRate)`. Forward and backward. The second argument is input data which is a tuple: first element is the sampling word, the second element is a list contains the words in its context(appears near it in document), the third element is a list contains negtive sampling, which is the words do not in its context. The return result is the error. The skipgram will updates itself after each forward.
+    + `t make(mlmatrix embed, mlmatrix w)`. Make a Skipgram neural network by two matrices: embedding matrix and weighted output matrix.
+    + `t init(int paragraphNum, int vocabNum, int embedingLength) -> t`. Make a Skipgram neural network by the size of embedding matrix and weighted output matrix. Embedding matrix has size: `paragraphNum` x `embedingLength`, which means each paragraph is embedded to a vector with length `embedingLength`. Output matrix has size: `vocabNum` x `embedingLength`, which means for each given word, the skipgram will try to find the probability it appears in a paragraph.
+    + `real train(t sg, (int, (int list), (int list)) data, real learningRate)`. Forward and backward. The second argument is input data which is a tuple: first element is the sampling word, the second element is a list contains the words in its context(appears near it in document), the third element is a list contains negative sampling, which is the words do not in its context. The return result is the error. The skipgram will updates itself after each forward.
     
 #### rnn
 
-Recurrent nerual network.
+Recurrent neural network.
 
 ##### Dependencies
 
