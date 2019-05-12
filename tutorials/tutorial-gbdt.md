@@ -4,8 +4,9 @@
 This tutorial will walk you through the process of implementing an algorithm for
 gradient boosted decision trees in Mitchell. This implementation will make use
 of the Mitchell Classification and Regression Trees (CART) and Decision Trees
-(DT) libraries, as well as the DMatrix file reader from the Mitchell IO
-libraries.
+(DT) libraries, as well as the
+[LibSVM-compatible](https://xgboost.readthedocs.io/en/latest/tutorials/input_format.html)
+file reader from the Mitchell IO libraries.
 
 1. Generated Toc
 {:toc}
@@ -193,7 +194,7 @@ library, first import the modules:
 ```sml
 structure C = CartReal(structure DT = DecisionTreeReal);
 structure Gbdt = CartReal(structure CART = C);
-structure G_IO = DMatrix;
+structure G_IO = LibSVMReader;
 ```
 
 To read input in the format
