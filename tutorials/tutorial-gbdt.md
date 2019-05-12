@@ -249,16 +249,8 @@ modules to read the data into a string, and then parsing it with the functions
 from [`Substring`](http://sml-family.org/Basis/substring.html) module, such as
 `Substring.tokens`.
 
-E.g., read the data into the `contents` variable as a `substring` with
-
-```sml
-val fileHandle = TextIO.openIn filename;
-val content = Substring.full (TextIO.inputAll fileHandle);
-val _ = TextIO.closeIn fileHandle;
-```
-
-and then use `Substring.tokens`, `Substring.splitl`, `Substring.splitr`,
-`Substring.triml`, and `Substring.trimr` to parse it.
+See the [tuorial on IO and parsing in Mitchell](tutorial-io-parsing.md) for more
+information.
 
 ### Implementing the Algorithm
 

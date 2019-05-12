@@ -100,4 +100,5 @@ You should see `Hello world!` printed on the screen.
 ## Next steps
 
 See the [walkthrough for implementing Graident Boosted Decision Trees in
-Mitchell](tutorials/tutorial-gbdt.md).
+Mitchell](tutorials/tutorial-gbdt.md) and the [walkthrough on doing IO and
+parsing in Mitchell](tutorials/tutorial-io-parsing.md).

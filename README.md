@@ -39,7 +39,7 @@ connect to the evaluation virtual machines and run a Mitchell program.
 
 After Getting Started, you can follow along with the [tutorial](tutorials/tutorial-gbdt.md)
 to learn more about the Mitchell language and how to write machine learning algorithms
-in Mitchell.
+in Mitchell, and the [IO and parsing tutorial](tutorials/tutorial-io-parsing.md).
 
 ## Mitchell Library Documentation
 
