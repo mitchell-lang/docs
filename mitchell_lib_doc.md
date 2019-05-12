@@ -78,25 +78,9 @@
       * [Dependencies](#dependencies-24)
       * [Methods](#methods-24)
 
- Libraries
-
-- utils
-- sort
-- hashtable
-- unique
-- mlrandom
-- mlarray
-- mlheap
-- mltree
-- mlvector
-- mlmatrix
-- mlgraph
-- hashset
-- binary
-
 #### utils
 
-Utils. Includes some syntax sugars, some functions used frequently and extensions of SML list and array module.
+Utils. Includes some syntactic sugar, functions that are frequently used, and extensions of SML's list and array libraries.
 
 ##### Dependencies
 
@@ -104,28 +88,28 @@ None.
 
 ##### Methods
 
-- Syntax sugar.
+- Syntactic sugar.
   + `A return(A a)`. Just return the input argument. 
   + `(B list) foreach((A -> B) f, (A list) l)`. Just map a list`l` to another with respect to mapping function `f`.
 - Functions used frequently.
   + `int intPow(int a, int b)`. Return `a^b`.
   + `real mlsq(real a)`. Return `a^2`.
-  + `(A option) betterOpt(((A, A) -> bool) comp, (A option) opt1, (A option) opt2)`. Return the better one in two input arguments with respect to the comparing function `comp`. If one of them is `NONE`, choose another one.
+  + `(A option) betterOpt(((A, A) -> bool) comp, (A option) opt1, (A option) opt2)`. Return one of the two input arguments with respect to the comparing function `comp`. If one of them is `NONE`, choose the other.
 - ExtendedList. A complement to the List module.
   + `(B list) mapi(((int, A) -> B) f, (A list) l)`. Like map, but the mapping function also takes the indices as input.
-  + `B foldli(((B, int, A) -> B) f, B default, (A list) l)`. Like fold, but the recursion function also takes the indices as input.
-  + `string toString((A -> string) f, (A list) l))`. Convert a list to a string, the first argument describes how to convert the polymorphic element to a string.
-  + `(A option) bestOpt(((A, A) -> bool) comp, (A list) l)`. Find the best one in a list with respect to a comparing function. If the list is empty, return `NONE`.
-  + `(A list) subtract(((A, A) -> bool) eq, (A list) l1, (A list) l2)`. Subtract l2 from l1. The first argument is equality function which describes when two polymorphic element are the same.
+  + `B foldli(((B, int, A) -> B) f, B default, (A list) l)`. Like fold, but the recursive function also takes the indices as input.
+  + `string toString((A -> string) f, (A list) l))`. Convert a list to a string; the first argument describes how to convert the polymorphic element to a string.
+  + `(A option) bestOpt(((A, A) -> bool) comp, (A list) l)`. Find the best element in a list with respect to a comparison function. If the list is empty, return `NONE`.
+  + `(A list) subtract(((A, A) -> bool) eq, (A list) l1, (A list) l2)`. Subtract l2 from l1. The first argument is an equality function that describes when two polymorphic element are the same.
   + `A bestDefault(((A, A) -> bool) comp, A default, (A list) l)`. Like bestOpt, but return default value instead of `NONE`.
 - ExtendedArray. A complement to the Array module.
-  + `string toString((A -> string) f, (A array) arr)`. Convert a array to a string, the first argument describes how to convert the polymorphic element to a string.
+  + `string toString((A -> string) f, (A array) arr)`. Convert an array to a string; the first argument describes how to convert the polymorphic element to a string.
   + `(A array) copy((A array) arr)`. Copy an array.
   + `(B array) map((A -> B) f, (A array) arr)`. Map an array to another with respect to the mapping function `f`.
 
 #### sort
 
-Sorting functions(quick sort for list and array).
+Sorting functions(quicksort for lists and arrays).
 
 ##### Dependencies
 
@@ -133,9 +117,9 @@ None.
 
 ##### Methods
 
-- `void quickSortArray(((A, A) -> bool) comp, (A array) arr)`. Sort an array using quick sort algorithm in place. The first argument describes how to compare two polymorphic elements.
-- `(A list) quickSortList(((A, A) -> bool) comp, (A list) l)`. Sort a list using quick sort algorithm and return sorted list. The first argument describes how to compare two polymorphic elements.
-- `(int list) quickSortListIncrease(((int, int) -> bool) comp, (int list) l)`. Sort int list with increasing order by quickSortList.
+- `void quickSortArray(((A, A) -> bool) comp, (A array) arr)`. Sort an array using an in-place quicksort algorithm. The first argument is the comparison function.
+- `(A list) quickSortList(((A, A) -> bool) comp, (A list) l)`. Sort an input list using the quicksort algorithm and return the sorted list. The first argument is the comparison function.
+- `(int list) quickSortListIncrease(((int, int) -> bool) comp, (int list) l)`. Sort a list of integers.
 
 #### hashtable
 
@@ -147,34 +131,34 @@ None.
 
 ##### Methods
 - HashString. 
-  + `val hashString: string -> word`. Hash a string to a word, which is a binary number, its length is depends on the architecture.
+  + `val hashString: string -> word`. Hash a string to a word, which is a binary number, whose size depends on the underlying architecture.
 - HashTable. hashtable has type `(A, B) hash_table`, `A` is the type of the key, `B` is the type of value.
-  + `((A,B) hash_table) mkTable((A -> word) hashf, ((A * A) -> bool) comp, int len)`. Given a hashing function(hash a object to a word, which is a binary number, its length is depends on the architecture) and an equality predicate, create a new table; the int is a size hint and the exception is to be raised by find. `MLton.hash` is a general hash function works for all objects, `HashString.hashString` also works for string.
+  + `((A,B) hash_table) mkTable((A -> word) hashf, ((A * A) -> bool) comp, int len)`. Given a hashing function(hash an object to a word, which is a binary number, whose length depends on the architecture) and an equality predicate, create a new table; len is a size hint.  `MLton.hash` is a general hash function that works for all objects, `HashString.hashString` is designed for strings.
   + `void clear(((A, B) hash_table) table)`. Remove all elements from the table. 
   + `void insert(((A, B) hash_table) table, (A key, B value))` Insert an item. If the key already has an item associated with it, then the old item is discarded.
   + `bool inDomain(((A, B) hash_table) table, A key)`. Return true, if the key is in the domain of the table.
-  + `B lookup(((A, B) hash_table) table, A key)`. Find an item, the table's exception is raised if the item doesn't exist. 
+  + `B lookup(((A, B) hash_table) table, A key)`. Find an item; an exception is raised if the item doesn't exist. 
   + `(B option) find(((A, B) hash_table) table, A key)`. Look for an item, return NONE if the item doesn't exist.
-  + `B remove(((A, B) hash_table) table, A key)`. Remove an item, returning the item. The table's exception is raised if the item doesn't exist.
+  + `B remove(((A, B) hash_table) table, A key)`. Remove an item, returning the item. An exception is raised if the item doesn't exist.
   + `int numItems(((A, B) hash_table) table)`. Return the number of items in the table.
   + `(B list) listItems(((A, B) hash_table) table)`. Return a list of the items in the table.
   + `((A, B) list)) listItemsi(((A, B) hash_table) table)`. Return a list of the items and their keys in the table.
   + `void app((B -> void) f, ((A, B) hash_table) table)`. Apply a function to the values of the table.
   + `void appi(((A, B) -> void) f, ((A, B) hash_table) table)`. Apply a function to the entries of the table 
   + `((A, C) hash_table) map((B -> C) f, ((A, B) hash_table) table)`. Map a table to a new table that has the same keys.
-  + `((A, C) hash_table) mapi(((A, B) -> C) f, ((A, B) hash_table) table)`. Like map, but mapping function also takes keys as input.
+  + `((A, C) hash_table) mapi(((A, B) -> C) f, ((A, B) hash_table) table)`. Like map, but the mapping function also takes keys as input.
   + `C fold(((B, C) -> C) f, C default, ((A, B) hash_table) table)`. Fold a function over the values of a table.
-  + `C foldi(((A, B, C) -> C) f, C default, ((A, B) hash_table) table)`. Like fold, but recursion function also takes keys as input.
-  + `void modify((B -> B) f, ((A, B) hash_table) table)`. Modify the hash-table items in place. Notice that the input type in modification function is the same as output type, which is different from mapping function.
+  + `C foldi(((A, B, C) -> C) f, C default, ((A, B) hash_table) table)`. Like fold, but the recursive function also takes keys as input.
+  + `void modify((B -> B) f, ((A, B) hash_table) table)`. Modify the hash-table items in place. Notice that the input type in the modification function is the same as output type, which is different from the mapping function.
   + `void modifyi(((A, B) -> B) f, ((A, B) hash_table) table)`. Like modify, but modification function also takes keys as input.
   + `void filter((B -> bool) f, ((A, B) hash_table) table)`. Remove any hash table items that do not satisfy the given predicate.
-  + `void filteri(((A, B) -> bool) f, ((A, B) hash_table) table)` Like filter, but predicate also takes keys as input.
+  + `void filteri(((A, B) -> bool) f, ((A, B) hash_table) table)` Like filter, but the predicate argument also takes keys as input.
   + `((A, B) hash_table) copy(((A, B) hash_table) table)`. Create a copy of a hash table.
   + `(int list) bucketSizes(((A, B) hash_table) table)`. Returns a list of the sizes of the various buckets. This is to allow users to gauge the quality of their hashing function.
   
 #### unique
 
-An unique(rename) module, which could map discrete instances to `0, 1, 2, 3...`.
+A unique(rename) module, which could map discrete instances to `0, 1, 2, 3...`.
 
 ##### Dependencies
 
@@ -182,9 +166,9 @@ None.
 
 ##### Methods
 
-- Unique. Record all elements it have been given, and rename them to `0, 1, 2, 3...`. A unique module for `A` will have type `A Unique.t`.
-  + `(A t) init(((A, A) -> bool) comp)`. Init a unique instance by a comparison function. The size of the instance can grow automatically,
-  + `((A t), int) unique((A t) u, A a)`. Rename a object to a natural number, return the new unique instance and the number. If a object is recorded, the return number will be the same.
+- Unique. Record all elements it has been given, and rename them to `0, 1, 2, 3...`. A unique module for `A` will have type `A Unique.t`.
+  + `(A t) init(((A, A) -> bool) comp)`. Initiazlie a unique instance using 'comp' as a comparison function. The size of the instance can grow automatically,
+  + `((A t), int) unique((A t) u, A a)`. Rename an object to a natural number, and return the new unique instance and the number. If an object is recorded, the returned number will be the same.
   + `int itemsNum((A t) u)`. Return how many items have been recorded.
     
 #### mlrandom
@@ -198,14 +182,14 @@ None.
 ##### Methods
 
 - Mlrandom.
-    + `void init()`. Init Mlrandom module.
+    + `void init()`. Initialize the Mlrandom module.
     + `int rand()`. Return a random integer.
-    + `int uniformInt(int l, int h)`. Return a integer in range [l, h).
+    + `int uniformInt(int l, int h)`. Return an integer in range [l, h).
     + `real uniformReal(real l, real h)`. Return a real number in range [l, h).
 
 #### mlarray
 
-An array can grow automatically. If the index exceeds the current size, the length of array will be doubled.
+An array can grow automatically. If a supplied index exceeds the current size, the length of the array will be increased to accommodate the new index.
 
 ##### Dependencies
 
@@ -222,20 +206,20 @@ None.
     + `(A mlarray) fromList((A list) l)`. Convert a list to mlarray.
     + `int length((A mlarray) arr)` Return the actual number of elements in the array.
     + `int maxLen((A mlarray) arr)`. The size(space usage) of the array (including indices not yet bound to values.)
-    + `void modify((A -> A) f, (A mlarray) arr)`. Modify a mlarray in place. 
+    + `void modify((A -> A) f, (A mlarray) arr)`. Modify an mlarray in place. 
     + `void modifyi(((int,  A) -> A) f, (A mlarray) arr)`. Like modify, but the modification function also takes indices as input.
-    + `A sub((A mlarray) arr, int n)`. Return nth element in array(like arr[n] in some languages).
-    + `void update((A mlarray) arr, int idx, A a)`. Update the element in idx position to `a`(like arr[idx] := a in some languages).
+    + `A sub((A mlarray) arr, int n)`. Return the nth element in array(like arr[n] in some languages).
+    + `void update((A mlarray) arr, int idx, A a)`. Update the element in the idx position to `a`(like arr[idx] := a in some languages).
     + `string toString((A -> string) f, (A mlarray) arr)`. Convert a mlarray to string, the first argument describes how to convert the polymorphic element to string.
     + `string toStringSub((A -> string) f, (A mlarray) arr, (int start, int end))`. Like `toString`, but convert a subarray to string. The third argument is a tuple which describes the position of subarray: [start, end).
-    + `(B mlarray) compre((A -> B) f, (A mlarray) arr)`. Comprehension, like map, but run in parallel.
-    + `(B mlarray) comprei(((int, A) -> B) f, (A mlarray) arr)`. Comprehension, like mapi, but run in parallel.
-    + `void pushback((A mlarray) arr, A a)`. Push a element to the end of array. If it runs out of space, the length of array will be doubled.
-    + `A pop((A mlarray) arr)`. Pop a element from the end of array. Even poped, the memory of array will not be released.
+    + `(B mlarray) compre((A -> B) f, (A mlarray) arr)`. Comprehension, like map, but can run in parallel.
+    + `(B mlarray) comprei(((int, A) -> B) f, (A mlarray) arr)`. Comprehension, like mapi, but can run in parallel.
+    + `void pushback((A mlarray) arr, A a)`. Push an element to the end of array. If the index exceeds the size of the array, the length of array will be doubled.
+    + `A pop((A mlarray) arr)`. Pop an element from the end of array.  The memory allocated to the array is not reduced.
 
 #### mltree
 
-A tree module, supports multi-ary tree.
+A tree module, supporting multi-ary trees.
 
 ##### Dependencies
 
@@ -244,12 +228,12 @@ None.
 ##### Methods
 
 - Mltree. Tree has type `A Mltree.tree`, where `A` is the type of the nodes in tree.
-    + `string toString((A -> string) f,  (A tree) tree)`. Convert a string to String, the first argument describes how to convert the polymorphic element to string.
+    + `string toString((A -> string) f,  (A tree) tree)`. Convert a tree to a string.
     + `(B tree) compre((A -> B) f, (A tree) tree)`. Comprehension. map a tree to another in parallel. The second argument how to compre two polymorphic elements.
-    + `(A tree) makeLf(A a)`. Build a tree with one single leaf.
-    + `(A tree) makeNd(A a, ((A tree) list) l)`. Build a tree from a element and some subtrees.
+    + `(A tree) makeLf(A a)`. Build a tree with a single leaf.
+    + `(A tree) makeNd(A a, ((A tree) list) l)`. Build a tree from an element and a list of subtrees.
     + `A root((A tree) tree)`. Return the root of tree.
-    + `int num((A tree) tree)`. Return how many elements in the tree(the number of nodes pluses the number of leaves).
+    + `int num((A tree) tree)`. Return the number of elements in the tree(the sum of the tree's nodes and leaves)
 
 #### mlheap
 
@@ -262,13 +246,13 @@ utils, mlarray.
 ##### Methods
 
 - Kheap. Heap has type `A Mlheap.t`, where `A` is the type of the elements.
-    + `(A t) make(((A, A) -> bool) comp, int k, int size, A default)`. Make a heap, which implemented by a k-ary tree. The second element indicate how many branches in the explicit tree. Basically, when `k = 4`, it has a good performance. The first argument describes how to compre two polymorphic elements.
-    + `void push((A t) heap, A a)`. Push a element into heap.
-    + `void pop((A t) heap)`. Pop the element in the top of heap. 
-    + `bool empty((A t) heap)`. Return if the heap is empty.
+    + `(A t) make(((A, A) -> bool) comp, int k, int size, A default)`. Make a heap, which implemented by a k-ary tree. The second element indicate the number of branches in the explicit tree. Empirically, we observe good performance when `k = 4`. The first argument describes how to compare two polymorphic elements.
+    + `void push((A t) heap, A a)`. Push an element into the heap.
+    + `void pop((A t) heap)`. Pop the element at the top of heap. 
+    + `bool empty((A t) heap)`. Return true if the heap is empty.
     + `A top((A t) heap)`. Return the top of the heap.
-    + `(B t) compre((A -> B) f,((B, B) -> bool) comp, (A t) heap)`. Comprehension. map a heap to another in parallel. The second argument how to compre two polymorphic elements.
-    + `string toString((A -> string) f, (A t) heap)`. Convert a heap to String, the first argument describes how to convert the polymorphic element to string.
+    + `(B t) compre((A -> B) f,((B, B) -> bool) comp, (A t) heap)`. Comprehension that maps one heap to another in parallel. 'comp' is a comparison function.
+    + `string toString((A -> string) f, (A t) heap)`. Convert a heap to a string.
     
 #### mlvector
 
@@ -282,28 +266,28 @@ None.
 
 - Mlvector. Mlvector has type `A mlvector`, where `A` is the type of the elements.
     + `int size(mlvector vec)`. Return the length of vector.
-    + `mlvector make(int len, real default)`. Make a vector, fill every element to default value.
-    + `mlvector makeInit((int -> real) f, int len)`. Make a vector, initialize every element by initialization function `f`. `f` maps a index to a polymorphic element.
-    + `real sub(mlvector vec, int n)`. Return nth element in the vector.
-    + `void set(mlvector vec, int n, real r)`. Update nth element in vector to `r`(like vec[n] := r in some languages).
-    + `void update((real -> real) f, mlvector vec, int n)`. Update nth element with respect its old value(like vec[n] := f(vec[n]) in some languages).
+    + `mlvector make(int len, real default)`. Make a vector, filling every element to a default value.
+    + `mlvector makeInit((int -> real) f, int len)`. Make a vector, initializing every element using initialization function `f`. `f` maps the contents of an index to a default value.
+    + `real sub(mlvector vec, int n)`. Return the nth element in the vector.
+    + `void set(mlvector vec, int n, real r)`. Update the nth element in a vector to `r`(e.g., vec[n] := r).
+    + `void update((real -> real) f, mlvector vec, int n)`. Update the nth element with respect to its old value(e.g., vec[n] := f(vec[n])).
     + `void modify((real -> real) f, mlvector vec)`. Modify a vector in place.
     + `void modifyi(((int, real) -> real) f, mlvector vec)`. Like modify, but the modification function also takes indices as input.
     + `A foldl(((A, real) -> A) f, A default, mlvector vec)`. Fold a function over the elements of a vector.
-    + `A foldli(((A, int, real) -> A) f, A default, mlvector vec)`. Like fold, but the recursion function also takes indices as input.
-    + `mlvector copy(mlvector vec)`. Copy a mlvector.
+    + `A foldli(((A, int, real) -> A) f, A default, mlvector vec)`. Like fold, but the recursive function also takes indices as input.
+    + `mlvector copy(mlvector vec)`. Copy an mlvector.
     + `real squeeze(mlvector vec)`. Squeeze a 1-dimension vector to a scalar. Return vec[0].
-    + `mlvector map((real -> real) f, mlvector vec)`. Map an array to another with respect to the mapping function `f`.
+    + `mlvector map((real -> real) f, mlvector vec)`. Map one vector to another with respect to the mapping function `f`.
     + `mlvector mapi(((int, real) -> real) f, mlvector vec)`. Like map, but the mapping function also takes the indices as input.
-    + `mlvector map2(((real, real) -> real) f, mlvector vec1, mlvector vec2)`. Map over two vectors. The length of result vector is equal to the minimal length of `vec1` and `vec2`.
-    + `mlvector elemwise(mlvector vec1, mlvector vec2)`. Element wisely multiply two vectors.
+    + `mlvector map2(((real, real) -> real) f, mlvector vec1, mlvector vec2)`. Map over two vectors. The length of the result vector is equal to the minimal length of `vec1` and `vec2`.
+    + `mlvector elemwise(mlvector vec1, mlvector vec2)`. Element-wise multiply two vectors.
     + `mlvector add(mlvector vec1, mlvector vec2)`. Add two vectors.
     + `void addModify(mlvector vec1, mlvector vec2)`. Add two vectors, modify the first vec to the result in place.
     + `mlvector mulScalar(mlvector vec, real a)`. Multiply a vector with a scalar.
     + `real dot(mlvector vec1, mlvector vec2)`. Dot product.
-    + `string toStringF((real -> string) f, mlvector vec)`. Convert a mlvector to String, the first argument describes how to convert the element to string.
-    + `string toString(mlvector vec)`. Convert a mlvector to String using default format.
-    + `mlvector fromList((real list) l)`. Convert a list of real numbers to mlvector.
+    + `string toStringF((real -> string) f, mlvector vec)`. Convert a mlvector to string, where the first argument describes how to convert the element to string.
+    + `string toString(mlvector vec)`. Convert a mlvector to string using default format.
+    + `mlvector fromList((real list) l)`. Convert a list of real numbers to an mlvector.
 
 #### mlmatrix
 
