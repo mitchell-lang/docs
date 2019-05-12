@@ -20,7 +20,7 @@ working with decision trees that map features to real values.
 For example, the following decision tree can be used to determine the
 probability that someone has the flu:
 
-![Decision Tree Example](images/decision-tree-example.png)
+![Decision Tree Example](/docs/images/decision-tree-example.png)
 
 The tree is read from left to right. At each point in the tree
 
