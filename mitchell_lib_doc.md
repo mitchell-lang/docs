@@ -1,3 +1,7 @@
+---
+has_children: true
+permalink: /basic/
+---
 ## Mitchell Libraries
 
 * [Basic Libraries](#basic-libraries)

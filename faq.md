@@ -1,3 +1,7 @@
+---
+has_children: true
+permalink: /faq/
+---
 # FAQ
 
 ## Why does Mitchell say something is wrong at a spot in my code that looks fine?
