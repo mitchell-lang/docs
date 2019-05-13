@@ -6,8 +6,9 @@ The purpose of this evaluation is to evaluate the ease of use of Mitchell
 for developing machine learning and graph analytics applications.
 
 When you run into problems, please ask your questions in the SDH Mitchell
-evaluation Slack channel so that we can keep track of the questions that were asked
-to add them to the [FAQ](faq/faq.md).
+evaluation [Slack channel](slack://channel/?team=THWQDRE1Y&id=CJE8PFTGR) so that
+we can keep track of the questions that were asked to add them to the
+[FAQ](faq/faq.md).
 
 Additionally, please keep notes on the following things to help us with
 producing a report on the evaluation:
@@ -47,7 +48,7 @@ The Mitchell library documentation is available at
 [GitHub](mitchell_lib_doc.md). If something is missing from
 the documentation, you find an error, or have a suggestion on how to improve the
 documentation, let us know in the SDH Mitchell evaluation [Slack
-channel](slack://channel?team=sdhworld&id=evaluation).
+channel](slack://channel/?team=THWQDRE1Y&id=CJE8PFTGR).
 
 ## Other Resources
 
