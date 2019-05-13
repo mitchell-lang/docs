@@ -1,4 +1,5 @@
 ---
+title: Gradient Boosted Decision Trees
 parent: Mitchell Tutorials
 ---
 # Mitchell Tutorial: Gradient Boosted Decision Trees
