@@ -28,10 +28,10 @@ Commit frequently, not just when you get things
 working. We are interested in seeing what the code looks like when you first run
 into problems as well as what they look like after you solve them.
 
-Feel free to track the whole `/work` directory (see [Getting
-Started](getting-started.md) for details on `/work`). Don't worry about putting
-large files into Git. If you are doing data manipulation, we are interested in
-seeing what you are doing to the data files as well.
+Feel free to track the whole `/work` directory (see
+[Getting Started](getting-started.md) for details on `/work`). Don't worry about
+putting large files into Git. If you are doing data manipulation, we are
+interested in seeing what you are doing to the data files as well.
 
 ## Getting Started
 
