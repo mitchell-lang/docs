@@ -2,7 +2,6 @@
 nav_order: 4
 has_children: true
 permalink: /basic/
-has_toc: false
 ---
 ## Mitchell Libraries
 
