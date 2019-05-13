@@ -1,3 +1,6 @@
+---
+parent: Mitchell Tutorials
+---
 # Mitchell Tutorial: Gradient Boosted Decision Trees
 {:.no_toc}
 
