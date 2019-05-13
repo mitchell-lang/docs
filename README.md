@@ -1,6 +1,3 @@
----
-nav_order: 1
----
 # SDH Mitchell Evaluation
 
 ## Purpose of the Evaluation
