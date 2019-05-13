@@ -1,6 +1,3 @@
----
-parent: Mitchell Tutorials
----
 # Mitchell Tutorial: IO and Parsing
 {:.no_toc}
 

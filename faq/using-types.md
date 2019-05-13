@@ -1,6 +1,3 @@
----
-parent: FAQ
----
 # A Note on Using Types to Help with Development
 
 Mitchell can always figure out the types for you for a program where all of the
