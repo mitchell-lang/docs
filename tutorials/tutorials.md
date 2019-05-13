@@ -1,6 +1,6 @@
 ---
 has_children: true
-permalink: /tutorials/
+permalink: /tutorials
 ---
 # Mitchell Tutorials
 
