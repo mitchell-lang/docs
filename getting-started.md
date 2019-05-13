@@ -1,6 +1,3 @@
----
-nav_order:2
----
 # Getting Started
 
 ## Connecting to the Evaluation Virtual Machine
