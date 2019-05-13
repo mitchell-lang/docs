@@ -84,13 +84,13 @@ To create a decision tree by hand, you would write
 ```sml
 val myleaf1 = Lf 0.7;
 val myleaf2 = Lf 0.0;
-val mynode = Nd myleaf1 1.0 myleaf2;
+val mynode = Nd myleaf1 (2, 1.0) myleaf2;
 ```
 
 or on one line
 
 ```sml
-val mynode = Nd (Lf 0.7) 1.0 (Lf 0.0);
+val mynode = Nd (Lf 0.7) (2, 1.0) (Lf 0.0);
 ```
 
 Then `mynode` is the decision tree that you have defined. In order to look
@@ -408,12 +408,12 @@ a new tree according to the algorithm.
 ```sml
 fun calculateNextTree (ensemble, data, learningRate) =
     let
-      fun lossForEnsemble (features, label) = loss ensemble (features, label);
+      fun lossForEnsemble (features, label) = lossR (ensemble, features, label);
       val residuals = List.map lossForEnsemble data;
       val trainedTree = C.train residuals;
-      val prunedTrees = C.prune tree data;
+      val prunedTrees = C.prune (trainedTree, data);
       val best = findBest prunedTrees;
-      val bestTree = case best of NONE => tree | SOME t => t;
+      val bestTree = case best of NONE => trainedTree | SOME t => t;
     in
       scale (bestTree, learningRate)
     end;
