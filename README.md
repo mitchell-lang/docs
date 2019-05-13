@@ -7,7 +7,7 @@ for developing machine learning and graph analytics applications.
 
 When you run into problems, please ask your questions in the SDH Mitchell
 evaluation Slack channel so that we can keep track of the questions that were asked
-to add them to the [FAQ](faq.md).
+to add them to the [FAQ](faq/faq.md).
 
 Additionally, please keep notes on the following things to help us with
 producing a report on the evaluation:
