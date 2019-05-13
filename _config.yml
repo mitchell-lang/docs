@@ -4,4 +4,4 @@ plugins:
 title: Mitchell Documentation
 description: Documentation and tutorials for the Mitchell machine learning and graph analytics programming language.
 exclude:
-  - basic
+  - basic/
