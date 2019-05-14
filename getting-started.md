@@ -97,9 +97,15 @@ run-mitchell hello-world.sml
 
 You should see `Hello world!` printed on the screen.
 
-## Next steps
+## Next Steps
 
-See the
-[walkthrough for implementing Graident Boosted Decision Trees in Mitchell](./tutorials/tutorial-gbdt.md)
-and the
-[walkthrough on doing IO and parsing in Mitchell](./tutorials/tutorial-io-parsing.md).
+- Learn the syntax of Mitchell and Standard ML at
+    [Learn X in Y Minutes](https://learnxinyminutes.com/docs/standard-ml/).
+- Go through the first few chapters of
+    [Programming in Standard ML '97: An On-line Tutorial](http://homepages.inf.ed.ac.uk/stg/NOTES/node2.html).
+- Follow along with the Gradient Boosted Decision Trees implementation
+    [walkthrough](tutorials/tutorial-gbdt.md) to learn how to write a machine
+    learning algorithm in Mitchell.
+- Follow along with the IO and Parsing implementation
+    [walkthrough](tutorials/tutorial-io-parsing.md) to learn how to read
+    simple data formats into a Mitchell program.

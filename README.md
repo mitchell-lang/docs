@@ -38,9 +38,8 @@ interested in seeing what you are doing to the data files as well.
 Start with [Getting Started](getting-started.md) to make sure that you can
 connect to the evaluation virtual machines and run a Mitchell program.
 
-After Getting Started, you can follow along with the [tutorial](tutorials/tutorial-gbdt.md)
-to learn more about the Mitchell language and how to write machine learning algorithms
-in Mitchell, and the [IO and parsing tutorial](tutorials/tutorial-io-parsing.md).
+See the list of tutorials at the end of [Getting Started](getting-started.md)
+for what to do next.
 
 ## Mitchell Library Documentation
 
@@ -50,15 +49,13 @@ the documentation, you find an error, or have a suggestion on how to improve the
 documentation, let us know in the SDH Mitchell evaluation [Slack
 channel](slack://channel/?team=THWQDRE1Y&id=CJE8PFTGR).
 
-## Other Resources
+Mitchell has access to the
+[Standard Basis Library](http://sml-family.org/Basis/index.html)
+of Standard ML and some of the libraries of the
+[MLton compiler](http://www.mlton.org/MLtonStructure).
 
-Mitchell is based on a language called Standard ML, so many Standard ML programs
-will run in Mitchell. See [Learn X in Y minutes for Standard
-ML](https://learnxinyminutes.com/docs/standard-ml/) for a quick overview of how
-to write some programs that will work in both Mitchell and Standard ML.
+## A Note on Targeting Mitchell to Hardware Accelerators
 
-Some of the libraries are from the [Standard ML Basis
-Library](http://sml-family.org/Basis/overview.html) are available in Mitchell.
 There is functionality in the Basis Library, such as network access, that will
 work in the evaluation environment, but that will not cross-compile to the
 architecture that Mitchell is intended to target.
