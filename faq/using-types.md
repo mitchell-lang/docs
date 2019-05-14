@@ -1,7 +1,7 @@
 ---
 parent: FAQ
 ---
-# A Note on Using Types to Help with Development
+# Locating the Root Cause of Type Errors
 
 Mitchell can always figure out the types for you for a program where all of the
 parts of the program agree on what the types should be. However, while you are
