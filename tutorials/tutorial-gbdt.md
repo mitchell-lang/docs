@@ -84,13 +84,13 @@ To create a decision tree by hand, you would write
 ```sml
 val myleaf1 = Lf 0.7;
 val myleaf2 = Lf 0.0;
-val mynode = Nd myleaf1 (2, 1.0) myleaf2;
+val mynode = Nd (myleaf1, (2, 1.0), myleaf2);
 ```
 
 or on one line
 
 ```sml
-val mynode = Nd (Lf 0.7) (2, 1.0) (Lf 0.0);
+val mynode = Nd ((Lf 0.7), (2, 1.0), (Lf 0.0));
 ```
 
 Then `mynode` is the decision tree that you have defined. In order to look
