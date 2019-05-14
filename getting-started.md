@@ -8,7 +8,8 @@ To connect to the SDH Mitchell evaluation servers, you will need an VNC client.
 
 Download and install [TightVNC](https://www.tightvnc.com/).
 
-Run TightVNC. Connect to `hostname:n` where `hostname` is the domain name
+Run the TightVNC Viewer for Windows.
+Connect to `hostname:n` where `hostname` is the domain name
 of the server with which you were provided and
 `n` is the machine number that you were
 assigned. You should have been provided with a password for the machine.
