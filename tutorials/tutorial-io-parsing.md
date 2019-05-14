@@ -121,7 +121,7 @@ how to write a character literal in Mitchell.
 
 Applying `lines` to the data will result in a list of lines. In order to apply
 `words` to each line, we use
-(`List.map`)[http://sml-family.org/Basis/list.html#SIG:LIST.map:VAL].
+[`List.map`](http://sml-family.org/Basis/list.html#SIG:LIST.map:VAL).
 
 ```sml
 val tokens = List.map words (lines content);
