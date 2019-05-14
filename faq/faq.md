@@ -38,6 +38,10 @@ val useed: unit -> word option
 
 TODO
 
+## My program threw an exception. How do I find where the exception came from?
+
+TODO
+
 ## What Standard ML functions are available in Mitchell?
 
 Everything in the
