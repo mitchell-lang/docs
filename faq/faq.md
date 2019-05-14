@@ -72,4 +72,4 @@ compiler.
 
 ## What does this compiler error mean?
 
-See [Reading Compiler Errors](faq/reading-compiler-errors.md).
+See [Reading Compiler Errors](reading-compiler-errors.md).
