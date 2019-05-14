@@ -38,7 +38,7 @@ interested in seeing what you are doing to the data files as well.
 Start with [Getting Started](getting-started.md) to make sure that you can
 connect to the evaluation virtual machines and run a Mitchell program.
 
-See the list of tutorials at the end of [Getting Started](getting-started.md)
+See the list of tutorials at the end of [Getting Started](getting-started.md#next-steps)
 for what to do next.
 
 ## Mitchell Library Documentation
