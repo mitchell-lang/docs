@@ -77,3 +77,18 @@ compiler.
 ## What does this compiler error mean?
 
 See [Reading Compiler Errors](reading-compiler-errors.md).
+
+
+## How do I print individual elements of my array/list of tuples?
+
+TODO
+
+## How do I get the inferred type of a specific variable?
+
+TODO
+
+## How do I convert a datatype into this other data-type so I can do some operation (+,-,*) with them?
+
+TODO: Follow-up: Why it is necessary to match data-types that seem the same Int,Real,etc?
+
+
