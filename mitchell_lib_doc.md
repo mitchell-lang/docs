@@ -44,7 +44,7 @@ permalink: /basic/
    * [binary](#binary)
       * [Dependencies](#dependencies-12)
       * [Methods](#methods-12)
-* [Advance Libraries](#advance-libraries)
+* [Advanced Libraries](#advance-libraries)
    * [nonlinear](#nonlinear)
       * [Dependencies](#dependencies-13)
       * [Methods](#methods-13)
