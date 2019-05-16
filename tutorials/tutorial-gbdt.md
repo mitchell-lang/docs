@@ -261,6 +261,7 @@ information.
 First, import the libraries that we will be using
 
 ```sml
+structure DT = DecisionTreeReal;
 structure C = CartReal(structure DT = DecisionTreeReal);
 structure D = C.DT;
 ```
@@ -352,7 +353,7 @@ fun scaleLeaves (tree, learningRate) =
   let
     fun scale tree =
       case tree of
-          D.Lf label => Dt.Lf (label * learningRate)
+          D.Lf label => DT.Lf (label * learningRate)
         | D.Nd (lhs, feature, rhs) => D.Nd ((scale lhs), feature, (scale rhs));
   in
     scale tree
