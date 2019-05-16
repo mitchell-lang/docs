@@ -416,7 +416,7 @@ fun calculateNextTree (ensemble, data, learningRate) =
       val best = findBest prunedTrees;
       val bestTree = case best of NONE => trainedTree | SOME t => t;
     in
-      scale (bestTree, learningRate)
+      scaleLeaves (bestTree, learningRate)
     end;
 ```
 
