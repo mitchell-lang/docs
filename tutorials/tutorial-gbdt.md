@@ -428,6 +428,19 @@ To implement this we use recursion again, but this time instead of calling the
 function on a smaller tree each time, we will call it with a smaller depth each
 time, until the depth hits zero.
 
+To do this, we check the if the depth is zero. If it is (the `then` case), we
+return a simple decision tree that just predicts the average label for
+everything. If it is not zero (the `else` case), we ask for the ensemble trained
+to a depth of one less than the current depth, and then train the tree for the
+current depth on the residual for the ensemble.
+
+This code snippet also shows how arbitrary expressions can go in the conditional
+or branches of an `if` expression. `let ... in ... end` is an expression like
+any other (whose value happens to be the value of the expression between `in`
+and `end`), and so can be used as a branch of the `if` expression. We have to
+nest the call to `train` within a branch of the `if` expression because
+otherwise we'd have an infinite recursive call (i.e., an infinite loop).
+
 ```sml
 fun train (data, learningRate, depth) =
     if depth = 0
