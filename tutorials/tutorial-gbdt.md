@@ -410,9 +410,11 @@ a new tree according to the algorithm.
 fun calculateNextTree (ensemble, data, learningRate) =
     let
       fun lossForEnsemble (features, label) = lossR (ensemble, features, label);
-      val residuals = List.map lossForEnsemble data;
+      fun lossWithFeatures (features, label) = (features, lossForEnsemble (features, label))
+      val residuals = List.map lossWithFeatures data;
       val trainedTree = C.train residuals;
-      val prunedTrees = C.prune (trainedTree, data);
+      val prunedTreesWithEvaluationValue = C.prune (trainedTree, data);
+      val prunedTrees = map #2 prunedTreesWithEvaluationValue
       val best = findBest prunedTrees;
       val bestTree = case best of NONE => trainedTree | SOME t => t;
     in
