@@ -388,7 +388,7 @@ fun findBest trees =
       val avg = MathInt.average (List.map D.leafNum trees);
       fun comp (left, right) = compareLeaves (avg, left, right);
     in
-      Ord.argmax comp family
+      Ord.argmax comp trees
     end;
 ```
 
