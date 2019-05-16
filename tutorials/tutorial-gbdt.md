@@ -498,3 +498,104 @@ fun toString ensemble =
 The `^` operator appends two strings.
 
 Then we can use the normal `print` function to print the string.
+
+## The Complete Program
+
+The complete program is below.
+
+```sml
+structure DT = DecisionTreeReal;
+structure C = CartReal(structure DT = DecisionTreeReal);
+structure D = C.DT;
+
+fun forward (ensemble, features) =
+    let
+      fun forwardTree tree = DT.forward (tree, features);
+      val predictions = List.map forwardTree ensemble;
+    in
+      MathReal.sum predictions
+    end;
+
+fun lossR (ensemble, features, actualLabel) =
+    let
+      val predictedLabel = forward (ensemble, features);
+    in
+      actualLabel / (1.0 + Math.exp(actualLabel * predictedLabel))
+    end;
+
+fun scaleLeaves (tree, learningRate) =
+  let
+    fun scale tree =
+      case tree of
+          D.Lf label => DT.Lf (label * learningRate)
+        | D.Nd (lhs, feature, rhs) => D.Nd ((scale lhs), feature, (scale rhs));
+  in
+    scale tree
+  end;
+
+fun compareLeaves (avg, left, right) =
+    if (D.leafNum left < avg) andalso (D.leafNum left > D.leafNum right)
+    then Ord.GT
+    else Ord.LT;
+
+fun findBest trees =
+    let
+      val avg = MathInt.average (List.map D.leafNum trees);
+      fun comp (left, right) = compareLeaves (avg, left, right);
+    in
+      Ord.argmax comp trees
+    end;
+
+fun calculateNextTree (ensemble, data, learningRate) =
+    let
+      fun lossForEnsemble (features, label) = lossR (ensemble, features, label);
+      fun lossWithFeatures (features, label) = (features, lossForEnsemble (features, label))
+      val residuals = List.map lossWithFeatures data;
+      val trainedTree = C.train residuals;
+      val prunedTreesWithEvaluationValue = C.prune (trainedTree, data);
+      val prunedTrees = map #2 prunedTreesWithEvaluationValue
+      val best = findBest prunedTrees;
+      val bestTree = case best of NONE => trainedTree | SOME t => t;
+    in
+      scaleLeaves (bestTree, learningRate)
+    end;
+
+fun train (data, learningRate, depth) =
+    if depth = 0
+    then [D.Lf (MathReal.average (List.map #2 data))]
+    else
+      let
+        val ensemble = train (data, learningRate, depth - 1);
+        val nextTree = calculateNextTree (ensemble, data, learningRate);
+      in
+        nextTree::ensemble
+      end;
+
+fun toString ensemble =
+    let
+      val stringTrees = List.map D.toString ensemble;
+    in
+      List.foldl (fn (tree, trees) => trees ^ ">>>>>\n" ^ tree) "" stringTrees
+    end;
+
+fun error (ensemble, testData) =
+    let
+      fun isPredictionCorrect (features, label) =
+          (forward (ensemble, features) < 0.0) = (label < 0.0)
+      fun tallyErrors (features, label) =
+          if isPredictionCorrect (features, label)
+          then 0
+          else 1
+      val errors = List.map tallyErrors testData
+      val errorCount = MathInt.sum errors
+    in
+        (Real.fromInt errorCount) / (Real.fromInt (List.length testData))
+    end
+
+val trainingData = LibSVMReader.fromFile "/data/workload33-gbdt/agaricus.txt.train"
+val ensemble = train (trainingData, 0.5, 2)
+val _ = print ((toString ensemble) ^ "\n")
+val testData = LibSVMReader.fromFile "/data/workload33-gbdt/agaricus.txt.test"
+val predictionError = error (ensemble, testData)
+val _ = print ("Prediction error: " ^ (Real.toString predictionError) ^ "\n")
+```
