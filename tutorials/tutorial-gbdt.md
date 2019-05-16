@@ -197,7 +197,7 @@ library, first import the modules:
 
 ```sml
 structure C = CartReal(structure DT = DecisionTreeReal);
-structure Gbdt = CartReal(structure CART = C);
+structure Gbdt = Gbdt(structure CART = C);
 structure G_IO = LibSVMReader;
 ```
 
