@@ -213,8 +213,8 @@ where the first number is the label for an object, and the rest of the entries
 are the feature number and value separated by a colon, use
 
 ```sml
-val trainingData = G_IO.fromFile "/data/workload33/agaricus.txt.train";
-val testData = G_IO.fromFile "/data/workload33/agaricus.txt.test";
+val trainingData = G_IO.fromFile "/data/workload33-gbdt/agaricus.txt.train";
+val testData = G_IO.fromFile "/data/workload33-gbdt/agaricus.txt.test";
 ```
 
 To train the ensemble of trees and print the ensemble
@@ -236,7 +236,7 @@ val _ = print ("error = " ^ (Real.toString error) ^ "\n");
 We will now walk through using the `CartReal` and `DecisionTreeReal` libraries
 to build the GBDT algorithm from scratch.
 
-You can find the training and test data for this workload in `/data/workload33/`.
+You can find the training and test data for this workload in `/data/workload33-gbdt/`.
 
 ### Parsing
 
