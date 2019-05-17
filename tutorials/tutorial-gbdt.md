@@ -373,7 +373,7 @@ fun scaleLeaves (tree, learningRate) =
   let
     fun scale tree =
       case tree of
-          D.Lf label => DT.Lf (label * learningRate)
+          D.Lf label => D.Lf (label * learningRate)
         | D.Nd (lhs, feature, rhs) => D.Nd ((scale lhs), feature, (scale rhs));
   in
     scale tree
@@ -560,7 +560,7 @@ fun scaleLeaves (tree, learningRate) =
   let
     fun scale tree =
       case tree of
-          D.Lf label => DT.Lf (label * learningRate)
+          D.Lf label => D.Lf (label * learningRate)
         | D.Nd (lhs, feature, rhs) => D.Nd ((scale lhs), feature, (scale rhs));
   in
     scale tree
