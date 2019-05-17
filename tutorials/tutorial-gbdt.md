@@ -143,11 +143,13 @@ open C;
 to import everything.
 
 Of particular interest in CartReal is the function `train`, which has type
-`(D.features * D.label) list -> D.t`. (Here `D` is short for the kind of
-decision tree we told `CartReal` to use.) To the left of the arrow are the types
-of the inputs to the function, in the form of a pair (also known as a "product
-type", hence the use of the infix `*`). To the right of the arrow is type of the
-output.
+`(D.features * D.label) list -> D.t`. Here `D` is short for the kind of decision
+tree we told `CartReal` to use.
+
+To the left of the arrow are the types of the inputs to the function, in the
+form of a pair. A pair type is also known as a "product type", hence the use of
+the infix `*` to form the type of a pair with `D.features` on the left and
+`D.label` on the right. To the right of the arrow is type of the output.
 
 In Mitchell some types, like `list`, work with other types. For example, a
 list of integers would have type `int list`. In this case, the input to `train`
