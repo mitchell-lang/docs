@@ -224,6 +224,16 @@ val gbdt = Gbdt.train (trainingData, 0.8, 2);
 val _ = print (Gbdt.toString gbdt);
 ```
 
+If you use the input format example above as the training data, you will get the
+rather uninteresting result of an ensemble of three single-node trees. Single
+node trees just predict a single number, without looking at the features. They
+arise in this case because of the limited amount of data used to train the
+decision trees.
+
+You can find more interesting data in `/data/workload33-gbdt/` or you can find
+datasets online, such as
+[here](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html#a1a).
+
 To test the ensemble of trees and print the error
 
 ```sml
