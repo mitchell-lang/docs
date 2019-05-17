@@ -165,7 +165,16 @@ integers (`array` is like `list`, in that it works with other types):
 type features = int array;
 ```
 
-The CART library requires that all of the training data use arrays of the same size.
+The CART library requires that all of the training data use arrays of the same
+size. That is, every feature array must have the same value for
+[`Array.length`](http://sml-family.org/Basis/array.html#SIG:ARRAY.length:VAL).
+The length of an array is specified by the first argument to
+[`Array.array`](http://sml-family.org/Basis/array.html#SIG:ARRAY.array:VAL) when
+creating an array containing all the same value, by the first argument to
+[`Array.tabluate`](http://sml-family.org/Basis/array.html#SIG:ARRAY.tabulate:VAL)
+when defining array using the value of a function applied to each of its
+indices, or by the length of the list to be converted to an array using
+[`Array.fromList`](http://sml-family.org/Basis/array.html#SIG:ARRAY.fromList:VAL).
 
 ### What is Gradient Boosting Decision Trees?
 
