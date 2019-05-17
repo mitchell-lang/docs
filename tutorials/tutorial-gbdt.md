@@ -7,8 +7,8 @@ parent: Mitchell Tutorials
 
 This tutorial will walk you through the process of implementing an algorithm for
 gradient boosted decision trees in Mitchell. This implementation will make use
-of the Mitchell Classification and Regression Trees (CART) and Decision Trees
-(DT) libraries, as well as the
+of the Mitchell Classification and Regression Trees (CART) and Decision Tree
+libraries, as well as the
 [LibSVM-compatible](https://xgboost.readthedocs.io/en/latest/tutorials/input_format.html)
 file reader from the Mitchell IO libraries.
 
@@ -30,7 +30,7 @@ probability that someone has the flu:
 The tree is read from left to right. At each point in the tree a feature is
 examined to determine which way to go. The results are stored at the leaves.
 
-### The Mitchell DT Libraries
+### The Mitchell Decision Tree Libraries
 
 Mitchell includes two libraries for the representation decision tree libraries:
 one for real-valued features and labels and one for integer-valued features and
@@ -42,10 +42,10 @@ module name, like `DecisionTreeReal.forward`. If the name is too long, you can
 give it a shorter name by writing
 
 ```sml
-structure DT = DecisionTreeReal;
+structure D = DecisionTreeReal;
 ```
 
-Then you will be able to write `DT.forward`. Or, if you don't want to prefix the
+Then you will be able to write `D.forward`. Or, if you don't want to prefix the
 names at all, you can write
 
 ```sml
@@ -130,20 +130,20 @@ To specify that we want to use `CartReal` with `DecisionTreeReal`,
 we do something similar to how we defined a shorter name for `DecisionTreeReal`.
 
 ```sml
-structure C = CartReal(structure DT = DecisionTreeReal);
+structure C = CartReal(structure D = DecisionTreeReal);
 ```
 
 If you don't want to prefix things with `C.`, you can write
 
 ```sml
-structure C = CartReal(structure DT = DecisionTreeReal);
+structure C = CartReal(structure D = DecisionTreeReal);
 open C;
 ```
 
 to import everything.
 
 Of particular interest in CartReal is the function `train`, which has type
-`(DT.features * DT.label) list -> DT.t`. (Here `DT` is short for the kind of
+`(D.features * D.label) list -> D.t`. (Here `D` is short for the kind of
 decision tree we told `CartReal` to use.) To the left of the arrow are the types
 of the inputs to the function. To the right of the arrow is type of the output.
 
@@ -152,14 +152,14 @@ list of integers would have type `int list`. In this case, the input to `train`
 is a list of pairs, where the left-hand-side of the pair has feature
 information, and the right-hand-size has labels.
 
-Earlier we said the definitions for the `DT.feature` and `DT.label` types:
+Earlier we said the definitions for the `D.feature` and `D.label` types:
 
 ```sml
 type label = real;
 type feature = int * real;
 ```
 
-This function uses the `DT.features` (not the same as `DT.feature`, note the "s"!) type, which is defined as an array of
+This function uses the `D.features` (not the same as `D.feature`, note the "s"!) type, which is defined as an array of
 integers (`array` is like `list`, in that it works with other types):
 
 ```sml
@@ -206,7 +206,7 @@ for reading input to train and test the ensembles of decision trees. To use the
 library, first import the modules:
 
 ```sml
-structure C = CartReal(structure DT = DecisionTreeReal);
+structure C = CartReal(structure D = DecisionTreeReal);
 structure Gbdt = Gbdt(structure CART = C);
 structure G_IO = LibSVMReader;
 ```
@@ -281,7 +281,6 @@ information.
 First, import the libraries that we will be using
 
 ```sml
-structure DT = DecisionTreeReal;
 structure C = CartReal(structure DT = DecisionTreeReal);
 structure D = C.DT;
 ```
@@ -311,7 +310,7 @@ variables and helper functions that use the arguments to `forward`.
 ```sml
 fun forward (ensemble, features) =
     let
-      fun forwardTree tree = DT.forward (tree, features);
+      fun forwardTree tree = D.forward (tree, features);
       val predictions = List.map forwardTree ensemble;
     in
       MathReal.sum predictions
@@ -319,7 +318,7 @@ fun forward (ensemble, features) =
 ```
 
 First, we define `forwardTree`, which is a function that takes a tree and
-applies `DT.forward` to it and the features. Then we use the library function
+applies `D.forward` to it and the features. Then we use the library function
 `List.map` to apply the `forwardTree` function to each of the trees in the
 ensemble. The result of this is a list of predictions (`predictions: real
 list`, read the colon `:` as "has type"). then we produce the final result by
@@ -418,7 +417,7 @@ that we computed.
 The `findBest` function uses the `Ord.argmax` function to pick the best item
 from the list, according to the comparison function that has been defined using
 the average number of leaves in the trees. `Ord.argmax` returns a value of type
-`DT.t option`, which can be one of two things. If the list given to
+`D.t option`, which can be one of two things. If the list given to
 `Ord.argmax` is empty, then the result is `NONE`. Otherwise the list will be
 `SOME t`, where `t` is the chosen tree.
 
@@ -537,13 +536,12 @@ Then we can use the normal `print` function to print the string.
 The complete program is below.
 
 ```sml
-structure DT = DecisionTreeReal;
 structure C = CartReal(structure DT = DecisionTreeReal);
 structure D = C.DT;
 
 fun forward (ensemble, features) =
     let
-      fun forwardTree tree = DT.forward (tree, features);
+      fun forwardTree tree = D.forward (tree, features);
       val predictions = List.map forwardTree ensemble;
     in
       MathReal.sum predictions
