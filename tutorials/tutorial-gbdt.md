@@ -95,22 +95,23 @@ val mynode = Nd ((Lf 0.7), (2, 1.0), (Lf 0.0));
 
 Then `mynode` is the decision tree that you have defined. In order to look
 inside of `mynode`, you use a `case` expression (which is different from a case
-expression in other languages):
+statement in language like C and Java):
 
 ```sml
 (* This is Mitchell comment syntax. *)
 val result =
   case mynode of
-      Lf lab => (* use lab here *)
-    | Nd lhs (featureId, featureVal) rhs => (* use lhs, featureId, featureVal, and rhs here *)
+      Lf lab => ("A leaf label", lab) (* This is a pair of a string and a real. *)
+    | Nd lhs (featureId, featureVal) rhs => ("A feature value", featureVal)
 ```
 
-We will see how to look all of the way down a tree (rather than just at one
-node) a little bit later in this tutorial.
+The `result` value will be `("A feature value", 1.0)`. We will see how to look
+all of the way down a tree (rather than just at one node) a little bit later in
+this tutorial.
 
 The decision tree library also includes several functions for using decision
 trees. We will explain those as we use them. You can also read about them in the
-[documentation](https://mitchell-lang.github.io/docs).
+[documentation](../mitchell_lib_doc.md).
 
 ### The Mitchell CART Libraries
 
