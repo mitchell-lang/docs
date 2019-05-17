@@ -309,7 +309,8 @@ That is, `forward` takes the ensemble and the features of the object to predict,
 and produces a real number prediction.
 
 To define `forward` we will use a `let` construct, which lets us define local
-variables and helper functions that use the arguments to `forward`.
+variables and helper functions that use the arguments to `forward`. The value of
+the expression between `in` and `end` is the result of the whole let expression.
 
 ```sml
 fun forward (ensemble, features) =
