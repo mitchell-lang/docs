@@ -32,8 +32,8 @@ val w = table.find(table, "hello");
 
 ### Description
 
-`hashString str`{:.language-sml}
-: Hash a string to a [word](http://sml-family.org/Basis/word.html)
+- `hashString str`{:.language-sml}
+  - Hash a string to a [word](http://sml-family.org/Basis/word.html)
 
 ## HashTable
 
