@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Trees
 
 A tree module, supporting multi-ary trees.

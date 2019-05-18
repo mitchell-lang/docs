@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Random Number Generation
 
 Random int/real library,

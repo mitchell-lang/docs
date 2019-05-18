@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Hash Sets
 
 Hashset.

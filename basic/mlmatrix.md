@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Matrices
 
 A matrix of real numbers, which includes some math functions on matrices.

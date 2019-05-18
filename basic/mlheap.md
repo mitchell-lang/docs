@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Heaps
 
 A heap module.

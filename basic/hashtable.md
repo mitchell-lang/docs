@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Hash Tables (Dictionaries)
 
 This library provides mutable hash-based dictionary data structures called hash

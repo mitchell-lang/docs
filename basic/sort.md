@@ -1,4 +1,7 @@
-# Sorting for Lists and Arrays
+---
+parent: Mitchell Libraries
+---
+# Sorting Lists and Arrays
 
 Sorting functions(quicksort for lists and arrays).
 
