@@ -17,11 +17,11 @@ mlvector.
     + `mlmatrix col(mlmatrix mat, int idx)`. Return one column of a matrix as a "m x 1" matrix.
     + `mlvector onerow(mlmatrix mat, int idx)`. Like `row`, but squeeze the result to vector.
     + `mlvector onecol(mlmatrix mat, int idx)`. Like `col`, but squeeze the result to vector.
-    + `void set(mlmatrix mat, (int idx1, int idx2), real r)`. Update the element in mat[idx1][idx2] to `r`.
-	+ `void update((real -> real) f, mlmatrix mat, (int idx1, int idx2))`. Update the element in mat[idx1][idx2] to `f(mat[idx1][idx2])`.
-    + `void modify((real -> real) f, mlmatrix mat)`. Modify every element in matrix by `f` in place.
-    + `void modifyi(((int, int, real) -> real) f, mlmatrix mat)`. Like modify, but the modification function takes indices as input too.
-    + `void modifyrowi(((int, mlvector) -> unit) f, mlmatrix mat)`. Modify a matrix by rows in place.
+    + `unit set(mlmatrix mat, (int idx1, int idx2), real r)`. Update the element in mat[idx1][idx2] to `r`.
+    + `unit update((real -> real) f, mlmatrix mat, (int idx1, int idx2))`. Update the element in mat[idx1][idx2] to `f(mat[idx1][idx2])`.
+    + `unit modify((real -> real) f, mlmatrix mat)`. Modify every element in matrix by `f` in place.
+    + `unit modifyi(((int, int, real) -> real) f, mlmatrix mat)`. Like modify, but the modification function takes indices as input too.
+    + `unit modifyrowi(((int, mlvector) -> unit) f, mlmatrix mat)`. Modify a matrix by rows in place.
     + `mlmatrix copy(mlmatrix mat)`. Copy a matrix.
     + `mlmatrix vec2mat(mlvector vec)`. Convert a vector to "1 x n" matrix.
     + `mlvector squeeze1(mlmatrix mat)`. Squeeze a "1 x n" matrix to a vector.
@@ -39,11 +39,11 @@ mlvector.
     + `mlmatrix mulScalar(mlmatrix mat, real a)`. Multiply a matrix with a real number.
     + `mlmatrix mul(mlmatrix mat1, mlmatrix mat2)`. Multiply two matrices.
     + `mlmatrix add(mlmatrix mat1, mlmatrix mat2)`. Add two matrices.
-    + `void addModify(mlmatrix mat1, mlmatrix mat2)`. Like Add, but modify the first matrix instead of return a new matrix.
-	+ `mlmatrix elemwise(mlmatrix mat1, mlmatrix mat2)`. Element wisely multiply two matrices, the result will have the minimal size of these two matrices.
-	+ `void elemwiseInplace(mlmatrix mat1, mlmatrix mat2)`. Like elemwise, but modify the first matrix instead of return a new matrix.
+    + `unit addModify(mlmatrix mat1, mlmatrix mat2)`. Like Add, but modify the first matrix instead of return a new matrix.
+    + `mlmatrix elemwise(mlmatrix mat1, mlmatrix mat2)`. Element wisely multiply two matrices, the result will have the minimal size of these two matrices.
+    + `unit elemwiseInplace(mlmatrix mat1, mlmatrix mat2)`. Like elemwise, but modify the first matrix instead of return a new matrix.
     + `mlmatrix matMulVec(mlmatrix mat, mlvector vec)`. Multiply a matrix with a vector, treat the vector as a "m x 1" matrix.
-	+ `mlmatrix fromArray2((real array array) arr2)`. Convert an array of array of real to mlmatrix.
-	+ `mlmatrix fromList((real list list) l2)`. Convert an list of list of real to mlmatrix.
+    + `mlmatrix fromArray2((real array array) arr2)`. Convert an array of array of real to mlmatrix.
+    + `mlmatrix fromList((real list list) l2)`. Convert an list of list of real to mlmatrix.
     + `string toStringF((real -> string) f, mlmatrix mat)`. Convert a matrix to a string, the first argument describes how to convert the element to string.
-	+ `string toString(mlmatrix mat)`.  Convert a matrix to a string using default format.
+    + `string toString(mlmatrix mat)`.  Convert a matrix to a string using default format.

@@ -1,4 +1,4 @@
-#### binary 
+#### binary
 
 Binary number with fixed length.
 
