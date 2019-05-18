@@ -46,16 +46,16 @@ to you:
 
 The following data structures and utilities are provided by Mitchell.
 
-- [Hash Tables](basic/mlhashtable.md)
-- [Hash Sets](basic/mlhashset.md)
-- [Graphs](basic/mlgraph.md)
-- [Vectors](basic/mlvector.md)
-- [Matrices](basic/mlmatrix.md)
-- [Heaps](basic/mlheap.md)
-- [Random Number Generation](basic/mlrandom.md)
-- [Trees](basic/mltree.md)
-- [Sorting for Lists and Arrays](basic/sort.md)
-- [Math](basic/math.md)
+- [Hash Tables (Dictionaries)](./basic/mlhashtable.md)
+- [Hash Sets](./basic/mlhashset.md)
+- [Graphs](./basic/mlgraph.md)
+- [Vectors](./basic/mlvector.md)
+- [Matrices](./basic/mlmatrix.md)
+- [Heaps](./basic/mlheap.md)
+- [Random Number Generation](./basic/mlrandom.md)
+- [Trees](./basic/mltree.md)
+- [Sorting for Lists and Arrays](./basic/sort.md)
+- [Math](./basic/math.md)
   - This module includes additional convenience functions not provided by the
     Standard Basis Library math module.
 
