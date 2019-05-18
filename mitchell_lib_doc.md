@@ -46,8 +46,8 @@ to you:
 
 The following data structures and utilities are provided by Mitchell.
 
-- [Hash Tables (Dictionaries)](./basic/mlhashtable.md)
-- [Hash Sets](./basic/mlhashset.md)
+- [Hash Tables (Dictionaries)](./basic/hashtable.md)
+- [Hash Sets](./basic/hashset.md)
 - [Graphs](./basic/mlgraph.md)
 - [Vectors](./basic/mlvector.md)
 - [Matrices](./basic/mlmatrix.md)
