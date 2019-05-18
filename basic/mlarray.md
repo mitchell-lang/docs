@@ -1,4 +1,7 @@
-#### mlarray
+---
+parent: Mitchell Libraries
+---
+# Resizable Arrays
 
 An array can grow automatically. If a supplied index exceeds the current size, the length of the array will be increased to accommodate the new index.
 

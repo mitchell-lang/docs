@@ -51,6 +51,7 @@ The following data structures and utilities are provided by Mitchell.
 - [Graphs](./basic/mlgraph.md)
 - [Vectors](./basic/mlvector.md)
 - [Matrices](./basic/mlmatrix.md)
+- [Resizable Arrays](./basic/mlarray.md)
 - [Heaps](./basic/mlheap.md)
 - [Random Number Generation](./basic/mlrandom.md)
 - [Trees](./basic/mltree.md)
