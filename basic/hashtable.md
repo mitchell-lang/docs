@@ -14,14 +14,14 @@ hash tables. The module `HashTable` provides the hash table type and operations.
 val table = HashTable.mkTable(HashString.hashString, op=, 10);
 val x = table.find(table, "hello");
 (* val x = NONE *)
-val _ = table.insert(table, ("hello", 42));
-val y = table.find(table, "hello");
+val _ = HashTable.insert(table, ("hello", 42));
+val y = HashTable.find(table, "hello");
 (* val y = SOME 42 *)
-val _ = table.insert(table, ("hello", 43));
-val z = table.find(table, "hello");
+val _ = HashTable.insert(table, ("hello", 43));
+val z = HashTable.find(table, "hello");
 (* val z = SOME 43 *)
-val _ = table.remove(table, "hello");
-val w = table.find(table, "hello");
+val _ = HashTable.remove(table, "hello");
+val w = HashTable.find(table, "hello");
 (* val w = NONE *)
 ```
 
