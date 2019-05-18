@@ -1,4 +1,4 @@
-#### sort
+# Sorting for Lists and Arrays
 
 Sorting functions(quicksort for lists and arrays).
 

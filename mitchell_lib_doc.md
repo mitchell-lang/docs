@@ -54,7 +54,7 @@ The following data structures and utilities are provided by Mitchell.
 - [Heaps](./basic/mlheap.md)
 - [Random Number Generation](./basic/mlrandom.md)
 - [Trees](./basic/mltree.md)
-- [Sorting for Lists and Arrays](./basic/sort.md)
+- [Sorting Lists and Arrays](./basic/sort.md)
 - [Math](./basic/math.md)
   - This module includes additional convenience functions not provided by the
     Standard Basis Library math module.

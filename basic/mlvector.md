@@ -1,4 +1,4 @@
-#### mlvector
+# Vectors
 
 A vector of real numbers, which includes some math functions on vectors.
 

@@ -1,4 +1,4 @@
-#### mlgraph
+# Graphs
 
 A graph module similar to `Spark.graphX`. There will be four implementations: `BaseGraph`, `Digraph`, `MultiGraph` and `MultiDiGraph`. Now, `BaseGraph` is available.
 
