@@ -4,6 +4,6 @@ plugins:
 title: Mitchell Documentation
 description: Documentation and tutorials for the Mitchell machine learning and graph analytics programming language.
 exclude:
-  - basic/binary.md
-  - basic/unique.md
-  - basic/utils.md
+  - lib/basic/binary.md
+  - lib/basic/unique.md
+  - lib/basic/utils.md
