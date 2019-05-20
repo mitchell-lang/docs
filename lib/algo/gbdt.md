@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 #### Gradient Boosted Decision Trees (GBDT)
 
 Gradient boosting decision tree.

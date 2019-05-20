@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Decision Trees
 
 Decision tree.

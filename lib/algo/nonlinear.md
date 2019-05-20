@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Nonlinear Activation Functions
 
 Nonlinear functions(activation functions).

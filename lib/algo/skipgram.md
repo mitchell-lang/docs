@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Skip Gram
 
 skip-grammar.

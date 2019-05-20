@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Random Walks (Weisfeiler-Lehman)
 wlKernel
 

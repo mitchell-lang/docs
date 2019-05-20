@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Hierarchical Hub Labeling
 
 Hub Labeling algorithm.

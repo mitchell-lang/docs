@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Negative Sampling
 
 negative sampling.

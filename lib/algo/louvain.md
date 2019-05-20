@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Graph Clustering (Louvain)
 
 louvain algorithm.

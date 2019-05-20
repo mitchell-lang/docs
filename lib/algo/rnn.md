@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Recurrent Neural Networks
 
 Recurrent neural network.

@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Classification and Regression Trees (CART)
 
 Decision tree training algorithm: CART.

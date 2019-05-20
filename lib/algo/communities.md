@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Representing Graph Clusters (Communities)
 
 A data structure used in louvain algorithm, which is basically a int hashset.

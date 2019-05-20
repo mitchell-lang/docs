@@ -1,3 +1,6 @@
+---
+parent: Mitchell Libraries
+---
 # Shortest Path (Dijkstra)
 
 Find the shortest path of a graph.
