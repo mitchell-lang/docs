@@ -1,7 +1,7 @@
 ---
 has_children: true
 permalink: /lib/
-no_toc: true
+has_toc: false
 ---
 # Mitchell Libraries
 
