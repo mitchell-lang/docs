@@ -38,14 +38,13 @@ val w = HashTable.find(table, "hello");
 ## HashTable
 
 ### Interface
-- `type ('k, 'v) hash_table`
-
-- `((A,B) hash_table) mkTable((A -> word) hashf, ((A * A) -> bool) comp, int len)`. Given a hashing function(hash an object to a word, which is a binary number, whose length depends on the architecture) and an equality predicate, create a new table; len is a size hint.  `MLton.hash` is a general hash function that works for all objects, `HashString.hashString` is designed for strings.
+- `type ('k, 'v) hash_table` A hash table mapping keys of type `k` to values of type `v`. 
+- `((A,B) hash_table) mkTable((A -> word) hashf, ((A * A) -> bool) comp, int len)`. Given a hashing function(hash an object to a word, which is a binary number, whose length depends on the architecture) and an equality predicate, create a new table; len is a size hint which can generally be zero. `MLton.hash` is a general hash function that works for all objects, `HashString.hashString` is designed for strings.
 - `unit clear(((A, B) hash_table) table)`. Remove all elements from the table.
 - `unit insert(((A, B) hash_table) table, (A key, B value))` Insert an item. If the key already has an item associated with it, then the old item is discarded.
-- `bool inDomain(((A, B) hash_table) table, A key)`. Return true, if the key is in the domain of the table.
+- `bool inDomain(((A, B) hash_table) table, A key)`. Return true if the hash table is currently storing an item at the given key.
 - `B lookup(((A, B) hash_table) table, A key)`. Find an item; an exception is raised if the item doesn't exist.
-- `(B option) find(((A, B) hash_table) table, A key)`. Look for an item, return NONE if the item doesn't exist.
+- `(B option) find(((A, B) hash_table) table, A key)`. Look for an item, returning the item wrapped in an option type: `SOME B` if it exists, `NONE` otherwise
 - `B remove(((A, B) hash_table) table, A key)`. Remove an item, returning the item. An exception is raised if the item doesn't exist.
 - `int numItems(((A, B) hash_table) table)`. Return the number of items in the table.
 - `(B list) listItems(((A, B) hash_table) table)`. Return a list of the items in the table.
