@@ -25,23 +25,23 @@ visits each city and returns to the origin city?
 
 The pseudo-code for TSP is as follows:
 
-``
-Init {
-adjMat := distance Adjacancy marix.
-nodes := a set of all nodes.
-start := the start node.
-}
 
-permu := permute (nodes\{start})
-minDistance := 999999
-minPath := []
-forach path in permu:
-    distanceSum = CalDisSum path
-    if distanceSum < minDistance
-        then minDistance := distanceSum
-        else minPath := path
-return (minDistance, minPath)
-``
+		Init {
+		adjMat := distance Adjacancy marix.
+		nodes := a set of all nodes.
+		start := the start node.
+		}
+
+		permu := permute (nodes\{start})
+		minDistance := 999999
+		minPath := []
+		forach path in permu:
+		    distanceSum = CalDisSum path
+		    if distanceSum < minDistance
+			then minDistance := distanceSum
+			else minPath := path
+		return (minDistance, minPath)
+
 
 Here, we represent the set of cities and their distances in an
 adjacency matrix, an *nxn* matrix (where *n* is the number of cities),
