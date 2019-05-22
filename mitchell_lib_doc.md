@@ -47,6 +47,7 @@ to you:
 
 The following data structures and utilities are provided by Mitchell.
 
+- [Converting Data to Strings (Debug Printing)](./lib/basic/tostring.md)
 - [Hash Tables (Dictionaries)](./lib/basic/hashtable.md)
 - [Hash Sets](./lib/basic/hashset.md)
 - [Graphs](./lib/basic/mlgraph.md)
