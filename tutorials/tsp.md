@@ -25,23 +25,23 @@ visits each city and returns to the origin city?
 
 The pseudo-code for TSP is as follows:
 
+```
+Init {
+adjMat := distance Adjacancy marix.
+nodes := a set of all nodes.
+start := the start node.
+}
 
-		Init {
-		adjMat := distance Adjacancy marix.
-		nodes := a set of all nodes.
-		start := the start node.
-		}
-
-		permu := permute (nodes\{start})
-		minDistance := 999999
-		minPath := []
-		forach path in permu:
-		    distanceSum = CalDisSum path
-		    if distanceSum < minDistance
-			then minDistance := distanceSum
-			else minPath := path
-		return (minDistance, minPath)
-
+permu := permute (nodes\{start})
+minDistance := 999999
+minPath := []
+forach path in permu:
+    distanceSum = CalDisSum path
+    if distanceSum < minDistance
+        then minDistance := distanceSum
+        else minPath := path
+return (minDistance, minPath
+```
 
 Here, we represent the set of cities and their distances in an
 adjacency matrix, an *nxn* matrix (where *n* is the number of cities),
@@ -89,10 +89,10 @@ fun permute l =
 
 ```
 
-We generate permutations using two functions.  The first, `insert`
-given an element `elem` and a list `l` returns a list of lists, where
+We generate permutations using two functions.  The first, ``insert``
+given an element ``elem`` and a list ``l`` returns a list of lists, where
 each list component reflects the insertion of `elem` in a different
-position in `l`.  Intuitively, for a list containing *k$ elements,
+position in `l`.  Intuitively, for a list containing *k* elements,
 there are *k+1* ways to insert a new element into the list - at
 the beginning of the list, at the end, and in-between each of the
 *k* elements.
@@ -166,7 +166,7 @@ our input as an adjacency matrix, where row and column entries denote
 distances between cities.  We might store this information in a file
 (say "data.txt") that stores the adjacency matrix thus: 
 
-``
+```
     (* Data Format: *) 
     4   (* number of cities *)
     (* distance matrix *)
@@ -176,7 +176,7 @@ distances between cities.  We might store this information in a file
     6 3 12 0
     (* origin node *)
     0 
-``
+```
 
 To compute TSP, we need to calculate the distance of a path.  We use
 a pair of functions for that purpose:
@@ -255,6 +255,7 @@ paths to `pathandDistance`.  We then iterate over all these paths,
 recording the smallest distance, printing this path as the output of
 the program.
 
-
+Try putting the various pieces of this program into a single file and
+experiment with changing the contents of ``data.txt``.  
 
 
