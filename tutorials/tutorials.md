@@ -2,6 +2,7 @@
 title: Mitchell Tutorials
 has_children: true
 permalink: /tutorials
+has_toc: false
 ---
 # Mitchell Tutorials
 
@@ -12,3 +13,6 @@ Some useful external tutorials for Standard ML are:
 - [Programming in Standard ML '97: An On-line Tutorial](http://homepages.inf.ed.ac.uk/stg/NOTES/node2.html)
 
 The following tutorials are specifically for Mitchell and Mitchell libraries.
+
+- [Gradient Boosted Decision Trees](./tutorials/tutorial-gbdt.md)
+- [IO and Parsing](./tutorials/tutorial-io-parsing.md)
