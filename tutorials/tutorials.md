@@ -14,6 +14,6 @@ Some useful external tutorials for Standard ML are:
 
 The following tutorials are specifically for Mitchell and Mitchell libraries.
 
-- [Programming Vignettes](./tutorials/tsp.md)
+- [Programming Vignettes](./tutorials/vignettes.md)
 - [Gradient Boosted Decision Trees](./tutorials/tutorial-gbdt.md)
 - [IO and Parsing](./tutorials/tutorial-io-parsing.md)
