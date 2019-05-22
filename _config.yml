@@ -3,6 +3,7 @@ plugins:
   - jekyll-relative-links
 title: Mitchell Documentation
 description: Documentation and tutorials for the Mitchell machine learning and graph analytics programming language.
+search_enabled: true
 exclude:
   - lib/basic/binary.md
   - lib/basic/unique.md
