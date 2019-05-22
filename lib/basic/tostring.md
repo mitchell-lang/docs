@@ -16,6 +16,9 @@ For container types, like
 [array](http://sml-family.org/Basis/array.html),
 Mitchell provides additional libraries as below.
 
+Mitchell's libraries for graphs, matrices, etc., include `toString` support
+in those modules.
+
 ## Basic Usage
 
 In the examples below, we show you how to print structures that are filled with
@@ -30,7 +33,7 @@ val lst = [1,2,3]
 val _ = print (T.toString lst ^ "\n")
 ```
 
-This code snippet prints
+This prints
 ```
 [1,2,3]
 ```
@@ -44,7 +47,7 @@ val arr = Array.fromList [1,2,3]
 val _ = print (T.toString arr ^ "\n")
 ```
 
-This code snippet prints
+This prints
 ```
 Array.fromList [1,2,3]
 ```
@@ -62,7 +65,7 @@ val data = List.map Array.fromList [[1,2,3],[4,5],[6,7,8,9]]
 val _ = print (T.toString arr ^ "\n")
 ```
 
-This code snippet prints
+This prints
 ```
 [Array.fromList [1,2,3],Array.fromList [4,5],Array.fromList [6,7,8,9]]
 ```
@@ -103,7 +106,6 @@ used as described in the examples above.
 - `ListToString`
 - `VectorSliceToString`
 - `VectorToString`
-`
 
 Additionall Mitchell includes `toString` support for monomorphic containers via
 the following modules, which can be used as described in the examples above.
