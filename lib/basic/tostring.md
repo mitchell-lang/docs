@@ -34,6 +34,7 @@ val _ = print (T.toString lst ^ "\n")
 ```
 
 This prints
+
 ```
 [1,2,3]
 ```
@@ -48,8 +49,34 @@ val _ = print (T.toString arr ^ "\n")
 ```
 
 This prints
+
 ```
 Array.fromList [1,2,3]
+```
+
+### Pairs and Tuples
+
+In order to print tuples, the library has to be told how to print each component
+of the tuple. Because this can be verbose, it is easier to read if you give a
+name to each intermediate structure.
+
+```sml
+(* Name the intermediate structures. *)
+structure IntToString = struct type t = int; val toString = Int.toString end
+structure RealToString = struct type t = real; val toString = Real.toString end
+
+(* Create the module for printing pairs. *)
+structure T = PairToString(struct structure S1 = IntToString; structure S2 = RealToString end)
+
+(* Print a pair. *)
+val pair = (42, 1.5)
+val _ = print (T.toString pair ^ "\n")
+```
+
+This prints
+
+```
+(42, 1.5)
 ```
 
 ### Lists of Arrays of Integers
@@ -66,9 +93,11 @@ val _ = print (T.toString arr ^ "\n")
 ```
 
 This prints
+
 ```
 [Array.fromList [1,2,3],Array.fromList [4,5],Array.fromList [6,7,8,9]]
 ```
+
 
 ### Monomorphic Data Structures
 
@@ -106,9 +135,12 @@ used as described in the examples above.
 - `ListToString`
 - `VectorSliceToString`
 - `VectorToString`
+- `PairToString`
+- `Tuple3ToString`
+- `Tuple4ToString`
 
-Additionall Mitchell includes `toString` support for monomorphic containers via
-the following modules, which can be used as described in the examples above.
+Additionally, Mitchell includes `toString` support for monomorphic containers
+via the following modules, which can be used as described in the examples above.
 
 - `MonoArraySliceToString`
 - `MonoArrayToString`
