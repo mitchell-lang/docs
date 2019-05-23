@@ -27,7 +27,7 @@ The pseudo-code for TSP is as follows:
 
 ```
 Init {
-adjMat := distance Adjacancy marix.
+adjMat := distance Adjacancy matrix.
 nodes := a set of all nodes.
 start := the start node.
 }
