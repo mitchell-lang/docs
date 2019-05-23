@@ -1,7 +1,7 @@
 ---
 title: FAQ
 has_children: true
-permalink: /faq
+permalink: /faq/
 ---
 # FAQ
 

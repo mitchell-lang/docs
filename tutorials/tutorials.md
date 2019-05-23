@@ -1,7 +1,7 @@
 ---
 title: Mitchell Tutorials
 has_children: true
-permalink: /tutorials
+permalink: /tutorials/
 has_toc: false
 ---
 # Mitchell Tutorials
