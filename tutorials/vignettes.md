@@ -40,7 +40,7 @@ forach path in permu:
     if distanceSum < minDistance
         then minDistance := distanceSum
         else minPath := path
-return (minDistance, minPath
+return (minDistance, minPath)
 ```
 
 Here, we represent the set of cities and their distances in an
