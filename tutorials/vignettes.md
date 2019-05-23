@@ -182,9 +182,9 @@ To compute TSP, we need to calculate the distance of a path.  We use
 a pair of functions for that purpose:
 
 ```sml
-val (distanceAdjMarix, start) = readDistanceAdjMarix "data.txt"
+val (distanceAdjMatrix, start) = readDistanceAdjMatrix "data.txt"
 
-fun getDistance i j = Array.sub (Array.sub (distanceAdjMarix, i), j)
+fun getDistance i j = Array.sub (Array.sub (distanceAdjMatrix, i), j)
 fun pathDistance path =
     case path of
          [] => raise Fail "Bad Path" (* path has at least two nodes. *)
@@ -214,8 +214,8 @@ The main body of the function can now be expressed:
 
 ```sml
 let
-    val (distanceAdjMarix, start) = readDistanceAdjMarix "data.txt"
-    val nodes = Array.foldli (fn (i, _, r) => i :: r) [] distanceAdjMarix 
+    val (distanceAdjMatrix, start) = readDistanceAdjMatrix "data.txt"
+    val nodes = Array.foldli (fn (i, _, r) => i :: r) [] distanceAdjMatrix 
     val nodesWithoutStart = List.filter (fn e => not (e = start)) nodes 
     val permu = permute nodesWithoutStart 
     val paths = List.map (fn path => start :: path @ [start]) permu 
