@@ -7,9 +7,9 @@ parent: Mitchell Tutorials
 
 The previous tutorial introduced you to the basic syntax and data
 structures found in Mitchell.  In this tutorial, we'll use these
-elements to write programs.  We've chosen three representative
+elements to write useful programs.  We've chosen a few representative
 examples to highlight core Mitchell functionality that you're likely
-to find useful when developing your solutions.  
+to find useful when developing your solutions.
 
 1. Generated Toc
 {:toc}
@@ -27,7 +27,7 @@ The pseudo-code for TSP is as follows:
 
 ```
 Init {
-adjMat := distance Adjacancy matrix.
+adjMat := distance Adjacancy marix.
 nodes := a set of all nodes.
 start := the start node.
 }
@@ -40,7 +40,7 @@ forach path in permu:
     if distanceSum < minDistance
         then minDistance := distanceSum
         else minPath := path
-return (minDistance, minPath)
+return (minDistance, minPath
 ```
 
 Here, we represent the set of cities and their distances in an
@@ -49,16 +49,16 @@ where each entry in the matrix represents the distance between a pair
 of cities.  A naive implementation of TSP considers all permutations
 of routes that includes all cities.  Having computed this permutation,
 we iterate over each path in the permutation, calculating the total
-distance of the path, keeping the smallest one seen.  The procedure
-returns the shortest route and its distance after all paths have been
-explored.  
+distance of the path, keeping the smallest one seen thus far.  The
+procedure returns the shortest route and its distance after all paths
+have been explored.
 
 ### Mitchell Solution
 
 Central to our solution is the need to enumerate all permutations of
 routes.  To do this, we'll need a permutation function that takes the
 list of cities that we want to visit and generates a list of paths,
-where each path is represented as a list of cities.
+where each path represents a list of cities.
 
 ```sml
 fun insert elem l =
@@ -104,8 +104,16 @@ Thus, evaluating `insert 3 [1,2,4]` yields
 ```
 
 To see how this function works, observe that we first deconstruct the
-list into its two possible shapes.  The first shape is the empty list.
-Here, the result is a list containing a single result, namely the list
+list into its two possible shapes;  recall that the definition of a list
+is defined by the following datatype definition that describes these
+two shapes:
+
+```sml
+datatype 'a list = Nil | Cons of ('a * 'a list)
+```
+
+The first shape is the empty list.  Inserting an element into an empty
+list results in a list containing a single result, namely the list
 containing the element being inserted.  If the list is non-empty, it
 must have two components, a head and a tail (written `rest` in the
 function).  A useful idiom when programming in declarative languages
@@ -141,24 +149,27 @@ permutations of sublists of `l`.  Having generated this permutation,
 we now need to take care of handling the `head` element.  We do so by
 using the `insert` function to insert the `head` in all positions of
 every list found in `restResult`.  This function uses an important
-auxiliary function called `foldl`.  In Mitchell, `List.foldl` is used
-to iterate over a list, allowing intermediate results produced in one
-iteration to be used in the next one.  For example, evaluating
-`List.foldl (fn (x,acc) => x + acc) 0 [1,2,3]` is tantamount to
-evaluating `3 + 2 + (1 + 0)`.  The accumulator `acc` is initially 0;
-in its first (internal) iteration, the first element of the list (`1`)
-is added to acc, and the result (`1`) becomes the value of the
+auxiliary function called `List.foldl`.  In Mitchell, `List.foldl` is
+used to iterate over a list, allowing intermediate results produced in
+one iteration to be available in the next one.  For example,
+evaluating `List.foldl (fn (x,acc) => x + acc) 0 [1,2,3]` is
+tantamount to evaluating `3 + 2 + (1 + 0)`.  The accumulator `acc` is
+initially 0; in its first (internal) iteration, the first element of
+the list (`1`) is added to acc, and the value of the resulting
+computation (`1 + 0` which is `1`) becomes the value of the
 accumulator for the next iteration, and so on.  This declarative way
 of expressing iterative computation is very powerful, and as you'll
 see when developing your own workloads leads to simpler and cleaner
-computation.  In this example, the `head` element in list `l` is
-inserted into every distinct position of every list component of
-`restResult`.  The `foldl` operator accumulates all these variations.
-The body of the argument function `(insert head list) @ r` appends the
-result of `insert` (which is a list of lists) to `r` (which is also a
-list of lists).
-
-So, evaluating `permute [1,2,3]` yields `[[1,3,2],[3,1,2],[3,2,1],[1,2,3],[2,1,3],[2,3,1]]`.
+computation because you don't have to explicitly manage the state that
+gets manipulated from one iteration to the next the way you would need
+to do using more imperative features like while- or for-loops.  In
+this example, the `head` element in list `l` is inserted into every
+distinct position of every list component of `restResult`.  The
+`foldl` operator accumulates all these variations.  The body of the
+argument function `(insert head list) @ r` appends the result of
+`insert` (which is a list of lists) to `r` (which is also a list of
+lists).  For example, evaluating `permute [1,2,3]` yields
+`[[1,3,2],[3,1,2],[3,2,1],[1,2,3],[2,1,3],[2,3,1]]`.
 
 Now that we know how to build permutations of lists, we're ready to
 move on to directly solving TSP.  As we mentioned earlier, we'll represent
@@ -182,9 +193,9 @@ To compute TSP, we need to calculate the distance of a path.  We use
 a pair of functions for that purpose:
 
 ```sml
-val (distanceAdjMatrix, start) = readDistanceAdjMatrix "data.txt"
+val (distanceAdjMarix, start) = readDistanceAdjMarix "data.txt"
 
-fun getDistance i j = Array.sub (Array.sub (distanceAdjMatrix, i), j)
+fun getDistance i j = Array.sub (Array.sub (distanceAdjMarix, i), j)
 fun pathDistance path =
     case path of
          [] => raise Fail "Bad Path" (* path has at least two nodes. *)
@@ -199,9 +210,20 @@ fun pathDistance path =
             end
 ```
 
+The `readDistanceAdjMatrix` function found in file
+[io.sml](./tutorials/io.sml) reads the data file and returns the
+adjacency matrix (`distanceAdjMatrix`) and the origin city (`start`).
+The matrix is represented as an array of arrays.  An array in Mitchell
+is a contiguous collection of (updateable) elements that can be
+accessed in constant time.
+
 The `getDistance` function simply returns the entry stored in the
 distance matrix that holds the distance between a pair of cities (`i`
-and `j`).  Now, given a path (i.e., a list of cities), the function
+and `j`).  The expression `Array.sub (distanceAdjMatrix, i)` returns
+the array in the ith row, while `Array.sub (Array.sub
+(distanceAdjMatrix, i), j` returns the jth element in this array.
+
+Now, given a path (i.e., a list of cities), the function
 `pathDistance` returns the total distance.  It uses `List.foldl` to
 calculate the sum of the distances between each of the elements in
 input path.  In the expression, the accumulator initially holds the
@@ -214,8 +236,8 @@ The main body of the function can now be expressed:
 
 ```sml
 let
-    val (distanceAdjMatrix, start) = readDistanceAdjMatrix "data.txt"
-    val nodes = Array.foldli (fn (i, _, r) => i :: r) [] distanceAdjMatrix 
+    val (distanceAdjMarix, start) = readDistanceAdjMarix "data.txt"
+    val nodes = Array.foldli (fn (i, _, r) => i :: r) [] distanceAdjMarix 
     val nodesWithoutStart = List.filter (fn e => not (e = start)) nodes 
     val permu = permute nodesWithoutStart 
     val paths = List.map (fn path => start :: path @ [start]) permu 
@@ -240,22 +262,29 @@ in
 end;
 ```
 
-We first read the contents of the file into the distance adjacency matrix 
-`distanceAdjMatrix`. This matrix is represented as a 1-dimensional array of 1-dimensional
-arrays.  You can find the code to read the matrix in `io.sml`.  We
-then use the `Array.foldli` function to collect the list of nodes.
-The function argument to `Array.foldli` takes three arguments - an
-index into the outer array, the value at that index (which is another
-array, but ignored here - hence, the use of `_`), and the value of the
-accumulator.  We bind the permutation of the list of all nodes other
-than the start nodes to `permu`, and the list of all paths with the
-start node as both the first and last node to `paths`.  We then
+We first read the contents of the distance adjacency matrix as
+described above.  We then use the `Array.foldli` function to collect
+the list of nodes.  The function argument to `Array.foldli` takes
+three arguments - an index into the outer array, the value at that
+index (which is another array, but ignored here - hence, the use of
+`_`), and the value of the accumulator.  The function argument to
+`Array.foldli` simply accumulates the array index into a list, so the
+value to bound to `nodes` is simply a list of numbers representing the
+names of the cities.  We bind the permutation of the list of all nodes
+other than the start nodes to `permu`, and the list of all paths with
+the start node as both the first and last node to `paths`.  We then
 compute path distances of all these paths, binding these distances and
 paths to `pathandDistance`.  We then iterate over all these paths,
 recording the smallest distance, printing this path as the output of
 the program.
 
 Try putting the various pieces of this program into a single file and
-experiment with changing the contents of ``data.txt``.  
+experiment with changing the contents of ``data.txt``.  Once you are
+comfortable with what the program is doing, experiment with different
+variations.  For example, change the program to return the path that
+has the greatest distance (easy).  Or, have the program return the *k*
+shortest routes for some input *k* (moderate).  If you are feeling
+particularly adventurous, modify the program to find the shortest
+route upto a fixed path length (harder).
 
 

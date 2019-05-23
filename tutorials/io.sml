@@ -41,3 +41,4 @@ fun readDistanceAdjMarix fileName =
     end
 
 fun pathToString path = List.foldl (fn (e, r) => (Int.toString e) ^ " " ^ r) "" path
+
