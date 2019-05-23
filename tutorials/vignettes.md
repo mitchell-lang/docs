@@ -240,8 +240,8 @@ in
 end;
 ```
 
-We first read the contents of the distance adjacency matrix.  This
-matrix is represented as a 1-dimensional array of 1-dimensional
+We first read the contents of the file into the distance adjacency matrix 
+`distanceAdjMatrix`. This matrix is represented as a 1-dimensional array of 1-dimensional
 arrays.  You can find the code to read the matrix in `io.sml`.  We
 then use the `Array.foldli` function to collect the list of nodes.
 The function argument to `Array.foldli` takes three arguments - an
