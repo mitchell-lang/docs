@@ -9,7 +9,7 @@ Sort lists and arrays using quicksort.
 
 ```sml
 val orig = [23, 1, 4, ~3]
-val sorted = quickSortList (fn (a, b) => a < b), orig
+val sorted = quickSortList (op<, orig)
 val first = List.hd sorted
 (* List has been sorted; prints -3 *)
 val _ = print (Int.toString first)

@@ -11,7 +11,7 @@ A heap implementation.
 structure H = Mlheap(structure A = Mlarray);
 
 (* Make a 2-ary heap with initial size 0 and 0 as default item value, using `<` as the comparison operator *)
-val heap = H.make ((fn (a, b) => a < b), 2, 0, 0);
+val heap = H.make (op<, 2, 0, 0);
 
 (* Push some integers onto the heap *)
 val _ = H.push (heap, 10);
