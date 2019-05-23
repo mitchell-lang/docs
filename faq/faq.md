@@ -12,7 +12,7 @@ consistent way. It reports errors where it finds a problem, but that isn't
 always where the root cause of the problem is. Details on how to pin down a type
 error in your program can be found [here](faq/using-types.md).
 
-## How to write tests in Mitchell?
+## How do I write tests in Mitchell?
 
 There currently is no library to support unit testing in Mitchell.
 However, anything that you write at the top-level in your `.sml` file
@@ -20,23 +20,15 @@ However, anything that you write at the top-level in your `.sml` file
 executed when you run your program with `run-mitchell`.
 That can be used to implement tests manually as a workaround.
 
-## How to generate random numbers in Mitchell?
+## How do I generate random numbers in Mitchell?
 
-Use the `MLton.Random` module. The interface to the module is defined
-[here](http://www.mlton.org/MLtonRandom).
-
-These three functions are not yet supported on the hardware accelerator,
-however, so you should use a fixed seed.
-
-```
-val seed: unit -> word option
-val srand: word -> unit
-val useed: unit -> word option
-```
+See the Mitchell
+[`Random`](https://mitchell-lang.github.io/docs/lib/basic/mlrandom.html)
+library.
 
 ## How do I print values?
 
-TODO
+See the [libraries for converting data to strings](../lib/basic/tostring.md).
 
 ## My program threw an exception. How do I find where the exception came from?
 
@@ -79,16 +71,73 @@ compiler.
 See [Reading Compiler Errors](reading-compiler-errors.md).
 
 
-## How do I print individual elements of my array/list of tuples?
+## How do I get a value out of a pair or tuple?
 
-TODO
+There are two ways to use the invidivual values from a pair or tuple. One way is
+via pattern matching:
+
+```sml
+val pair = (42, "hello")
+val (leftValue, rightValue) = pair
+(* Now leftValue = 42 and rightValue = "hello" *)
+```
+
+The other way is to use the projection functions:
+
+```sml
+val pair = (42, "hello")
+val leftValue = #1 pair
+val rightValue = #2 pair
+(* Now leftValue = 42 and rightValue = "hello" *)
+```
+
+Both ways extend to larger-sized tuples.
+
+## How do I get a value out of an array?
+
+See the [`Array.sub`](http://sml-family.org/Basis/array.html#SIG:ARRAY.sub:VAL)
+function in the Standard Basis Library.
+
 
 ## How do I get the inferred type of a specific variable?
 
-TODO
+The easiest way to find out what type a variable was inferred to be is to
+annotate it with the `unit` type and get the inferred type from the error
+message.
 
-## How do I convert a datatype into this other data-type so I can do some operation (+,-,*) with them?
+For example, compiling
 
-TODO: Follow-up: Why it is necessary to match data-types that seem the same Int,Real,etc?
+```sml
+val pair : unit = (42, 1.5)
+```
+
+Will produce the error
+
+```
+  Pattern and expression disagree.
+    pattern:    [unit]
+    expression: [int * real]
+    in: val pair: unit = (42, 1.5)
+```
+
+where `int * real` is the inferred type of the variable.
 
 
+## How do I convert between numeric types?
+
+For converting between `int` and `real`, see the
+[`Real.toInt`](http://sml-family.org/Basis/real.html#SIG:REAL.toInt:VAL)
+and [`Real.fromInt`](http://sml-family.org/Basis/real.html#SIG:REAL.fromInt:VAL)
+functions from the Standard Basis Library.
+
+Numeric types of specific size (e.g., `Real32.real` and `Real64.real`) can be converted
+between by converting to and from `LargeReal.real`
+(using
+[`Real<N>.toLarge`](http://sml-family.org/Basis/real.html#SIG:REAL.toLarge:VAL)
+and
+[`Real<N>.fromLarge`](http://sml-family.org/Basis/real.html#SIG:REAL.toLarge:VAL))
+or `LargeInt.int` (using
+[`Int<N>.toLarge`](http://sml-family.org/Basis/integer.html#SIG:INTEGER.toLarge:VAL)
+and [`Int<N>.fromLarge`](http://sml-family.org/Basis/integer.html#SIG:INTEGER.toLarge:VAL)).
+
+Similar functions are available for the [`word`](http://sml-family.org/Basis/word.html) types.
