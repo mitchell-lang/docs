@@ -211,7 +211,7 @@ fun pathDistance path =
 ```
 
 The `readDistanceAdjMatrix` function found in file
-[io.sml](./tutorials/io.sml) reads the data file and returns the
+[io.sml](./io.sml) reads the data file and returns the
 adjacency matrix (`distanceAdjMatrix`) and the origin city (`start`).
 The matrix is represented as an array of arrays.  An array in Mitchell
 is a contiguous collection of (updateable) elements that can be
