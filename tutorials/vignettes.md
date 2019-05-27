@@ -211,7 +211,7 @@ fun pathDistance path =
 ```
 
 The `readDistanceAdjMatrix` function found in file
-[tsp-io.sml](./tutorials/tsp-io.sml) reads the data file and returns the
+[tsp-io.sml](./tsp-io.sml) reads the data file and returns the
 adjacency matrix (`distanceAdjMatrix`) and the origin city (`start`).
 The matrix is represented as an array of arrays.  An array in Mitchell
 is a contiguous collection of (updateable) elements that can be
@@ -467,7 +467,7 @@ A sample ``data.txt`` file might look like:
 ```
 
 The implementation of the reader that reads in a data file and builds the
-adjacency matrix can be found in [pagerank-io.sml](./tutorials/pagerank-io.sml).
+adjacency matrix can be found in [pagerank-io.sml](./pagerank-io.sml).
 
 Once you've understood how this simple pagerank implementation works,
 you might consider implementing different
