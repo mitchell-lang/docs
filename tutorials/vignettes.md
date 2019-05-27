@@ -472,5 +472,5 @@ adjacency matrix can be found in [pagerank-io.sml](./pagerank-io.sml).
 Once you've understood how this simple pagerank implementation works,
 you might consider implementing different
 [variants](https://pdfs.semanticscholar.org/70f8/d27954ce7ef49e351aca6d4b6b368cfef1c7.pdf).
-A more sophisticated set of algorithms are given
+A more sophisticated set of algorithms is given
 [here](http://www.w3c.ethz.ch/CDstore/www2002/poster/173.pdf).
