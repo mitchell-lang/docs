@@ -40,7 +40,7 @@ forach path in permu:
     if distanceSum < minDistance
         then minDistance := distanceSum
         else minPath := path
-return (minDistance, minPath
+return (minDistance, minPath)
 ```
 
 Here, we represent the set of cities and their distances in an
@@ -211,7 +211,7 @@ fun pathDistance path =
 ```
 
 The `readDistanceAdjMatrix` function found in file
-[io.sml](./io.sml) reads the data file and returns the
+[tsp-io.sml](./tutorials/tsp-io.sml) reads the data file and returns the
 adjacency matrix (`distanceAdjMatrix`) and the origin city (`start`).
 The matrix is represented as an array of arrays.  An array in Mitchell
 is a contiguous collection of (updateable) elements that can be
@@ -288,3 +288,189 @@ particularly adventurous, modify the program to find the shortest
 route upto a fixed path length (harder).
 
 
+## PageRank
+### Background
+
+The PageRank algorithm is used to rank the relative importance of a
+set of web pages.  It was used as part of the early search algorithm
+deployed by Google.  The intuition underlying the algorithm is quite
+simple - the importance of a web page is a function of the number of
+links to that page.  The more incomimg links, the more important the
+page is.  Similarly, the a page's pagerank influences the importance of
+the pages it links to.  The core algorithm thus iterates over a graph
+(conveniently represented as an adjacency matrix), where nodes
+represent pages, and edges represent links to (and from) these pages.
+
+The pseudo-code for a simple implementation of PageRank is as follows:
+
+```
+Init {
+adjMat := adjacancy matrix of input graph
+nodes := nodes in the graph
+N := num of nodes
+pr := page rank weight vector, initialized to 1/N.
+d := damp factor, typically is set to 0.85.
+threshold := threshold for convergence. When the difference betweem new pr and old one less than threshold, return.
+}
+
+prLoop:
+    pr' := pr
+    foreach node in nodes:
+        inFlow := 0.0
+        foreach node' in nodes:
+            if adjMat[node'][node] = true:
+                inFlow = inFlow + d * (pr[node'] / (outDegree node'))
+        pr'[node] = inFlow + (1 - d) / N
+    if diff(pr, pr') < threshold:
+        return pr'
+
+```
+
+The damping factor models the likelihood that a particular link to a
+page will be traversed.  A high damping factor is used to indicate
+that most links will be explored.
+
+### Mitchell Solution
+
+First, we will represent the web graph as an adjacency matrix:
+
+```sml
+fun connected adjMat (i, j) =
+    Array.sub (Array.sub (adjMat, i), j)
+
+fun outDegree adjMat i =
+    Array.foldl (fn (b, num) =>
+                    if b then num + 1 else num) 0 (Array.sub (adjMat, i))
+```
+
+The ``connected`` function selects the *(i,j)*th element - if the
+entry is 1, it means there is a link connecting node *i* (which is
+intended to represent a web page) to node *j*; a 0 indicates there is
+no such link.  Row *i* in the adjaency matrix captures the set of
+links from node *i*.  The ``Array.foldl`` function simply counts the
+number of 1's in this row which thus represents the node's outdegree.
+
+The heart of the pagerank algorithm is captured by the following three
+functions:
+
+```sml
+fun calNewPr nodeidx adjMat pr d =
+    let
+        val inFlow =
+            (ExtendedList.foldli ((fn (sum, nodeidx', prNodeidx') =>
+                           if connected adjMat (nodeidx', nodeidx)
+                           then
+                               let
+                                   val l = outDegree adjMat nodeidx'
+                               in
+                                   sum + prNodeidx'/(Real.fromInt l)
+                               end
+                           else
+                               sum
+                        ), 0.0, pr)) * d
+        val N = List.length pr
+        val dampFlow = (1.0 - d)/(Real.fromInt N)
+    in
+        dampFlow + inFlow
+    end
+
+fun prDiff pr1 pr2 =
+    ExtendedList.foldli ((
+        fn (sum, i, prValue1) =>
+           let
+               val prValue2 = List.nth (pr2, i)
+           in
+               (prValue2 - prValue1) * (prValue2 - prValue1) + sum
+           end
+    ), 0.0, pr1)
+
+fun prLoop adjMat pr d threshold =
+    let
+        val pr' =
+            ExtendedList.mapi
+                ((fn (i, _) =>
+                    calNewPr i adjMat pr d
+                 ), pr)
+    in
+        if (prDiff pr pr') < threshold
+        then
+            pr'
+        else
+            prLoop adjMat pr' d threshold
+    end;
+```
+
+The ``callNewPr`` function calculates a new pagerank for a node with
+id ``nodeidx`` given a link structure captured by ``adjMatrix``, an
+existing list of pageranks (``pr``) and a damping factor ``d``.
+The value bound to ``inflow`` uses the ``foldli`` function found in
+the ``ExtendedList`` library that is part of the Mitchell ecosystem.
+``foldli`` is similar to ``List.foldl`` except that its function
+argument operates over a list element, an accumulator, and an integer
+value:
+
+```sml
+fun foldli (f, r, l) =
+    let
+        fun aux r l i =
+            case l of [] => r
+                    | h :: t =>
+                      aux (f (r, i, h)) t (i+1)
+    in
+        aux r l 0
+z    end
+```
+
+In the context of ``calNewPr``, the ``foldli`` operation iterates over
+a list of pageranks (``pr``) whose length is expected to be equivalent
+to the dimension of the adjacency matrix (``adjMat``).  In each
+iteration, the next element in the list (i.e., the pagerank for node
+*i*) is bound to ``prNodeidx'`` and ``nodeidx'`` is bound to an
+integer representing a page whose outgoing links we are examining.  If
+this page has a link to ``nodeidx`` (the argument to the function)
+then we compute the outdegree of the node, and use it to calculate the
+contribution of this node to the pagerank for ``nodeidex``.  This
+contribution is further refined by taking the damping factor in
+account.  The ``prDiff`` function calculates the difference between
+two pagerank weight vectors while ``prLoop`` repeatedly iterates over
+the graph until the differences between the pageranks calculated between
+successive iterations falls below a given threshold.
+
+
+The top-level driver reads the adjacency matrix from a file, sets up
+the damping factor and threshold, and initiates the call to ``prLoop`` -
+the pagerank vector returned by the call is printed as the result:
+
+```sml
+let
+    val (nodesNum, adjMat) = fromFile "data.txt"
+    val pr = List.tabulate (nodesNum, fn _ => 1.0 / (Real.fromInt nodesNum))
+    val d = 0.85
+    val threshold = 0.001
+    val pr = p
+    rLoop adjMat pr d threshold
+    val _ = print ((prToString pr) ^ "\n")
+in
+    ()
+end;
+```
+
+A sample ``data.txt`` file might look like:
+
+```
+5
+0 1 1 0 0
+0 0 0 1 0
+0 0 0 1 1
+0 0 0 0 1
+1 0 0 0 0
+```
+
+The implementation of the reader that reads in a data file and builds the
+adjacency matrix can be found in [pagerank-io.sml](./tutorials/pagerank-io.sml).
+
+Once you've understood how this simple pagerank implementation works,
+you might consider implementing different
+[variants](https://pdfs.semanticscholar.org/70f8/d27954ce7ef49e351aca6d4b6b368cfef1c7.pdf).
+A more sophisticated set of algorithms are given
+[here](http://www.w3c.ethz.ch/CDstore/www2002/poster/173.pdf).
