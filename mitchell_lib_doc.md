@@ -71,7 +71,7 @@ The following data structures and utilities are provided by Mitchell.
 - [Random Walks (Weisfeiler-Lehman)](./lib/algo/wlkernel.md)
 - [Negative Sampling](./lib/algo/negsample.md)
 - [Skip Gram](./lib/algo/skipgram.md)
-- [Recurrent Neural Networks (RNNs)](./lib/algo/rnn.md)
+- [Neural Networks](./lib/algo/kann.md)
 - [Representing Graph Clusters (Communities)](./lib/algo/communities.md)
 - [Graph Clustering (Louvain)](./lib/algo/louvain.md)
 - [Shortest Path (Dijkstra)](./lib/algo/shortest-path.md)
