@@ -61,6 +61,7 @@ The following data structures and utilities are provided by Mitchell.
 - [Math](./lib/basic/math.md)
   - This module includes additional convenience functions not provided by the
     Standard Basis Library math module.
+- [Neural Networks](./lib/basic/kann.md)
 
 ## Algorithms
 
@@ -71,7 +72,6 @@ The following data structures and utilities are provided by Mitchell.
 - [Random Walks (Weisfeiler-Lehman)](./lib/algo/wlkernel.md)
 - [Negative Sampling](./lib/algo/negsample.md)
 - [Skip Gram](./lib/algo/skipgram.md)
-- [Neural Networks](./lib/algo/kann.md)
 - [Representing Graph Clusters (Communities)](./lib/algo/communities.md)
 - [Graph Clustering (Louvain)](./lib/algo/louvain.md)
 - [Shortest Path (Dijkstra)](./lib/algo/shortest-path.md)
