@@ -185,14 +185,14 @@ described below.
   - Adds a cost layer to a neural network definition.
 - `layerDropout (input, rate)`
   - Adds a dropout layer to a neural network definition.
-- `layerConv1d input numFilters size stride padding`
+- `layerConv1d (input, numFilters, size, stride, padding)`
   - Adds a 1-dimensional convolution layer to a neural network definition.
-- `layerConv2d input numFilters numRows numCols strideRows strideCols padRows padCols`
+- `layerConv2d (input, numFilters, numRows, numCols, strideRows, strideCols, padRows, padCols)`
   - Adds a 2-dimensional convolution layer to a neural network definition.
-- `max1d input kernelSize stride leftPad`
+- `max1d (input, kernelSize, stride, leftPad)`
   - Adds a 1-dimensional max pool layer to a neural network definition. The
     `kernelSize` is the spatial extent of the kernel.
-- `max2d input kernelRowSize kernelColSize strideRows strideCols padTop padLeft`
+- `max2d (input, kernelRowSize, kernelColSize, strideRows, strideCols, padTop, padLeft)`
   - Adds a 2-dimensional max pool layer to a neural network definition.
 
 ### Activation Functions
@@ -213,12 +213,12 @@ described below.
 
 - `new layers`
   - Construct the network from the definition of the layers
-- `trainFnn1 network learningRate batchSize numEpochs maxDropStreak validationFraction dataSize input expectedOutput`
+- `trainFnn1 (network, learningRate, batchSize, numEpochs, maxDropStreak, validationFraction, dataSize, input, expectedOutput)`
   - Train the neural network. The network is as constructed by `new`. The other
     parameters are standard. The data size should be equal to `Array.length input`,
     unless you want to use less data than is available in the array for training.
   - Returns the trained neural network.
-- `apply1 network input`
+- `apply1 (network, input)`
   - Apply a trained network to the input and returns the result vector.
 - `dimOut network`
   - Gets the size of the output dimension of a neural network.
