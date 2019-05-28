@@ -1,6 +1,17 @@
-#### binary
+# binary
 
-Binary number with fixed length.
+A binary number with fixed number of bits.
+
+## Basic usage
+
+```sml
+(* Create a struct that implements 12-bit binary numbers *)
+structure B = Binary(struct val binaryDim = 12 end);
+val nine = B.fromInt(9);
+
+(* m = 4095, or 111111111111b *)
+val m = B.max ;
+```
 
 ##### Dependencies
 
