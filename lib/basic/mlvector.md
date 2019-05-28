@@ -1,5 +1,6 @@
 ---
-parent: Mitchell Libraries
+grand_parent: Mitchell Libraries
+parent: Basic Libraries
 ---
 # Vectors
 

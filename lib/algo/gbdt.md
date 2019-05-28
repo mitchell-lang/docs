@@ -1,5 +1,6 @@
 ---
-parent: Mitchell Libraries
+grand_parent: Mitchell Libraries
+parent: Algorithmic Libraries
 ---
 # Gradient Boosted Decision Trees (GBDT)
 
