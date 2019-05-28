@@ -27,18 +27,18 @@ available below.
 
 ```sml
 (* The definition of the network itself *)
-fun create_xor_network(n_in, n_out, loss_type, n_h_neurons) =
+fun create_xor_network (n_in, n_out, loss_type, n_h_neurons) =
 let
   val t = Kann.layerInput n_in
-  val t = Kann.layerDense(t, n_h_neurons)
+  val t = Kann.layerDense (t, n_h_neurons)
   val t = Kann.relu t
-  val t = Kann.layerCost(t, n_out, loss_type)
+  val t = Kann.layerCost (t, n_out, loss_type)
 in
-  Kann.new(t)
+  Kann.new t
 end
 
 (* How to train a network *)
-fun train(ann, input, output) =
+fun train (ann, input, output) =
 let
   val learning_rate = 0.01      (* The learning rate *)
   val mini_size = 1             (* The batch size *)
@@ -67,7 +67,7 @@ fun printResult (input, output) =
     print (T.toString input ^ " = " ^ T.toString output ^ "\n")
 
 (* Put it all together *)
-fun train_and_test_xor() =
+fun train_and_test_xor () =
 let
   (* Create the training data. Use Array.fromList to convert list literals to
      arrays.
@@ -76,8 +76,8 @@ let
   val input  = listsToArrays [[0.0,0.0],[0.0,1.0],[1.0,0.0],[1.0,1.0]]
   val expectedOutput = listsToArrays [[0.0],[1.0],[1.0],[0.0]]
 
-  val ann = create_xor_network(2, 1, Kann.cCeb, 5)
-  val status = train(ann, input, expectedOutput)
+  val ann = create_xor_network (2, 1, Kann.cCeb, 5)
+  val status = train (ann, input, expectedOutput)
   val _ = print (Int.toString status ^ "\n")
   val results = test (ann, input)
   val _ = List.app printResult results
@@ -86,7 +86,7 @@ in
 end
 
 (* Run the program *)
-val _ = train_and_test_xor()
+val _ = train_and_test_xor ()
 ```
 
 This results in the (abbreviated) output:
