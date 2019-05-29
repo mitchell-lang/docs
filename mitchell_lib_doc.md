@@ -61,6 +61,7 @@ The following data structures and utilities are provided by Mitchell.
 - [Math](./lib/basic/math.md)
   - This module includes additional convenience functions not provided by the
     Standard Basis Library math module.
+- [Regular Expressions (Regexps)](./lib/basic/regexp.md)
 - [Neural Networks](./lib/basic/kann.md)
 
 ## Algorithms
