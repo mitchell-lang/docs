@@ -542,9 +542,10 @@ For this vignette, we've omitted some parts of the implementation that
 we'd like you to fill-in.  Once you're done, you can test your
 solutions using the data file found [here](./kmeans-data.txt); this
 file considers an input of 200 randomly- generated points dispersed in
-a two-dimensional plane.  The solution can be found
-[here](./kmeans-sol.sml), but please try to avoid looking at the solution
-before you've written your own.
+a two-dimensional plane.  You can find the implementation of the
+reader that reads a data file [here](./kmeans-io.sml).  Compare your
+implementation to [ours](./kmeans-sol.sml), but please try to
+avoid looking at our solution before you've written your own.
 
 ```sml
 (* Calculate distance of two points. *)
@@ -588,7 +589,6 @@ fun kmeansLoop centroids data n =
     end;
 
 let
-    (* You can find the implementation of the reader that reads a data file [here](./kmeans-io.sml) *)
     (* The data is a list of points (a pair of real number). *)
     val data = fromFile "data.txt" 
     (*
