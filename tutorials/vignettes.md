@@ -1,3 +1,4 @@
+
 ---
 title: Mitchell Programming Exercises
 parent: Mitchell Tutorials
@@ -483,3 +484,128 @@ you might consider implementing different
 [variants](https://pdfs.semanticscholar.org/70f8/d27954ce7ef49e351aca6d4b6b368cfef1c7.pdf).
 A more sophisticated set of algorithms is given
 [here](http://www.w3c.ethz.ch/CDstore/www2002/poster/173.pdf).
+
+## K-Means Clustering
+### Background
+
+The K-Means algorithm is a well-known unsupervised learning technique
+to *cluster* a collection of data items.  The basic idea is to
+associate every data item to a cluster (called a *centroid*).  If we
+consider inputs to be points in some multi-dimensional space, then a
+centroid *k* represents a point in that space such that all inputs
+clustered with *k* are closer to *k* than any other centroid.  The
+algorithm works by alternating between assigning input data points to
+centroids and choosing new centroids based on the current assignment.
+A simple algorithm for computing the inner loop of a k-means clusters implementation
+can be expressed as follows:
+
+```
+Init {
+data := a list of sample points.
+centroids := a set of $k$ centroids, randomly generated.
+}
+
+kmeansLoop:
+    Foreach centroid in centroids:
+        set = []
+        Foreach point in data:
+            closestCentriod := None
+            minDistance := 999999
+            Foreach centroid' in centroids:
+                d := calDistance point centroid'
+                if d < minDistance:
+                    minDistance := d
+                    closestCentriod := centroid'
+            if closestCentriod = centroid:
+                set := set + [point]
+        sumX = 0.0
+        sumY = 0.0
+        num = 0
+        Foreach point in set:
+            sumX = sumX + point.x
+            sumY = sumY + point.y
+            num = num + 1
+        centroid := (sumX/num, sumX=Y/num)
+```
+
+The algorithm initially assigns centroids randomly.  It then iterates over
+all data points, comparing the distance between the point and the collection
+of centroids, assigning the point to the centroid that is closest to it.  Once
+all points have been assigned to a centroid, we recalculate the centroid by
+computing the average of all points associated with it.  We can repeat this
+procedure for some fixed number of iterations or until no new assignments are
+generated.  There are a number of resources that you can use to find more
+details about this algorithm; one particularly accessible introduction can
+be found [here](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html).
+
+For this vignette, we've omitted some parts of the implementation that
+we'd like you to fill-in.  Once you're done, you can test your
+solutions using the data file found [here](./kmeans-data.txt); this
+file considers an input of 200 randomly- generated points dispersed in
+a two-dimensional plane.  The solution can be found
+[here](./kmeans-sol.sml), but please try to avoid looking at the solution
+before you've written your own.
+
+```sml
+(* Calculate distance of two points. *)
+fun distance ((x1, y1), (x2, y2)) : real=
+    (* ... fill-in here ... *)
+
+(* Generate *n* random centroids in given range. *)
+fun centroidGen n (rangeX, rangeY) =
+    let
+        fun aux i =
+            if i = n then [] else
+            let
+                val x = Mlrandom.uniformReal rangeX
+                val y = Mlrandom.uniformReal rangeY
+            in
+                (x, y) :: (aux (i + 1))
+            end
+    in
+        aux 0
+    end
+
+(* For a sample point in original data, calculate which centroid is closest. *)
+(* You might find ExtendedList.foldli and the use of option types useful here *)
+fun whichCentroid centroids point =
+  (* ... fill-in here ... *)
+
+(* Calculate new ith new centroid. *)
+fun calCentroid centroids data ith =
+   (* ... fill-in here ... *)
+
+(* Training loop. *n* represents the number of iterations we want the algorithm to run for *)
+fun kmeansLoop centroids data n =
+    if n = 0 then centroids else
+    let
+        val centroids =
+            ExtendedList.mapi (* For each centroid, update it to a new one. *)
+                ((fn (i, _) => calCentroid centroids data i),
+                 centroids)
+    in
+        kmeansLoop centroids data (n - 1)
+    end;
+
+let
+    val data = fromFile "data.txt" (* Read data. The data is a list of points(pair of real number). *)
+    (*
+    Data Format: data.txt:
+    200 ----------> how many points
+    99.3556817478 102.316592324 ----------> a point
+    101.866292917 98.475273676
+    ...
+    *)
+
+    (* Generate two initial centroids randomly in range [0, 100] * [0, 100]. *)
+    val centroids = centroidGen 2 ((0.00, 100.00), (0.00, 100.00))
+
+    (* Train 3 times. *)
+    val centroids = kmeansLoop centroids data 3
+    
+    val _ = print ("Centroids:\n" ^ (centroidsToString centroids)) (* Print the result. *)
+in
+    ()
+end;
+```
+
