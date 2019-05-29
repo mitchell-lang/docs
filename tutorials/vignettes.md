@@ -588,7 +588,9 @@ fun kmeansLoop centroids data n =
     end;
 
 let
-    val data = fromFile "data.txt" (* Read data. The data is a list of points(pair of real number). *)
+    (* You can find the implementation of the reader that reads a data file [here](./kmeans-io.sml) *)
+    (* The data is a list of points (a pair of real number). *)
+    val data = fromFile "data.txt" 
     (*
     Data Format: data.txt:
     200 ----------> how many points
