@@ -162,8 +162,17 @@ of expressing iterative computation is very powerful, and as you'll
 see when developing your own workloads leads to simpler and cleaner
 computation because you don't have to explicitly manage the state that
 gets manipulated from one iteration to the next the way you would need
-to do using more imperative features like while- or for-loops.  In
-this example, the `head` element in list `l` is inserted into every
+to do using more imperative features like while- or for-loops.  For example,
+we can express the behavior of `List.foldl` as used above in a more imperative style thus:
+
+```
+acc := 0;
+for i = 0 to List.length l do
+   acc := (List.nth i) + acc
+return acc
+```
+
+For TSP, the `head` element in list `l` is inserted into every
 distinct position of every list component of `restResult`.  The
 `foldl` operator accumulates all these variations.  The body of the
 argument function `(insert head list) @ r` appends the result of
