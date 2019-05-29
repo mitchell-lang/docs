@@ -1,4 +1,3 @@
-
 ---
 title: Mitchell Programming Exercises
 parent: Mitchell Tutorials
