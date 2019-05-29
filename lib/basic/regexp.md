@@ -8,11 +8,34 @@ Mitchell uses the regular expression library from SML/NJ. The documentation for
 that library is
 [here](https://www.smlnj.org/doc/smlnj-lib/Manual/regexp-lib-part.html).
 
+## Upstream Documentation Errata
+
+There is an error in the documentation for the library. For the `find`,
+`prefix`, and `match` functions, the type of the match is listed as
+
+```sml
+{pos : 'a, len : int} option MatchTree.match_tree
+```
+
+when it should be
+
+```sml
+{pos : 'a, len : int} MatchTree.match_tree
+```
+
+The `option` constructors that appear when pattern-matching on the results of
+`find` and `prefix` below are part of the
+[StringCvt.reader](http://sml-family.org/Basis/string-cvt.html#SIG:STRING_CVT.reader:TY)
+type. Thus, a `MatchTree.match_tree` always contains at least one match, which
+can be accessed using `MatchTree.root`.
+
 ## Basic Usage
 The regular expression library has a number of configurable parts. The examples
 below show some reliable defaults and basic usage patterns. All of the examples
-begin by creating the module using `awk`-like regular expression syntax and the
-backtracking based matching engine.
+begin by creating the module using `awk`-like
+[regular expression
+syntax](https://www.smlnj.org/doc/smlnj-lib/Manual/parser-sig.html)
+and the backtracking based matching engine.
 
 ```sml
 structure R = RegExpFn(structure P = AwkSyntax; structure E = BackTrackEngine)
