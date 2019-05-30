@@ -74,5 +74,5 @@ val _ = H.pop heap;
     element in `heap`. The `comp` function is a less-than function as required
     by `make`.
 - `toString (f, heap)`
-  - Converts a heap to a string.
-
+  - Converts `heap` to a string. The function `f` is a function for converting
+    an individual element of the heap to a string.
