@@ -2,8 +2,8 @@
 has_children: true
 parent: Mitchell Libraries
 permalink: /lib/basic/
-title: Basic Libraries
+title: Data Structures and Utilities
 nav_order: 1
 ---
-# Mitchell Basic Libraries
+# Mitchell Data Structures and Utilities
 
