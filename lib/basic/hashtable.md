@@ -113,7 +113,7 @@ val w = HashTable.find(table, "hello");
   - Creates a new table with the same keys as `table` but with values determined
     by the result of applying `f` to the key-value pairs in the original table.
 - `fold (f, base, table)`
-  - Combines the values of table using the function `f`, starting with `base`.
+  - Combines the values of `table` using the function `f`, starting with `base`.
     The function `f` should take as an argument a tuple of the next value in
     `table` to process and the result accumulated so far.
 - `foldi (f, default, table)`

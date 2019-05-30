@@ -81,7 +81,7 @@ This results in the output
 - `isEmpty set`
   - Returns `true` if `set` is empty and `false` otherwise.
 - `fold (f, set, base)`
-  - Combines the elements of set using the function `f`, starting with `base`.
+  - Combines the elements of `set` using the function `f`, starting with `base`.
     The function `f` should take as an argument a tuple of the next element of
     `set` to process and the result accumulated so far.
 - `all (f, set)`
