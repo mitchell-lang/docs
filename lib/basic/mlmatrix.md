@@ -1,6 +1,6 @@
 ---
 grand_parent: Mitchell Libraries
-parent: Basic Libraries
+parent: Data Structures and Utilities
 ---
 # Matrices
 
