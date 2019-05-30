@@ -4,21 +4,48 @@ parent: Algorithmic Libraries
 ---
 # Representing Graph Clusters (Communities)
 
-A data structure used in louvain algorithm, which is basically a int hashset.
+A data structure used in the Louvain algorithm to track clusters of nodes in a
+graph, or communities.
 
-##### Dependencies
+## Interface
 
-hashset.
+To use this module, prefix types and functions with `Community.`.
 
-##### Methods
+### Types
 
-- Community. Community has type `Community.t`.
-    + `t make(int size)`. Init a Community with size.
-    + `int numSet(t commu)`. Return the number of sets in Community.
-    + `unit normalize(t commu)`. Rename the set id, from `0`.
-    + `int whichSet(t commu, int id)`. Return the set which includes that element id.
-    + `bool sameSet(t commu, int id1, int id2)`. Return if two elements are in the same set.
-    + `bool merge(t commu, ((int * int) list) l)`.  Merge sets by a list of element pair. If the sets is changed, return true; else return false.
-    + `bool equal(t commu1, t commu2)`. Compare two communities.
-    + `(int list) getSetMember(t commu, int id)`. Return all elements in the same set with input element.
+- `type t`
+  - The type of a community.
 
+### Methods
+
+- `val make : int -> t`
+- `val numSet : t -> int`
+- `val normalize : t -> unit`
+- `val whichSet : (t * int) -> int`
+- `val sameSet : (t * int * int) -> bool`
+- `val merge : t * (int * int) list -> bool`
+- `val equal : (t * t) -> bool`
+- `val getSetMember : (t * int) -> int list`
+
+## Method Overview
+
+- `make size`
+  - Creates a set of `size` communities, each with a single member. The
+    communities and members are each represented by integers.
+- `numSet commu`
+  - Returns the number of communities.
+- `normalize commu`
+  - Renames the identifiers, so that they are integers starting from 0. This
+    modifies `commu`.
+- `whichSet (commu, id)`
+  - Returns the community that `id` belongs to.
+- `sameSet (commu, id1, id2)`
+  - Returns true if `id1` and `id2` are in the same community and false
+    otherwise.
+- `merge (commu, l)`
+  - Merge the communities indicated in the list. If any community membership is
+    changed return true, otherwise return false.
+- `equal (commu1, commu2)`
+  - Returns true if the two communities are equal and false otherwise.
+- `getSetMember (commu, id)`
+  - Return all elements in the same community as the given member.
