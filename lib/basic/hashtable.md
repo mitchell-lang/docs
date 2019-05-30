@@ -7,10 +7,7 @@ parent: Basic Libraries
 This library provides mutable hash-based dictionary data structures called hash
 tables. The module `HashString` defines a hash function for strings for use with
 hash tables. The module `HashTable` provides the hash table type and operations.
-
-Most of the time (when using structural equality), one can use `MLton.hash` as
-the hash function and `op=` as the equality comparison for constructing a hash
-table.
+The implementation is based on the hash tables from SML/NJ.
 
 ## Basic Usage
 
@@ -123,10 +120,20 @@ val w = HashTable.find(table, "hello");
   - Combines the key-value pairs of table using the function `f`, starting with
     `base`. The function `f` should take as an argument a tuple of the next
     key-value pair in `table` to process and the result accumulated so far.
-- `modify ((B -> B) f, ((A, B) hash_table) table)`
-  - Modify the hash-table items in place. Notice that the input type in the modification function is the same as output type, which is different from the mapping function.
-- `unit modifyi(((A, B) -> B) f, ((A, B) hash_table) table)`. Like modify, but modification function also takes keys as input.
-- `unit filter((B -> bool) f, ((A, B) hash_table) table)`. Remove any hash table items that do not satisfy the given predicate.
-- `unit filteri(((A, B) -> bool) f, ((A, B) hash_table) table)` Like filter, but the predicate argument also takes keys as input.
-- `((A, B) hash_table) copy(((A, B) hash_table) table)`. Create a copy of a hash table.
-- `(int list) bucketSizes(((A, B) hash_table) table)`. Returns a list of the sizes of the various buckets. This is to allow users to gauge the quality of their hashing function.
+- `modify (f, table)`
+  - Replaces each value in `table` with the result of applying `f` to the
+    original value. This modifies `table`.
+- `modifyi (f, table)`
+  - Replaces each value in `table` with the result of applying `f` to the
+    original key-value pair. This modifies `table`.
+- `filter (f, table)`
+  - Removes all of the mappings in `table` where the value does not make `f`
+    true.
+- `filteri (f, table)`
+  - Removes all of the mappings in `table` where the key-value pair does not
+    make `f` true.
+- `copy table`
+  - Creates a new copy of `table`.
+- `bucketSizes table`
+  - Returns a list of the sizes buckets used in the table. This is for debugging
+    and improving the hash functions used with hash tables.
