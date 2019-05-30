@@ -2,6 +2,7 @@
 title: FAQ
 has_children: true
 permalink: /faq/
+nav_order: 4
 ---
 # FAQ
 

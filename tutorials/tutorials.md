@@ -3,6 +3,7 @@ title: Mitchell Tutorials
 has_children: true
 permalink: /tutorials/
 has_toc: false
+nav_order: 3
 ---
 # Mitchell Tutorials
 
