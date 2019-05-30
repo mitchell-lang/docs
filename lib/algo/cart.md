@@ -4,8 +4,8 @@ parent: Algorithmic Libraries
 ---
 # Classification and Regression Trees (CART)
 
-Decision tree training algorithm: CART.
-
+This library provides support for training and pruning
+[classification and regression trees](https://en.wikipedia.org/wiki/Decision_tree_learning#Decision_tree_types).
 For an example of how to use this library, see the
 [Gradient Boosted Decision Trees tutorial](../../tutorials/tutorial-gbdt.md).
 
@@ -57,18 +57,33 @@ print (Real.toString(DecisionTreeReal.forward (dt, (features (3.0, 1.0)))));
 print "\n";
 ```
 
-##### Dependencies
+## Interface
 
-dt.
+The interfaces to the classification and regression trees training and pruning
+libraries are the same, except that one uses integer labels and one uses
+real-valued labels.
 
-##### Methods
+### Types
+- `structure DT : DECISION_TREE`
+  - The CART libraries are parameterized by decision trees, which provide the
+    label and feature types used. See the [decision tree documentation](./dt.md)
+    for information on those types.
 
-- Cart(for discrete situation, using DecisionTree) and CartReal(for continuous situation, using DecisionTreeReal). Cart can train and prune a decision tree.
-    + `DT.t  train(((DT.features, DT.label) list) data)`.
-      - Train a decision tree, no pruning.
-    + `((real, DT.t) list)  prune(DT.t dt, ((DT.features, DT.label) list) data)`.
-      - Prune a tree, generate a collection of pruned trees. Each tree has a evaluation value: alpha(See CART papers for details). User can choose one of these tree as pruned result.
-    + `DT.t  crossValidationTrain(((DT.features, DT.label) list) data)`.
-      - Use cross validation training to find the best pruned tree. `70%` data will be used in training, the rest of data will be use to test.
-    + `real  error(DT.t dt, ((DT.features * DT.label) list) data)`.
-      - Return the error of a decision tree on the input data.
+### Methods
+
+- `val train: (DT.features * DT.label) list -> DT.t`
+- `val prune: DT.t * (DT.features * DT.label) list -> (real * DT.t) list`
+- `val crossValidationTrain: (DT.features * DT.label) list -> DT.t`
+- `val error: DT.t * (DT.features * DT.label) list -> real`
+
+## Method Overview
+
+- `train data`.
+  - Trains a decision tree on the given data. This does not performe pruning.
+- `prune (dt, data)`
+  - Prunes a tree, returning a family of trees and their alpha-values.
+- `crossValidationTrain data`
+  - Finds the best pruned true by using cross validation training. 70% data will
+    be used in training, the rest of data will be use to test.
+- `error (dt, data)`
+  - Returns the error rate of a decision tree on the input data.
