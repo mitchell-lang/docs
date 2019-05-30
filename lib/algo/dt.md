@@ -5,6 +5,9 @@ parent: Algorithmic Libraries
 # Decision Trees
 
 This library provides support for creating and applying decision trees.
+
+## Basic Usage
+
 For an example of how to use this library, see the
 [Gradient Boosted Decision Trees tutorial](../../tutorials/tutorial-gbdt.md).
 

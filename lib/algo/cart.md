@@ -6,8 +6,6 @@ parent: Algorithmic Libraries
 
 This library provides support for training and pruning
 [classification and regression trees](https://en.wikipedia.org/wiki/Decision_tree_learning#Decision_tree_types).
-For an example of how to use this library, see the
-[Gradient Boosted Decision Trees tutorial](../../tutorials/tutorial-gbdt.md).
 
 ## Basic usage
 
@@ -56,6 +54,9 @@ print ("Is water solid at 3 degrees, 1.0 atm? ");
 print (Real.toString(DecisionTreeReal.forward (dt, (features (3.0, 1.0)))));
 print "\n";
 ```
+
+For an additional example of how to use this library, see the
+[Gradient Boosted Decision Trees tutorial](../../tutorials/tutorial-gbdt.md).
 
 ## Interface
 
