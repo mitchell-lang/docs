@@ -395,13 +395,15 @@ number of leaves.
 ```sml
 fun compareLeaves (avg, left, right) =
     if (D.leafNum left < avg) andalso (D.leafNum left > D.leafNum right)
-    then Ord.GT
-    else Ord.LT;
+    then GREATER
+    else LESS;
 ```
 
-The return type `Ord.t` can be one of `Ord.GT`, `Ord.LT`, or `Ord.EQ`, which
-stand for "greater than", "less than", and "equal to", respectively. Here we
-return `Ord.GT` for the tree that we prefer.
+The return type
+[`order`](http://sml-family.org/Basis/general.html#SIG:GENERAL.order:TY) can be
+one of `GREATER`, `LESS`, or `EQUAL`, which stand for "greater than", "less
+than", and "equal to", respectively. Here we return `GREATER` for the tree that
+we prefer.
 
 We then use the comparison function to define a function that gets the "best"
 tree from a list of trees.
@@ -571,8 +573,8 @@ fun scaleLeaves (tree, learningRate) =
 
 fun compareLeaves (avg, left, right) =
     if (D.leafNum left < avg) andalso (D.leafNum left > D.leafNum right)
-    then Ord.GT
-    else Ord.LT;
+    then GREATER
+    else LESS;
 
 fun findBest trees =
     let
