@@ -537,6 +537,8 @@ generated.  There are a number of resources that you can use to find more
 details about this algorithm; one particularly accessible introduction can
 be found [here](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html).
 
+### Mitchell Solution
+
 For this vignette, we've omitted some parts of the implementation that
 we'd like you to fill-in.  Once you're done, you can test your
 solutions using the data file found [here](./kmeans-data.txt); this
