@@ -15,18 +15,18 @@ For an example of how to use this library, see the
 structure DT = DecisionTreeReal
 structure C = CartReal(structure DT = DT);
 
-(* Construct a decision tree to predict whether water will be 
+(* Construct a decision tree to predict whether water will be
    solid or liquid at a given temperature and pressure. We'll
    first train the tree with a list of conditions and then ask
    it to predict with conditions it hasn't seen before. *)
 
-(* Return a feature array (DT.features) from a temperature 
-   (in Celcius) and pressure (in atmospheres) *)   
+(* Return a feature array (DT.features) from a temperature
+   (in Celcius) and pressure (in atmospheres) *)
 fun features (temp, pressure) =
 	Array.fromList ([temp, pressure]);
 
 (* A list of conditions to train on. Each element of the
-   list is a pair of (features, label), where label is 
+   list is a pair of (features, label), where label is
    arbitrarily chosen to be 1.0 for "ice" and 0.0 for "not ice". *)
 val conditions = [
 	(features(~13.0, 1.0), 1.0),
@@ -43,7 +43,7 @@ val conditions = [
 	(features(~1.0, 0.5), 1.0)
 ];
 
-(* Train the decision tree. crossValidationTrain should be used when there's 
+(* Train the decision tree. crossValidationTrain should be used when there's
    more data, as it'll separate the data set into test/train sets and use
    pruning to avoid overfitting. *)
 val dt = C.train conditions;
