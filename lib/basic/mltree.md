@@ -33,6 +33,25 @@ doubledTree=
   4
 ```
 
+To write recursive functions on trees, one can pattern match on the nodes to
+determine if they are leaves or internal nodes.
+
+```sml
+val tree = Mltree.makeNd (1, [Mltree.makeLf 2, Mltree.makeNd (3, [Mltree.makeLf 4])])
+fun maximum lst = List.foldl Int.max 0 lst
+fun depth tree =
+    case tree of
+        Mltree.Lf _ => 1
+      | Mltree.Nd (_, trees) => 1 + (maximum (List.map depth trees))
+val _ = print (Int.toString (depth tree) ^ "\n")
+```
+
+This results in the output
+
+```
+3
+```
+
 ## Interface
 
 ### Types
