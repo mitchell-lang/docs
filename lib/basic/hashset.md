@@ -13,7 +13,7 @@ the hashing function, and an equality comparison.
 functor HashSet(type elem; val hash : elem -> word; val eq : eleme * elem -> bool) where type elem = elem
 ```
 
-Most of the time (when using structural equality), you can use `MLton.hash` as
+Most of the time (when using structural equality), one can use `MLton.hash` as
 the hash function and `op=` as the equality comparison. See the basic usage
 below for an example.
 
@@ -81,7 +81,7 @@ This results in the output
 - `isEmpty set`
   - Returns `true` if `set` is empty and `false` otherwise.
 - `fold (f, set, base)`
-  - Combine the elements of set using the function `f`, starting with `base`.
+  - Combines the elements of `set` using the function `f`, starting with `base`.
     The function `f` should take as an argument a tuple of the next element of
     `set` to process and the result accumulated so far.
 - `all (f, set)`
