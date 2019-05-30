@@ -35,25 +35,44 @@ val _ = print (Int.toString (H.top heap));
 val _ = H.pop heap;
 ```
 
-##### Dependencies
+## Interface
 
-utils, mlarray.
+### Types
 
-##### Methods
+- `type 'a t`
+  - The type of a heap containing elements of type `'a`.
 
-- Kheap. Heap has type `A Mlheap.t`, where `A` is the type of the elements.
-    + `(A t) make(((A, A) -> bool) comp, int k, int size, A default)`. 
-       - Make a heap, which is implemented internally with a k-ary tree. The second element indicate the number of branches in the explicit tree -- this should be at least two; empirically, we observe good performance when `k = 4`. The first argument is used to compare two elements: it should return `true` if its
-       first argument is less than the second.
-    + `unit push((A t) heap, A a)`. 
-       - Push an element into the heap.
-    + `unit pop((A t) heap)`. 
-       - Pop the element at the top of heap. 
-    + `bool empty((A t) heap)`. 
-       - Return true if the heap is empty.
-    + `A top((A t) heap)`. 
-       - Return the top of the heap.
-    + `(B t) compre((A -> B) f,((B, B) -> bool) comp, (A t) heap)`. 
-       - Comprehension that maps one heap to another in parallel. 'comp' is a comparison function.
-    + `string toString((A -> string) f, (A t) heap)`.
-       - Convert a heap to a string.
+### Methods
+
+- `val make : ('a * 'a -> bool) * int * int * 'a -> 'a t`
+- `val push : 'a t * 'a -> unit`
+- `val pop : 'a t -> unit`
+- `val empty : 'a t -> bool`
+- `val top : 'a t -> 'a`
+- `val compre : ('a -> 'b) * ('b * 'b -> bool) * 'a t -> 'b t`
+- `val toString : ('a -> string) * 'a t -> string`
+
+## Method Overview
+
+- `(A t) make(comp, k, size, default)`.
+  - Creates a new heap. `comp` is a function that determines if one value in the
+    heap is less than another. `comp a b` should return `true` when `a` is less
+    than `b`. `k` is the branching number for the heap. This should be at
+    least 2. If you don't know what to pick, use 4. `size` is the initial
+    capacity of the heap. `default` is used to initialize the underlying
+    data structure.
+- `push (heap, a)`
+  - Pushes an element into the heap.
+- `pop heap`
+  - Removes the smallest element from the heap and returns it.
+- `empty heap`
+  - Returns true if the heap is empty.
+- `top heap`
+  - Returns the smallest element in the heap without removing it.
+- `compre (f, comp,  heap)`
+  - Creates a new heap whose contents are the result of applying `f` to each
+    element in `heap`. The `comp` function is a less-than function as required
+    by `make`.
+- `toString (f, heap)`
+  - Converts a heap to a string.
+
