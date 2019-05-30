@@ -16,15 +16,24 @@ val first = List.hd sorted
 val _ = print (Int.toString first)
 ```
 
-##### Dependencies
+## Interface
 
-None.
+### Methods
 
-##### Methods
+- `val quickSortArray : ('a * 'a -> bool) * 'a array -> unit`
+- `val quickSortList : ('a * 'a -> bool) * 'a list -> 'a list`
+- `val quickSortListIncrease : int list -> int list`
 
-- `unit quickSortArray(((A, A) -> bool) comp, (A array) arr)`. 
-  - Sort an array using an in-place quicksort algorithm. The first argument is the comparison function.
-- `(A list) quickSortList(((A, A) -> bool) comp, (A list) l)`.
-  - Sort an input list using the quicksort algorithm and return the sorted list. The first argument is the comparison function.
-- `(int list) quickSortListIncrease((int list) l)`.
-  - Sort a list of integers.
+## Method Overview
+
+- `quickSortArray (comp, arr)`
+  - Sorts an array using an in-place quicksort algorithm. `comp` is a comparison
+    function, which should return `true` for `(a, b)` when `a` is less than `b`.
+    This modifies `arr`.
+- `quickSortList (comp, lst)`
+  - Sorts a list using the quicksort algorithm, returning the sorted list.
+    `comp` is a comparison function, which should return `true` for `(a, b)`
+    when `a` is less than `b`.
+- `quickSortListIncrease lst`
+  - A sort implementation specialized for integers. Integers are sorted in
+    increasing order.
