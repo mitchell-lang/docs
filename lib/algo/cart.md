@@ -6,6 +6,9 @@ parent: Algorithmic Libraries
 
 Decision tree training algorithm: CART.
 
+For an example of how to use this library, see the
+[Gradient Boosted Decision Trees tutorial](../../tutorials/tutorial-gbdt.md).
+
 ## Basic usage
 
 ```sml
