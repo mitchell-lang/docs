@@ -6,6 +6,17 @@ parent: Basic Libraries
 
 This library provides a HashTable-based mutable set implementation.
 
+The HashSet functor takes as arguments the type of the elements of the hash set,
+the hashing function, and an equality comparison.
+
+```sml
+functor HashSet(type elem; val hash : elem -> word; val eq : eleme * elem -> bool) where type elem = elem
+```
+
+Most of the time (when using structural equality), you can use `MLton.hash` as
+the hash function and `op=` as the equality comparison. See the basic usage
+below for an example.
+
 ## Basic Usage
 
 ```sml
