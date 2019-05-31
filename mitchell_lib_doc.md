@@ -6,11 +6,6 @@ nav_order: 5
 ---
 # Mitchell Libraries
 
-## Using Libraries
-
-Mitchell uses the Standard ML module system. You can read about how to use
-modules provided by libraries [here](faq/modules.md).
-
 ## The Standard Basis Library
 
 Mitchell includes most of the Standard Basis Library for Standard ML.
