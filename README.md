@@ -1,4 +1,5 @@
 ---
+permalink: /
 nav_order: 1
 ---
 # SDH Mitchell Evaluation
