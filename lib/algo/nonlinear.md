@@ -4,23 +4,45 @@ parent: Algorithmic Libraries
 ---
 # Nonlinear Activation Functions
 
-Nonlinear functions(activation functions).
+This library provides several nonlinear functions commonly used as activation
+functions in neural networks.
 
-##### Dependencies
+## Interface
 
-None.
+To use this library, prefix the types and functions below with `Nonlinear.`.
 
-##### Methods
+### Methods
 
-- Nonlinear.
-    + `real sigmoid(real x)`. Sigmoid, return `1.0 / (1.0 + (e^(-x)))`.
-    + `real dsigmoid(real x)`. Derivative of sigmoid.
-    + `real tanh(real x)`. Tanh.
-    + `real dtanh(real x)`. Derivative of tanh.
-    + `real sigmoidf(real x)`. Also Sigmoid.
-    + `real sigmoidh(real x)`. Return `2.0 / (1.0 + (e^(-x))) - 1.0`.
-    + `real sigmoidg(real x)`. Return `4.0 / (1.0 + (e^(-x))) - 2.0`.
-    + `real softmax((real array) arr, int n)`. Softmax.
-    + `real exp(real x)` Return e^x.
-    + `real log(real x)`. Return ln(x).
+- `val sigmoid : real -> real`
+- `val dsigmoid : real -> real`
+- `val tanh : real -> real`
+- `val dtanh : real -> real`
+- `val sigmoidf : real -> real`
+- `val sigmoidh : real -> real`
+- `val sigmoidg : real -> real`
+- `val softmax : real array * int -> real`
+- `val exp : real -> real`
+- `val log : real -> real`
 
+## Method Overview
+- `sigmoid x`
+  - [Sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function). Returns
+    `1.0 / (1.0 + (e^(-x)))`.
+- `dsigmoid x`
+  - Derivative of sigmoid.
+- `tanh (x)`
+  - The [hyperbolic tangent](https://en.wikipedia.org/wiki/Hyperbolic_function).
+- `dtanh x`.
+  - Derivative of tanh.
+- `sigmoidf x`
+  - Alias for the sigmoid function.
+- `sigmoidh x`
+  - Returns `2.0 / (1.0 + (e^(-x))) - 1.0`.
+- `sigmoidg x`
+  - Returns `4.0 / (1.0 + (e^(-x))) - 2.0`.
+- `softmax (arr, n)`
+  - The [softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+- `exp x`
+  - Returns the base of the natural logarithm raised to the `x`th power.
+- `log x`
+  - The natural logarithm.
