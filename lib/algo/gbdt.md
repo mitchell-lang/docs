@@ -18,7 +18,7 @@ To create an instance of the GBDT module, use
 ```sml
 structure C = CartReal(structure D = DecisionTreeReal)
 structure Gbdt = Gbdt(structure CART = C)
-``
+```
 
 and then prefix the types and functions below with `Gbdt.`.
 
