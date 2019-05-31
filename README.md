@@ -42,6 +42,10 @@ Feel free to track the whole `/work` directory (see
 putting large files into Git. If you are doing data manipulation, we are
 interested in seeing what you are doing to the data files as well.
 
+Because the home directory on the machine may be reset if we have to release an
+update, please keep your git configuration local to the git repository in the
+`/work` directory.
+
 ## Getting Started
 
 Start with [Getting Started](getting-started.md) to make sure that you can
@@ -52,21 +56,21 @@ for what to do next.
 
 ## Mitchell Library Documentation
 
-The Mitchell library documentation is available at
-[GitHub](mitchell_lib_doc.md). If something is missing from
-the documentation, you find an error, or have a suggestion on how to improve the
-documentation, let us know in the SDH Mitchell evaluation Slack channel.
+The Mitchell library documentation is available [here](mitchell_lib_doc.md). If
+something is missing from the documentation, you find an error, or have a
+suggestion on how to improve the documentation, let us know in the SDH Mitchell
+evaluation Slack channel.
 
-Mitchell has access to the
+Mitchell includes the
 [Standard Basis Library](http://sml-family.org/Basis/index.html)
 of Standard ML and some of the libraries of the
 [MLton compiler](http://www.mlton.org/MLtonStructure).
 
 ## Targeting Mitchell to Hardware Accelerators
 
-There is functionality in the Basis Library, such as network access, that will
-work in the evaluation environment, but that will not cross-compile to the
-architecture that Mitchell is intended to target.
+There is functionality in the Standard Basis Library, such as network access,
+that will work in the evaluation environment, but that will not cross-compile to
+the architecture that Mitchell is intended to target.
 
 So that you can write programs that read input from disk, we have left this
 functionality in place. However, please keep all of your IO in one place in your
