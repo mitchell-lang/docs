@@ -71,6 +71,7 @@ This results in the output
 - `val equals : t * t -> bool`
 - `val toList : t -> elem list`
 - `val fromList : elem list -> t`
+- `val copy : t -> t`
 
 ## Method Overview
 
@@ -123,3 +124,6 @@ This results in the output
   - Creates a list containing the elements of `set`.
 - `fromList elems`
   - Creates a set containing the elements in the list.
+- `copy set`
+  - Creates a copy of the set. Modifications to the copy do not affect the
+    original set, nor do modifications to the original set affect the copy.
