@@ -15,6 +15,9 @@ Documentation on the behavior of these procedures can be found at the
 
 - `type Vector`
 - `type Matrix`
+- `type VectorComplex`
+- `type EigenGenWorkspace`
+- `type EigenGenSymmvWorkspace`
 
 ### Methods
 
@@ -54,6 +57,25 @@ Documentation on the behavior of these procedures can be found at the
 - `val vector_set : Vector * Int64.int * Real64.real -> unit`
 - `val vector_ptr : Vector * Int64.int -> Real64.real vector`
 - `val vector_const_ptr : Vector * Int64.int -> Real64.real vector`
+- `val vector_complex_alloc : Int64.int -> VectorComplex`
+- `val vector_complex_calloc : Int64.int -> VectorComplex`
+- `val vector_complex_alloc_from_vector : VectorComplex * Int64.int * Int64.int * Int64.int -> VectorComplex`
+- `val vector_complex_free : VectorComplex -> unit`
+- `val vector_complex_set_zero : VectorComplex -> unit`
+- `val vector_complex_set_basis : VectorComplex * Int64.int -> Int32.int`
+- `val vector_complex_memcpy : VectorComplex * VectorComplex -> Int32.int`
+- `val vector_complex_reverse : VectorComplex -> Int32.int`
+- `val vector_complex_swap : VectorComplex * VectorComplex -> Int32.int`
+- `val vector_complex_swap_elements : VectorComplex * Int64.int * Int64.int -> Int32.int`
+- `val vector_complex_equal : VectorComplex * VectorComplex -> Int32.int`
+- `val vector_complex_isnull : VectorComplex -> Int32.int`
+- `val vector_complex_ispos : VectorComplex -> Int32.int`
+- `val vector_complex_isneg : VectorComplex -> Int32.int`
+- `val vector_complex_isnonneg : VectorComplex -> Int32.int`
+- `val vector_complex_add : VectorComplex * VectorComplex -> Int32.int`
+- `val vector_complex_sub : VectorComplex * VectorComplex -> Int32.int`
+- `val vector_complex_mul : VectorComplex * VectorComplex -> Int32.int`
+- `val vector_complex_div : VectorComplex * VectorComplex -> Int32.int`
 - `val matrix_alloc : Int64.int * Int64.int -> Matrix`
 - `val matrix_calloc : Int64.int * Int64.int -> Matrix`
 - `val matrix_alloc_from_matrix : Matrix * Int64.int * Int64.int * Int64.int * Int64.int -> Matrix`
@@ -121,26 +143,31 @@ Documentation on the behavior of these procedures can be found at the
 - `val pow_int : Real64.real * Int32.int -> Real64.real`
 - `val max : Real64.real * Real64.real -> Real64.real`
 - `val min : Real64.real * Real64.real -> Real64.real`
-- `val s_ddot : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int -> Real64.real`
-- `val s_dnrm2 : Int32.int * Real64.real vector * Int32.int -> Real64.real`
-- `val s_dasum : Int32.int * Real64.real vector * Int32.int -> Real64.real`
-- `val s_idamax : Int32.int * Real64.real vector * Int32.int -> Int64.int`
-- `val s_dswap : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int -> unit`
-- `val s_dcopy : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int -> unit`
-- `val s_daxpy : Int32.int * Real64.real * Real64.real vector * Int32.int * Real64.real vector * Int32.int -> unit`
-- `val s_drotg : Real64.real vector * Real64.real vector * Real64.real vector * Real64.real vector -> unit`
-- `val s_drotmg : Real64.real vector * Real64.real vector * Real64.real vector * Real64.real * Real64.real vector -> unit`
-- `val s_drot : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int * Real64.real * Real64.real -> unit`
-- `val s_drotm : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int * Real64.real vector -> unit`
-- `val s_dscal : Int32.int * Real64.real * Real64.real vector * Int32.int -> unit`
+- `val cblas_ddot : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int -> Real64.real`
+- `val cblas_dnrm2 : Int32.int * Real64.real vector * Int32.int -> Real64.real`
+- `val cblas_dasum : Int32.int * Real64.real vector * Int32.int -> Real64.real`
+- `val cblas_idamax : Int32.int * Real64.real vector * Int32.int -> Int64.int`
+- `val cblas_dswap : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int -> unit`
+- `val cblas_dcopy : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int -> unit`
+- `val cblas_daxpy : Int32.int * Real64.real * Real64.real vector * Int32.int * Real64.real vector * Int32.int -> unit`
+- `val cblas_drotg : Real64.real vector * Real64.real vector * Real64.real vector * Real64.real vector -> unit`
+- `val cblas_drotmg : Real64.real vector * Real64.real vector * Real64.real vector * Real64.real * Real64.real vector -> unit`
+- `val cblas_drot : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int * Real64.real * Real64.real -> unit`
+- `val cblas_drotm : Int32.int * Real64.real vector * Int32.int * Real64.real vector * Int32.int * Real64.real vector -> unit`
+- `val cblas_dscal : Int32.int * Real64.real * Real64.real vector * Int32.int -> unit`
 - `val blas_ddot : Vector * Vector * Real64.real vector -> Int32.int`
 - `val blas_dnrm2 : Vector -> Real64.real`
 - `val blas_dasum : Vector -> Real64.real`
+- `val blas_dznrm2 : VectorComplex -> Real64.real`
+- `val blas_dzasum : VectorComplex -> Real64.real`
 - `val blas_dswap : Vector * Vector -> Int32.int`
 - `val blas_dcopy : Vector * Vector -> Int32.int`
 - `val blas_daxpy : Real64.real * Vector * Vector -> Int32.int`
+- `val blas_zswap : VectorComplex * VectorComplex -> Int32.int`
+- `val blas_zcopy : VectorComplex * VectorComplex -> Int32.int`
 - `val blas_drot : Vector * Vector * Real64.real * Real64.real -> Int32.int`
 - `val blas_dscal : Real64.real * Vector -> unit`
+- `val blas_zdscal : Real64.real * VectorComplex -> unit`
 - `val blas_dger : Real64.real * Vector * Vector * Matrix -> Int32.int`
 - `val linalg_matmult : Matrix * Matrix * Matrix -> Int32.int`
 - `val linalg_householder_transform : Vector -> Real64.real`
@@ -229,3 +256,14 @@ Documentation on the behavior of these procedures can be found at the
 - `val linalg_tri_lower_unit_invert : Matrix -> Int32.int`
 - `val linalg_givens : Real64.real * Real64.real * Real64.real vector * Real64.real vector -> unit`
 - `val linalg_givens_gv : Vector * Int64.int * Int64.int * Real64.real * Real64.real -> unit`
+- `val eigen_gensymm_standardize : Matrix * Matrix -> Int32.int`
+- `val eigen_gensymmv_alloc : Int64.int -> EigenGenSymmvWorkspace`
+- `val eigen_gensymmv_free : EigenGenSymmvWorkspace -> unit`
+- `val eigen_gensymmv : Matrix * Matrix * Vector * Matrix * EigenGenSymmvWorkspace -> Int32.int`
+- `val eigen_gen_alloc : Int64.int -> EigenGenWorkspace`
+- `val eigen_gen_free : EigenGenWorkspace -> unit`
+- `val eigen_gen_params : Int32.int * Int32.int * Int32.int * EigenGenWorkspace -> unit`
+- `val eigen_gen : Matrix * Matrix * VectorComplex * Vector * EigenGenWorkspace -> Int32.int`
+- `val eigen_gen_QZ : Matrix * Matrix * VectorComplex * Vector * Matrix * Matrix * EigenGenWorkspace -> Int32.int`
+- `val schur_gen_eigvals : Matrix * Matrix * Real64.real vector * Real64.real vector * Real64.real vector * Real64.real vector * Real64.real vector -> Int32.int`
+- `val schur_solve_equation : Real64.real * Matrix * Real64.real * Real64.real * Real64.real * Vector * Vector * Real64.real vector * Real64.real vector * Real64.real -> Int32.int`
