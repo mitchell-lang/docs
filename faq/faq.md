@@ -6,6 +6,19 @@ nav_order: 4
 ---
 # FAQ
 
+Some additional FAQs are answered
+[here](http://mlton.org/StandardMLGotchas).
+
+## Do I need to end statements with semi-colons?
+
+In Mitchell, as in Standard ML, semi-colons are optional at the end of
+declarations. They are required in
+[only a few places](http://mlton.org/StandardMLGotchas#_semicolons).
+
+Using the `val _ = ...` construct for statements at the top-level and in `let`
+expressions (even when a function is only called for its side-effect) is not
+optional.
+
 ## Why does Mitchell say something is wrong at a spot in my code that looks fine?
 
 Mitchell checks your code to make sure that you are using types of data in a
