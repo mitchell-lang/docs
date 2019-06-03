@@ -2,50 +2,14 @@
 permalink: /
 nav_order: 1
 ---
-# SDH Mitchell Evaluation
+# Mitchell Evaluation
 
 Mitchell is a variant of the
 [Standard ML](https://en.wikipedia.org/wiki/Standard_ML)
 programming language that has been modified to support high-performance
-computing on hardware that is specialized for machine learning and graph
-analytics. The Mitchell compiler is based on the [MLton](http://mlton.org/)
-Standard ML compiler.
-
-## Purpose of the Evaluation
-
-The purpose of this evaluation is to evaluate the ease of use of Mitchell
-for developing machine learning and graph analytics applications.
-
-When you run into problems, please ask your questions in the SDH Mitchell
-evaluation Slack channel so that we can keep track of the questions that were
-asked to add them to the [FAQ](faq/faq.md).
-
-Additionally, please keep notes on the following things to help us with
-producing a report on the evaluation:
-- How much time you spent on reading and understanding the paper for your workload.
-- How much time you spent on writing code to get the training and test data into your program.
-- How much time you spent on implementing the algorithm for your workload.
-
-To help us improve our documentation, please also make a note of anything you
-find confusing about the libraries, documentation, etc. If you
-find it confusing, so will other people.
-
-### A Record of Your Development
-
-If you are comfortable using git, please use it to track your development,
-so that we can review the development process to improve Mitchell.
-Commit frequently, not just when you get things
-working. We are interested in seeing what the code looks like when you first run
-into problems as well as what they look like after you solve them.
-
-Feel free to track the whole `/work` directory (see
-[Getting Started](getting-started.md) for details on `/work`). Don't worry about
-putting large files into Git. If you are doing data manipulation, we are
-interested in seeing what you are doing to the data files as well.
-
-Because the home directory on the machine may be reset if we have to release an
-update, please keep your git configuration local to the git repository in the
-`/work` directory.
+computing on emerging new hardware that is specialized for machine learning
+and graph analytics. The Mitchell compiler is based on the 
+[MLton](http://mlton.org/) Standard ML compiler.
 
 ## Getting Started
 
@@ -71,7 +35,7 @@ of Standard ML and some of the libraries of the
 
 There is functionality in the Standard Basis Library, such as network access,
 that will work in the evaluation environment, but that will not cross-compile to
-the architecture that Mitchell is intended to target.
+the novel hardware architecture that Mitchell is intended to target.
 
 So that you can write programs that read input from disk, we have left this
 functionality in place. However, please keep all of your IO in one place in your
