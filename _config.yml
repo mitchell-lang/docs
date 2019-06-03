@@ -12,5 +12,4 @@ exclude:
   - lib/algo/skipgram.md
 footer:
   - Copyright 2019 Systems & Technology Research, LLC and other contributors.
-  - This project is sponsored by the Air Force Research Laboratory (AFRL) and DARPA under contract number FA8750-18-C-0044.
   - Distribution Statement A – Approved for Public Release, Distribution Unlimited
