@@ -23,7 +23,7 @@ for what to do next.
 
 The Mitchell library documentation is available [here](mitchell_lib_doc.md). If
 something is missing from the documentation, you find an error, or have a
-suggestion on how to improve the documentation, let us know in the SDH Mitchell
+suggestion on how to improve the documentation, let us know in the Mitchell
 evaluation Slack channel.
 
 Mitchell includes the
