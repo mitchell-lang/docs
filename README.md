@@ -6,10 +6,17 @@ nav_order: 1
 
 Mitchell is a variant of the
 [Standard ML](https://en.wikipedia.org/wiki/Standard_ML)
-programming language that has been modified to support high-performance
+programming language that has been optimized to support high-performance
 computing on emerging new hardware that is specialized for machine learning
 and graph analytics. The Mitchell compiler is based on the 
 [MLton](http://mlton.org/) Standard ML compiler.
+
+The primary advantage of Mitchell is that the compiler and libraries perform 
+parallel processing optimizations automatically. In contrast to 
+conventional programming languages, developers are only responsible for 
+ensuring a correct implmentation&mdash;Mitchell does the rest. Highly-parallelizable
+functions, like map and fold, will automatically leverage the massively 
+multi-threaded hardware architecture that Mitchell has been designed to target. 
 
 ## Getting Started
 
