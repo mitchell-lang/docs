@@ -19,6 +19,41 @@ Using the `val _ = ...` construct for statements at the top-level and in `let`
 expressions (even when a function is only called for its side-effect) is not
 optional.
 
+## How do I modify a variable in Mitchell?
+
+In Mitchell, variables cannot be modified. If you assign to a variable more than
+once, the later declaration will shadow the earlier one. For example, the
+following
+
+```sml
+val x = "goodbye\n"
+
+val _ = let
+          val x = "hello\n"
+        in
+          print x
+        end
+
+val _ = print x
+```
+
+will print
+
+```
+hello
+goodbye
+```
+
+Several kinds of values in Mitchell are mutable, however. For example, even
+though a variable that points to an array will always point to that array, the
+array itself can be changed (e.g., using
+[`Array.update`](http://sml-family.org/Basis/array.html#SIG:ARRAY.update:VAL)).
+
+When you need to have a value of an arbitrary type that you can modify, you can
+use `ref`s. However, use of refs is discouraged. See this
+[documentation](https://en.wikibooks.org/wiki/Standard_ML_Programming/Types#References)
+for information on using `ref`s.
+
 ## Why does Mitchell say something is wrong at a spot in my code that looks fine?
 
 Mitchell checks your code to make sure that you are using types of data in a
