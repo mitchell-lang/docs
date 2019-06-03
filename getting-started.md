@@ -5,7 +5,7 @@ nav_order: 2
 
 ## Connecting to the Evaluation Virtual Machine
 
-To connect to the SDH Mitchell evaluation servers, you will need an VNC client.
+To connect to the Mitchell evaluation servers, you will need an VNC client.
 
 ### Windows
 
