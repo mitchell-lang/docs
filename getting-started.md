@@ -45,6 +45,14 @@ replace `n` with your machine number.
 You should have been provided with a password for the machine.
 If you do not have your password, please contact your evaluation administrator.
 
+### Resizing the Screen
+
+By default the VNC server uses a 1280x720 screen size. You can resize the
+screen to 1920x1080 by running the following in a terminal in the container:
+
+```bash
+xrandr --size 1920x1080
+```
 
 ## Using the Evaluation Virtual Machine
 
