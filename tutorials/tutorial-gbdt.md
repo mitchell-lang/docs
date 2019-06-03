@@ -1,6 +1,7 @@
 ---
 title: Gradient Boosted Decision Trees
 parent: Mitchell Tutorials
+nav_order: 2
 ---
 # Mitchell Tutorial: Gradient Boosted Decision Trees
 {:.no_toc}

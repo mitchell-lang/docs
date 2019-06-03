@@ -1,6 +1,7 @@
 ---
 title: Mitchell Programming Exercises
 parent: Mitchell Tutorials
+nav_order: 1
 ---
 # Mitchell Tutorial: Vignettes
 {:.no_toc}

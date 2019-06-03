@@ -1,6 +1,7 @@
 ---
 title: IO and Parsing
 parent: Mitchell Tutorials
+nav_order: 3
 ---
 # Mitchell Tutorial: IO and Parsing
 {:.no_toc}
