@@ -15,8 +15,7 @@ accelerator.
 
 In this tutorial, we will walk through the implementation of LibSVM parsing. In
 general, it is a good idea to use external tools convert your data into a
-simple-to-parse format for use with Mitchell. Mitchell comes packaged with some
-tools for this purpose (see [IO conversion tools](../lib/basic/tostring.md)).
+simple-to-parse format for use with Mitchell.
 LibSVM is a relatively simple format, and so is easy to parse with Mitchell.
 
 1. Generated Toc
