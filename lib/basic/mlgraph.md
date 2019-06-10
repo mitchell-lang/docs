@@ -22,7 +22,9 @@ val averageDegree = (Real.fromInt total) / (Real.fromInt (List.length (BaseGraph
 
 ## Interface
 
-To use this library, prefix the types and functions below with `BaseGraph.`.
+To use this library for undirected graphs, prefix the types and functions below
+with `BaseGraph.`. To use this library with directed, prefix the types and
+functions below with `DiGraph.`.
 
 ### Types
 
@@ -78,13 +80,17 @@ To use this library, prefix the types and functions below with `BaseGraph.`.
   - Creates a new graph with no nodes and no edges.
 - `fromMaps (nodeMap, edgeMap)`
   - Creates a new graph with the given node and edge maps. All nodes referenced
-    in `edgeMap` must appear in `nodeMap`.
+    in `edgeMap` must appear in `nodeMap`. The edge map must use hash and
+    equality functions that are compatible with the kind of graph being created
+    (i.e., order-agnostic for undirected graphs and order-checking for directed
+    graphs).
 - `fromMetisFile fileName `
   - Creats a graph from a
     [METIS](https://people.sc.fsu.edu/~jburkardt/data/metis_graph/metis_graph.html)
     file.
 - `addNode (graph, nodeId, nodeLabel)`
-  - Adds a node to `graph`.
+  - Adds a node to `graph`. If a node with the same identifier already existed
+    in the graph, the result is undefined.
 - `updateNode (f, graph, nodeId)`
   - Updates the label of the node identified by `nodeId` with the result of
     applying `f` to the node's original label. This modifies `graph`.
