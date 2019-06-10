@@ -9,6 +9,16 @@ performing linear algebra computations. The provided bindings are listed below.
 Documentation on the behavior of these procedures can be found at the
 [GSL documentation page](https://www.gnu.org/software/gsl/doc/html/index.html).
 
+Specific documentation for the dense linear algebra bindings can be found at
+
+- [Vectors and Matrices](https://www.gnu.org/software/gsl/doc/html/vectors.html), and
+- [BLAS Support](https://www.gnu.org/software/gsl/doc/html/blas.html).
+
+Specific documentation for the sparse linear algebra bindings can be found at
+
+- [Sparse Matrices](https://www.gnu.org/software/gsl/doc/html/spmatrix.html), and
+- [Sparse BLAS Support](https://www.gnu.org/software/gsl/doc/html/spblas.html).
+
 ## Interface
 
 ### Types
@@ -18,8 +28,25 @@ Documentation on the behavior of these procedures can be found at the
 - `type VectorComplex`
 - `type EigenGenWorkspace`
 - `type EigenGenSymmvWorkspace`
+- Flag used for `blas_dgemv`, `blas_dgemm`, and `spblas_dgemv`.
+    ```
+    datatype CblasTranspose =
+             CblasNoTrans
+             | CblasTrans
+             | CblasConjTrans
+    ```
+- Flag used for `spmatrix_alloc_nzmax`.
+    ```
+    datatype SpType =
+             SpMatrixTriplet
+             | SpMatrixCcs
+             | SpMatrixCrs
+
+    ```
 
 ### Methods
+
+#### Dense
 
 - `val error : string * string * Int32.int * Int32.int -> unit`
 - `val stream_printf : string * string * Int32.int * string -> unit`
@@ -267,3 +294,25 @@ Documentation on the behavior of these procedures can be found at the
 - `val eigen_gen_QZ : Matrix * Matrix * VectorComplex * Vector * Matrix * Matrix * EigenGenWorkspace -> Int32.int`
 - `val schur_gen_eigvals : Matrix * Matrix * Real64.real vector * Real64.real vector * Real64.real vector * Real64.real vector * Real64.real vector -> Int32.int`
 - `val schur_solve_equation : Real64.real * Matrix * Real64.real * Real64.real * Real64.real * Vector * Vector * Real64.real vector * Real64.real vector * Real64.real -> Int32.int`
+- `val blas_dgemv : CblasTranspose * Real64.real * Matrix * Vector * Real64.real * Vector -> Int32.int`
+- `val blas_dgemm : CblasTranspose * CblasTranspose * Real64.real * Matrix * Matrix * Real64.real * Matrix -> Int32.int`
+
+#### Sparse
+
+- `val spmatrix_alloc : Int64.int * Int64.int -> SpMatrix`
+- `val spmatrix_alloc_nzmax : Int64.int * Int64.int * SpType -> SpMatrix`
+- `val spmatrix_free : SpMatrix -> unit`
+- `val spmatrix_get : SpMatrix * Int64.int * Int64.int -> Real64.real`
+- `val spmatrix_set : SpMatrix * Int64.int * Int64.int * Real64.real -> Int32.int`
+- `val spmatrix_set_zero : SpMatrix -> Int32.int`
+- `val spmatrix_memcpy : SpMatrix * SpMatrix -> Int32.int`
+- `val spmatrix_transpose_memcpy : SpMatrix * SpMatrix -> Int32.int`
+- `val spmatrix_transpose : SpMatrix -> Int32.int`
+- `val spmatrix_transpose2 : SpMatrix -> Int32.int`
+- `val spmatrix_add : SpMatrix * SpMatrix * SpMatrix -> Int32.int`
+- `val spmatrix_scale : SpMatrix * Real64.real -> Int32.int`
+- `val spmatrix_nnz : SpMatrix -> Int64.int`
+- `val spmatrix_d2sp : SpMatrix * Matrix -> Int32.int`
+- `val spmatrix_sp2d : Matrix * SpMatrix -> Int32.int`
+- `val spblas_gemv : CblasTranspose * Real64.real * SpMatrix * Vector * Real64.real * Vector -> Int32.int`
+- `val spblas_dgemm : Real64.real * SpMatrix * SpMatrix * SpMatrix -> Int32.int`
