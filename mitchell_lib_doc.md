@@ -54,9 +54,6 @@ The following data structures and utilities are provided by Mitchell.
 - [Random Number Generation](./lib/basic/mlrandom.md)
 - [Trees](./lib/basic/mltree.md)
 - [Sorting Lists and Arrays](./lib/basic/sort.md)
-- [Math](./lib/basic/math.md)
-  - This module includes additional convenience functions not provided by the
-    Standard Basis Library math module.
 - [Regular Expressions (Regexps)](./lib/basic/regexp.md)
 - [Neural Networks](./lib/basic/kann.md)
 
