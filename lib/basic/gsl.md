@@ -300,7 +300,7 @@ Specific documentation for the sparse linear algebra bindings can be found at
 #### Sparse
 
 - `val spmatrix_alloc : Int64.int * Int64.int -> SpMatrix`
-- `val spmatrix_alloc_nzmax : Int64.int * Int64.int * SpType -> SpMatrix`
+- `val spmatrix_alloc_nzmax : Int64.int * Int64.int * Int64.int * SpType -> SpMatrix`
 - `val spmatrix_free : SpMatrix -> unit`
 - `val spmatrix_get : SpMatrix * Int64.int * Int64.int -> Real64.real`
 - `val spmatrix_set : SpMatrix * Int64.int * Int64.int * Real64.real -> Int32.int`
