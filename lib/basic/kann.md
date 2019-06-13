@@ -139,10 +139,22 @@ described below.
 - `val layerDense : kadnodetp * int -> kadnodetp`
 - `val layerCost : kadnodetp * int * kannc -> kadnodetp`
 - `val layerDropout : kadnodetp * float -> kadnodetp`
+- `val layerNorm : kadnodetp -> kadnodetp`
 - `val layerConv1d : kadnodetp * int * int * int * int -> kadnodetp`
 - `val layerConv2d : kadnodetp * int * int * int * int * int * int * int -> kadnodetp`
 - `val max1d : kadnodetp * int * int * int -> kadnodetp`
 - `val max2d : kadnodetp * int * int * int * int * int * int -> kadnodetp`
+
+### Primitive Layers
+
+- `val layerAdd : kadnodetp * kadnodetp -> kadnodetp`
+- `val layerSub : kadnodetp * kadnodetp -> kadnodetp`
+- `val layerMul : kadnodetp * kadnodetp -> kadnodetp`
+- `val layerMatMul : kadnodetp * kadnodetp -> kadnodetp`
+- `val layerCMul : kadnodetp * kadnodetp -> kadnodetp`
+- `val newBias : int -> kadnodetp`
+- `val newWeight : int * int -> kadnodetp`
+- `val newVec : int * float -> kadnodetp`
 
 ### Activation Functions
 
@@ -186,6 +198,8 @@ described below.
   - Adds a cost layer to a neural network definition.
 - `layerDropout (input, rate)`
   - Adds a dropout layer to a neural network definition.
+- `layerNorm input`
+  - Adds a normalization layer to a neural network definition.
 - `layerConv1d (input, numFilters, size, stride, padding)`
   - Adds a 1-dimensional convolution layer to a neural network definition.
 - `layerConv2d (input, numFilters, numRows, numCols, strideRows, strideCols, padRows, padCols)`
@@ -195,6 +209,42 @@ described below.
     `kernelSize` is the spatial extent of the kernel.
 - `max2d (input, kernelRowSize, kernelColSize, strideRows, strideCols, padTop, padLeft)`
   - Adds a 2-dimensional max pool layer to a neural network definition.
+
+### Primitive Layers
+
+- `layerAdd (lhs, rhs)`
+  - Adds the outputs of two layers. The layers must have the same dimension.
+- `layerSub (lhs, rhs)`
+  - Subtracts the output of of `rhs` from `lhs`. The layers must have the same dimension.
+- `layerMul (lhs, rhs)`
+  - Performs point-wise multiplication of outputs of the two layers. The layers
+    must have the same dimension.
+- `layerMatMul (lhs, rhs)`
+  - Performs matrix multiplication on the outputs of two layers. The layers must
+    have compatible dimensions.
+- `layerCMul (lhs, rhs)`
+  - Performs matrix multiplication between `lhs` and the transpose of `rhs`. The
+    layers must have compatible dimensions.
+- `newBias size`
+  - Creates bias vector of size `size` where each value is initialized to `0`.
+- `newWeight (r, c)`
+  - Creates weight matrix of size `r` by `c` where the weights are initialized
+    from a normal distribution.
+- `newVec (size, x)`
+  - Creates bias vector of size `size` where each value is initialized to `x`.
+
+- `outMse (input, size)`
+  - Creates an output cost layer using mean squared error. The input to
+    this layer must have size `size`.
+- `outCeBin : kadnodetp * int -> kadnodetp`
+  - Creates an output cost layer using binary cross-entropy loss. The input to
+    this layer must have size `size`.
+- `outCeBinNeg : kadnodetp * int -> kadnodetp`
+  - Creates an output cost layer using binary cross-entropy-like loss. The input
+    to this layer must have size `size`.
+- `outCeMulti : kadnodetp * int -> kadnodetp`
+  - Creates an output cost layer using multiclass cross-entropy loss. The input
+    to this layer must have size `size`.
 
 ### Activation Functions
 
