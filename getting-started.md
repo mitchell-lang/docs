@@ -136,7 +136,7 @@ run-mitchell hello-world.sml
 
 You should see `Hello world!` printed on the screen.
 
-## Running Mitchell programs for the Assigned Workloads
+## Running Mitchell Programs for the Assigned Workloads
 
 For the tutorials, we have provided you with two scripts to aid in compiling and
 running Mitchell programs: `run-mitchell` and `check-mitchell`, both of which
