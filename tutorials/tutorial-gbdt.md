@@ -261,7 +261,10 @@ val _ = print ("error = " ^ (Real.toString error) ^ "\n");
 We will now walk through using the `CartReal` and `DecisionTreeReal` libraries
 to build the GBDT algorithm from scratch.
 
-You can find the training and test data for this workload in `/data/workload33-gbdt/`.
+You can find training data to use for this tutorial workload
+[here](https://github.com/dmlc/XGBoost.jl/tree/master/data). This tutorial will
+assume you have downloaded the training data into the directory
+`/data/workload33-gbdt/`.
 
 ### Parsing
 
@@ -269,9 +272,15 @@ We are in the process of developing Mitchell libraries for ingesting data in
 many common formats. As shown above, the input format used for gradient boosting
 decision trees is one of the formats for which we have library support.
 
-For other workloads we recommend using a language other than Mitchell for
-preparing the data for use by Mitchell, and then implementing a simple data
-ingesting function using the
+**Note that you will not have to implement any parsing code for your assigned
+workload. The data preparation and parsing has been done for you as part of the
+scaffolding for the assigned workload.** However, you may find it useful
+practice with the language to implement your own parser in Mitchell before
+beginning working on the assigned workload.
+
+If you are going to implement your own parser, we recommend using a language
+other than Mitchell for preparing the data for use by Mitchell, and then
+implementing a simple data ingesting function using the
 [`TextIO`](http://sml-family.org/Basis/text-io.html) and
 [`TextIO.StreamingIO`](http://sml-family.org/Basis/stream-io.html#STREAM_IO:SIG:SPEC)
 modules to read the data into a string, and then parsing it with the functions

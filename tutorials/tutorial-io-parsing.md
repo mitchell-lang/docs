@@ -13,6 +13,12 @@ Mitchell-specific IO libraries (such as `LibSVM.fromFile`) to implement your
 program, so that they will be compatible with compilation to a hardware
 accelerator.
 
+**Note that you will not have to implement any parsing code for your assigned
+workload. The data preparation and parsing has been done for you as part of the
+scaffolding for the assigned workload.** However, you may find it useful
+practice with the language to implement your own parser in Mitchell before
+beginning working on the assigned workload.
+
 In this tutorial, we will walk through the implementation of LibSVM parsing. In
 general, it is a good idea to use external tools convert your data into a
 simple-to-parse format for use with Mitchell.
