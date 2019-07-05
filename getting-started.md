@@ -72,8 +72,8 @@ A login window should pop up asking for your password. The password for VNC is
 On Linux we recommend installing and using the tightvnc package.
 
 ```bash
-sudo apt-get install tightvnc
-vnc localhost:99
+sudo apt-get install xtightvncviewer
+xtightvncviewer localhost:99
 ```
 
 The password for the VNC connection is `mitchell`.
