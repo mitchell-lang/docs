@@ -51,6 +51,12 @@ Use xtigervncviewer -SecurityTypes VncAuth,TLSVnc -passwd
 
 At that point, you can connect to the container using a VNC client, as described below.
 
+Note: the `README` file on the machine contains an error in its description of
+how to stop the Docker container. To stop the Docker container, first disconnect
+from the running container by typing `CTRL+P CTRL+Q`. Then run `sudo
+stopEval.sh`. You can confirm that the container has been stopped by running
+`sudo docker ps`.
+
 ### Windows
 
 Download and install [TightVNC](https://www.tightvnc.com/).
