@@ -53,7 +53,7 @@ At that point, you can connect to the container using a VNC client, as described
 
 Note: the `README` file on the machine contains an error in its description of
 how to stop the Docker container. To stop the Docker container, first disconnect
-from the running container by typing `CTRL+p CTRL+q`. Then run `sudo
+from the running container by typing `CTRL+p CTRL+q`. Then run `sudo sh
 stopEval.sh`. You can confirm that the container has been stopped by running
 `sudo docker ps`.
 
