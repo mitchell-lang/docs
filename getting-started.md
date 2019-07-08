@@ -24,7 +24,7 @@ that you were given.
 ssh -L 127.0.0.1:5999:localhost:5999 \
     -o IdentitiesOnly=yes \
     -F /dev/null \
-    -i "$SH_KEY" \
+    -i "$SSH_KEY" \
     "ubuntu@$VM_IP"
 ```
 
