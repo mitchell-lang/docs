@@ -194,7 +194,7 @@ and the changes will appear in the Docker container.
 You may omit the `-L` flag and its arguments when connecting to the host
 machine.
 
-```
+```bash
 ssh -o IdentitiesOnly=yes \
     -F /dev/null \
     -i "$SSH_KEY" \
@@ -204,14 +204,14 @@ ssh -o IdentitiesOnly=yes \
 To start a Docker container with the same content as the VNC server but that is
 just running a bash shell, run
 
-```
+```bash
 sudo docker run --privileged -it --rm -v /data:/data sdhph1-eval1 /bin/bash
 ```
 
 Once in the container, in order to switch to the `mitchell` user (necessary to
 have the correct `PATH` and other environment variables), run
 
-```
+```bash
 su --login mitchell
 ```
 
@@ -219,7 +219,7 @@ If you wish to edit your program from within the container (e.g., using Vim or
 Emacs), you will need to change the permissions on the files before switching to
 the `mitchell` user. This can be accomplished by running:
 
-```
+```bash
 chown -R mitchell:mitchell /data
 ```
 
