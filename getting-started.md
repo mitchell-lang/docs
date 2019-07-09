@@ -180,6 +180,59 @@ The two `make` commands that will be particularly useful are:
     make evaluate
     ```
 
+## Alternative to VNC
+
+Since most editing environments do not come with built-in support for syntax
+highlighting that is compatible with Mitchell, we recommend using the Visual
+Studio Code installation available on the image via VNC.
+
+If you cannot use VNC, it is possible to start a Docker image that is just
+running a shell. Because the `/data` directory is a mount point, you can edit
+the files from the host machine (or edit them locally and upload the new files),
+and the changes will appear in the Docker container.
+
+You may omit the `-L` flag and its arguments when connecting to the host
+machine.
+
+```
+ssh -o IdentitiesOnly=yes \
+    -F /dev/null \
+    -i "$SSH_KEY" \
+    "ubuntu@$VM_IP"
+```
+
+To start a Docker container with the same content as the VNC server but that is
+just running a bash shell, run
+
+```
+sudo docker run --privileged -it --rm -v /data:/data sdhph1-eval1 /bin/bash
+```
+
+Once in the container, in order to switch to the `mitchell` user (necessary to
+have the correct `PATH` and other environment variables), run
+
+```
+su --login mitchell
+```
+
+If you wish to edit your program from within the container (e.g., using Vim or
+Emacs), you will need to change the permissions on the files before switching to
+the `mitchell` user. This can be accomplished by running:
+
+```
+chown -R mitchell:mitchell /data
+```
+
+However, doing this will change the permissions on the host machine as well. If
+you wish to edit the files from the host machine, you may need to reset the
+permissions before doing so.
+
+If you are editing Mitchell programs locally, you may wish to use
+[this Visual Studio Code plugin](https://marketplace.visualstudio.com/items?itemName=freebroccolo.sml),
+which is compatible with Mitchell. Additionally, the `sml-mode` package for
+Emacs (available on ELPA) is compatible with Mitchell, though it may require
+additional configuration (which is not covered in this documentation).
+
 ## Next Steps
 
 - Learn the syntax of Mitchell and Standard ML at
